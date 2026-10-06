@@ -1,5 +1,91 @@
 # Autonomous Bale Handling with a Tractor
 
+## Running the Current Scene
+
+Requirements: Gazebo Harmonic (`gz sim` 8), including the Ogre2 rendering engine.
+
+From the project directory, launch the simulation:
+
+```bash
+gz sim -r worlds/simple_tractor.sdf
+```
+
+For a server without a display:
+
+```bash
+gz sim -s -r --headless-rendering worlds/simple_tractor.sdf
+```
+
+In another terminal, drive the tractor:
+
+```bash
+python3 worlds/teleop_wasd.py
+```
+
+The scene includes three static square-bale visual targets. Their placeholder
+dimensions are 2.4 × 1.2 × 0.9 m; their centers are at (7, 0, 0.45),
+(10, 3, 0.45), and (11, -3, 0.45) m. The latter two are rotated ±30°.
+They have no collision geometry or calibrated material physics yet: the tractor
+can pass through them. Their purpose at this stage is sensor development.
+
+### RGB and Depth Cameras
+
+Two separate sensors are attached directly to the chassis. Both share the same
+ideal viewpoint at (2.05, 0, 2.25) m in the tractor model frame and point forward
+with a 0.20 rad downward pitch. The chassis-relative sensor pose is
+`2.05 0 1.20 0 0.20 0`. Gazebo camera axes are +X forward, +Y left, +Z up.
+
+| Setting | Both cameras |
+| --- | --- |
+| Resolution | 640 × 480 pixels |
+| Horizontal field of view | 60° |
+| Requested update rate | 15 Hz in simulation time |
+| Near / far clip | 0.1 / 30 m |
+
+| Sensor | Gazebo image topic |
+| --- | --- |
+| RGB | `/tractor/camera/rgb` |
+| Depth | `/tractor/camera/depth` |
+
+Matching poses and image geometry provide ideal geometric registration: the same
+pixel corresponds to the same viewing direction. This is a simplified baseline
+for an RGB-D device. Independent streams must still be matched using message
+simulation timestamps; equal update rates alone do not prove synchronization.
+If real cameras have different poses or intrinsics, depth reprojection and
+extrinsic calibration will be needed.
+
+Inspect the published topics while the simulation is running:
+
+```bash
+gz topic -l
+gz topic -i -t /tractor/camera/rgb
+gz topic -i -t /tractor/camera/depth
+```
+
+Use Gazebo's Image Display GUI plugin to inspect the RGB topic. Depth is a
+floating-point image in meters and may require normalization for display.
+RGB is color imagery; a depth image must not be interpreted as RGB bytes.
+This scene uses native Gazebo Transport; ROS bridging is not configured.
+
+If the GUI topic dropdown does not switch the image, open the provided viewers
+in separate terminals while the simulation is running:
+
+```bash
+gz gui -c worlds/rgb_camera.config
+```
+
+```bash
+gz gui -c worlds/depth_camera.config
+```
+
+Each viewer runs in a separate GUI process and subscribes to a fixed topic,
+without a topic dropdown. RGB should show straw-colored bales and green ground;
+the depth viewer shows distances as grayscale.
+
+The rendering sensor setup follows the
+[Gazebo Harmonic Sensors system documentation](https://gazebosim.org/api/sim/8/classgz_1_1sim_1_1systems_1_1Sensors.html).
+The numbered sections below describe the broader project plan.
+
 ## 1. Project Overview
 
 This project aims to develop an autonomous tractor system for handling square bales.
