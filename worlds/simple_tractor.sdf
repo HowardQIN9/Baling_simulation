@@ -1,0 +1,546 @@
+<?xml version="1.0" ?>
+
+<sdf version="1.10">
+
+  <world name="tractor_world">
+
+    <!-- Scene / background -->
+    <scene>
+      <ambient>0.6 0.6 0.6 1</ambient>
+      <background>0.7 0.8 0.9 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <!-- Sun -->
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+
+      <pose>0 0 10 0 0 0</pose>
+
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <!-- Physics -->
+    <physics name="physics" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <!-- Required Gazebo systems -->
+    <plugin
+      filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics"/>
+
+    <plugin
+      filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands"/>
+
+    <plugin
+      filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster"/>
+    
+    <!-- ========================= -->
+    <!-- Ground                    -->
+    <!-- ========================= -->
+
+    <model name="ground">
+
+      <static>true</static>
+
+      <link name="ground_link">
+
+        <pose>0 0 -0.05 0 0 0</pose>
+
+        <collision name="ground_collision">
+          <geometry>
+            <box>
+              <size>30 30 0.1</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="ground_visual">
+
+          <geometry>
+            <box>
+              <size>30 30 0.1</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.30 0.45 0.20 1</ambient>
+            <diffuse>0.30 0.45 0.20 1</diffuse>
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================= -->
+    <!-- Simple Maxxum-like tractor -->
+    <!-- ========================= -->
+
+    <model name="simple_tractor">
+    <plugin
+      filename="gz-sim-ackermann-steering-system"
+      name="gz::sim::systems::AckermannSteering">
+
+  <!-- Rear wheels provide drive -->
+  <left_joint>rear_left_wheel_joint</left_joint>
+  <right_joint>rear_right_wheel_joint</right_joint>
+
+  <!-- Front wheels provide steering -->
+  <left_steering_joint>front_left_steering_joint</left_steering_joint>
+  <right_steering_joint>front_right_steering_joint</right_steering_joint>
+
+  <!-- Temporary geometry -->
+  <kingpin_width>1.90</kingpin_width>
+  <steering_limit>0.6</steering_limit>
+
+  <wheel_base>2.642</wheel_base>
+  <wheel_separation>2.00</wheel_separation>
+  <wheel_radius>0.87</wheel_radius>
+
+  <min_velocity>-2.0</min_velocity>
+  <max_velocity>2.0</max_velocity>
+
+  <min_acceleration>-1.0</min_acceleration>
+  <max_acceleration>1.0</max_acceleration>
+
+  </plugin>
+
+      <!-- V0 geometry model -->
+      <static>false</static>
+
+
+      <!-- Main chassis -->
+      <link name="chassis">
+
+        <pose>0 0 1.05 0 0 0</pose>
+
+        <collision name="chassis_collision">
+
+          <geometry>
+            <box>
+              <size>3.0 1.40 0.50</size>
+            </box>
+          </geometry>
+
+        </collision>
+
+        <visual name="chassis_visual">
+
+          <geometry>
+            <box>
+              <size>3.0 1.40 0.50</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.70 0.05 0.05 1</ambient>
+            <diffuse>0.70 0.05 0.05 1</diffuse>
+          </material>
+
+        </visual>
+
+      </link>
+
+
+      <!-- Hood -->
+      <link name="hood">
+
+        <pose>1.15 0 1.50 0 0 0</pose>
+
+        <collision name="hood_collision">
+
+          <geometry>
+            <box>
+              <size>1.60 1.20 0.70</size>
+            </box>
+          </geometry>
+
+        </collision>
+
+        <visual name="hood_visual">
+
+          <geometry>
+            <box>
+              <size>1.60 1.20 0.70</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.80 0.08 0.08 1</ambient>
+            <diffuse>0.80 0.08 0.08 1</diffuse>
+          </material>
+
+        </visual>
+
+      </link>
+
+
+      <!-- Cab -->
+      <link name="cab">
+
+        <pose>-0.45 0 2.05 0 0 0</pose>
+
+        <collision name="cab_collision">
+
+          <geometry>
+            <box>
+              <size>1.35 1.40 1.75</size>
+            </box>
+          </geometry>
+
+        </collision>
+
+        <visual name="cab_visual">
+
+          <geometry>
+            <box>
+              <size>1.35 1.40 1.75</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.15 0.15 0.18 1</ambient>
+            <diffuse>0.15 0.15 0.18 1</diffuse>
+          </material>
+
+        </visual>
+
+      </link>
+
+
+      <!-- Front left wheel -->
+      <link name="front_left_wheel">
+
+        <pose>1.321 0.95 0.68 1.5708 0 0</pose>
+
+        <collision name="collision">
+
+          <geometry>
+            <cylinder>
+              <radius>0.68</radius>
+              <length>0.38</length>
+            </cylinder>
+          </geometry>
+
+        </collision>
+
+        <visual name="visual">
+
+          <geometry>
+            <cylinder>
+              <radius>0.68</radius>
+              <length>0.38</length>
+            </cylinder>
+          </geometry>
+
+          <material>
+            <ambient>0.05 0.05 0.05 1</ambient>
+            <diffuse>0.05 0.05 0.05 1</diffuse>
+          </material>
+
+        </visual>
+
+      </link>
+
+
+      <!-- Front right wheel -->
+      <link name="front_right_wheel">
+
+        <pose>1.321 -0.95 0.68 1.5708 0 0</pose>
+
+        <collision name="collision">
+
+          <geometry>
+            <cylinder>
+              <radius>0.68</radius>
+              <length>0.38</length>
+            </cylinder>
+          </geometry>
+
+        </collision>
+
+        <visual name="visual">
+
+          <geometry>
+            <cylinder>
+              <radius>0.68</radius>
+              <length>0.38</length>
+            </cylinder>
+          </geometry>
+
+          <material>
+            <ambient>0.05 0.05 0.05 1</ambient>
+            <diffuse>0.05 0.05 0.05 1</diffuse>
+          </material>
+
+        </visual>
+
+<visual name="marker_visual">
+  <pose>0.65 0 0 0 0 0</pose>
+  <geometry>
+    <box>
+      <size>0.08 0.08 0.08</size>
+    </box>
+  </geometry>
+  <material>
+    <ambient>1 1 1 1</ambient>
+    <diffuse>1 1 1 1</diffuse>
+  </material>
+</visual>
+      </link>
+
+
+      <!-- Rear left wheel -->
+      <link name="rear_left_wheel">
+
+        <pose>-1.321 1.00 0.87 1.5708 0 0</pose>
+
+        <collision name="collision">
+
+          <geometry>
+            <cylinder>
+              <radius>0.87</radius>
+              <length>0.46</length>
+            </cylinder>
+          </geometry>
+
+        </collision>
+
+        <visual name="visual">
+
+          <geometry>
+            <cylinder>
+              <radius>0.87</radius>
+              <length>0.46</length>
+            </cylinder>
+          </geometry>
+
+          <material>
+            <ambient>0.05 0.05 0.05 1</ambient>
+            <diffuse>0.05 0.05 0.05 1</diffuse>
+          </material>
+
+        </visual>
+
+      
+<visual name="marker_visual">
+  <pose>0.65 0 0 0 0 0</pose>
+  <geometry>
+    <box>
+      <size>0.08 0.08 0.08</size>
+    </box>
+  </geometry>
+  <material>
+    <ambient>1 1 1 1</ambient>
+    <diffuse>1 1 1 1</diffuse>
+  </material>
+</visual>
+
+</link>
+      <!-- Rear right wheel -->
+      <link name="rear_right_wheel">
+
+        <pose>-1.321 -1.00 0.87 1.5708 0 0</pose>
+
+        <collision name="collision">
+
+          <geometry>
+            <cylinder>
+              <radius>0.87</radius>
+              <length>0.46</length>
+            </cylinder>
+          </geometry>
+
+        </collision>
+
+        <visual name="visual">
+
+          <geometry>
+            <cylinder>
+              <radius>0.87</radius>
+              <length>0.46</length>
+            </cylinder>
+          </geometry>
+
+          <material>
+            <ambient>0.05 0.05 0.05 1</ambient>
+            <diffuse>0.05 0.05 0.05 1</diffuse>
+          </material>
+
+        </visual>
+<visual name="marker_visual">
+  <pose>0.65 0 0 0 0 0</pose>
+  <geometry>
+    <box>
+      <size>0.08 0.08 0.08</size>
+    </box>
+  </geometry>
+  <material>
+    <ambient>1 1 1 1</ambient>
+    <diffuse>1 1 1 1</diffuse>
+  </material>
+</visual>
+      </link>
+      
+      <!-- Front left steering hub -->
+      <link name="front_left_steering_hub">
+        <pose relative_to="__model__">1.321 0.95 0.68 0 0 0</pose>
+
+        <inertial>
+          <mass>1.0</mass>
+          <inertia>
+            <ixx>0.01</ixx>
+            <iyy>0.01</iyy>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial> 
+      </link>
+
+
+      <!-- Front right steering hub -->
+      <link name="front_right_steering_hub">
+        <pose relative_to="__model__">1.321 -0.95 0.68 0 0 0</pose>
+
+        <inertial>
+          <mass>1.0</mass>
+          <inertia>
+            <ixx>0.01</ixx>
+            <iyy>0.01</iyy>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+      </link>
+
+
+
+
+
+
+      <!-- Rear left wheel axle -->
+      <joint name="rear_left_wheel_joint" type="revolute">
+        <parent>chassis</parent>
+        <child>rear_left_wheel</child>
+
+        <axis>
+          <xyz expressed_in="__model__">0 1 0</xyz>
+        </axis>
+      </joint>
+
+
+      <!-- Rear right wheel axle -->
+      <joint name="rear_right_wheel_joint" type="revolute">
+        <parent>chassis</parent>
+        <child>rear_right_wheel</child>
+
+        <axis>
+          <xyz expressed_in="__model__">0 1 0</xyz>
+        </axis>
+      </joint>
+      
+<!-- Front left steering -->
+<joint name="front_left_steering_joint" type="revolute">
+
+  <pose relative_to="__model__">
+    1.321 0.95 0.68 0 0 0
+  </pose>
+
+  <parent>chassis</parent>
+  <child>front_left_steering_hub</child>
+
+  <axis>
+    <xyz expressed_in="__model__">0 0 1</xyz>
+
+    <limit>
+      <lower>-0.6</lower>
+      <upper>0.6</upper>
+      <effort>1000</effort>
+      <velocity>1.0</velocity>
+    </limit>
+  </axis>
+
+</joint>
+
+
+<!-- Front right steering -->
+<joint name="front_right_steering_joint" type="revolute">
+
+  <pose relative_to="__model__">
+    1.321 -0.95 0.68 0 0 0
+  </pose>
+
+  <parent>chassis</parent>
+  <child>front_right_steering_hub</child>
+
+  <axis>
+    <xyz expressed_in="__model__">0 0 1</xyz>
+
+    <limit>
+      <lower>-0.6</lower>
+      <upper>0.6</upper>
+      <effort>1000</effort>
+      <velocity>1.0</velocity>
+    </limit>
+  </axis>
+
+</joint>
+
+<!-- Front left wheel rotation -->
+<joint name="front_left_wheel_joint" type="revolute">
+
+  <pose relative_to="__model__">
+    1.321 0.95 0.68 0 0 0
+  </pose>
+
+  <parent>front_left_steering_hub</parent>
+  <child>front_left_wheel</child>
+
+  <axis>
+    <xyz expressed_in="__model__">0 1 0</xyz>
+  </axis>
+
+</joint>
+
+
+<!-- Front right wheel rotation -->
+<joint name="front_right_wheel_joint" type="revolute">
+
+  <pose relative_to="__model__">
+    1.321 -0.95 0.68 0 0 0
+  </pose>
+
+  <parent>front_right_steering_hub</parent>
+  <child>front_right_wheel</child>
+
+  <axis>
+    <xyz expressed_in="__model__">0 1 0</xyz>
+  </axis>
+
+</joint>
+
+      <!-- Fix hood to chassis -->
+      <joint name="hood_fixed_joint" type="fixed">
+        <parent>chassis</parent>
+        <child>hood</child>
+      </joint>
+
+      <!-- Fix cab to chassis -->
+      <joint name="cab_fixed_joint" type="fixed">
+        <parent>chassis</parent>
+        <child>cab</child>
+      </joint>
+    
+    </model>
+
+  </world>
+
+</sdf>
