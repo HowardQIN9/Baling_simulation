@@ -65,6 +65,15 @@
               <size>30 30 0.1</size>
             </box>
           </geometry>
+          <!-- Approximate simulation friction; not experimentally validated. -->
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.55</mu>
+                <mu2>0.55</mu2>
+              </ode>
+            </friction>
+          </surface>
         </collision>
 
         <visual name="ground_visual">
@@ -88,11 +97,33 @@
 
 
     <!-- Placeholder dimensions: 2.4 m long, 1.2 m wide, 0.9 m high.
-         Static visual targets; contact and material physics are a later stage. -->
+         Dynamic rigid hay bales: 525 kg reference mass; uniform-box inertia. -->
     <model name="bale_1">
-      <static>true</static>
+      <static>false</static>
       <pose>7 0 0.45 0 0 0</pose>
       <link name="bale_link">
+        <!-- Approximate link mass; uniform primitive inertia in link axes. -->
+        <inertial>
+          <mass>525</mass>
+          <inertia>
+            <ixx>98.43750000</ixx><ixy>0</ixy><ixz>0</ixz>
+            <iyy>287.43750000</iyy><iyz>0</iyz>
+            <izz>315.00000000</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="bale_collision">
+          <geometry><box><size>2.4 1.2 0.9</size></box></geometry>
+          <!-- Approximate simulation friction; not experimentally validated. -->
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.4</mu>
+                <mu2>0.4</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
         <visual name="straw">
           <geometry><box><size>2.4 1.2 0.9</size></box></geometry>
           <material>
@@ -104,11 +135,33 @@
     </model>
 
     <!-- Placeholder dimensions: 2.4 m long, 1.2 m wide, 0.9 m high.
-         Static visual targets; contact and material physics are a later stage. -->
+         Dynamic rigid hay bales: 525 kg reference mass; uniform-box inertia. -->
     <model name="bale_2">
-      <static>true</static>
+      <static>false</static>
       <pose>10 3 0.45 0 0 0.523599</pose>
       <link name="bale_link">
+        <!-- Approximate link mass; uniform primitive inertia in link axes. -->
+        <inertial>
+          <mass>525</mass>
+          <inertia>
+            <ixx>98.43750000</ixx><ixy>0</ixy><ixz>0</ixz>
+            <iyy>287.43750000</iyy><iyz>0</iyz>
+            <izz>315.00000000</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="bale_collision">
+          <geometry><box><size>2.4 1.2 0.9</size></box></geometry>
+          <!-- Approximate simulation friction; not experimentally validated. -->
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.4</mu>
+                <mu2>0.4</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
         <visual name="straw">
           <geometry><box><size>2.4 1.2 0.9</size></box></geometry>
           <material>
@@ -120,11 +173,33 @@
     </model>
 
     <!-- Placeholder dimensions: 2.4 m long, 1.2 m wide, 0.9 m high.
-         Static visual targets; contact and material physics are a later stage. -->
+         Dynamic rigid hay bales: 525 kg reference mass; uniform-box inertia. -->
     <model name="bale_3">
-      <static>true</static>
+      <static>false</static>
       <pose>11 -3 0.45 0 0 -0.523599</pose>
       <link name="bale_link">
+        <!-- Approximate link mass; uniform primitive inertia in link axes. -->
+        <inertial>
+          <mass>525</mass>
+          <inertia>
+            <ixx>98.43750000</ixx><ixy>0</ixy><ixz>0</ixz>
+            <iyy>287.43750000</iyy><iyz>0</iyz>
+            <izz>315.00000000</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="bale_collision">
+          <geometry><box><size>2.4 1.2 0.9</size></box></geometry>
+          <!-- Approximate simulation friction; not experimentally validated. -->
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.4</mu>
+                <mu2>0.4</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
         <visual name="straw">
           <geometry><box><size>2.4 1.2 0.9</size></box></geometry>
           <material>
@@ -174,6 +249,16 @@
 
       <!-- Main chassis -->
       <link name="chassis">
+        <!-- Approximate link mass; uniform primitive inertia in link axes. -->
+        <inertial>
+          <mass>3480</mass>
+          <inertia>
+            <ixx>640.90000000</ixx><ixy>0</ixy><ixz>0</ixz>
+            <iyy>2682.50000000</iyy><iyz>0</iyz>
+            <izz>3178.40000000</izz>
+          </inertia>
+        </inertial>
+
 
         <pose>0 0 1.05 0 0 0</pose>
 
@@ -243,6 +328,16 @@
 
       <!-- Hood -->
       <link name="hood">
+        <!-- Approximate link mass; uniform primitive inertia in link axes. -->
+        <inertial>
+          <mass>700</mass>
+          <inertia>
+            <ixx>112.58333333</ixx><ixy>0</ixy><ixz>0</ixz>
+            <iyy>177.91666667</iyy><iyz>0</iyz>
+            <izz>233.33333333</izz>
+          </inertia>
+        </inertial>
+
 
         <pose>1.15 0 1.50 0 0 0</pose>
 
@@ -276,6 +371,16 @@
 
       <!-- Cab -->
       <link name="cab">
+        <!-- Approximate link mass; uniform primitive inertia in link axes. -->
+        <inertial>
+          <mass>500</mass>
+          <inertia>
+            <ixx>209.27083333</ixx><ixy>0</ixy><ixz>0</ixz>
+            <iyy>203.54166667</iyy><iyz>0</iyz>
+            <izz>157.60416667</izz>
+          </inertia>
+        </inertial>
+
 
         <pose>-0.45 0 2.05 0 0 0</pose>
 
@@ -309,6 +414,16 @@
 
       <!-- Front left wheel -->
       <link name="front_left_wheel">
+        <!-- Approximate link mass; uniform primitive inertia in link axes. -->
+        <inertial>
+          <mass>150</mass>
+          <inertia>
+            <ixx>19.14500000</ixx><ixy>0</ixy><ixz>0</ixz>
+            <iyy>19.14500000</iyy><iyz>0</iyz>
+            <izz>34.68000000</izz>
+          </inertia>
+        </inertial>
+
 
         <pose>1.321 0.95 0.68 1.5708 0 0</pose>
 
@@ -321,6 +436,15 @@
             </cylinder>
           </geometry>
 
+          <!-- Approximate simulation friction; not experimentally validated. -->
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
         </collision>
 
         <visual name="visual">
@@ -344,6 +468,16 @@
 
       <!-- Front right wheel -->
       <link name="front_right_wheel">
+        <!-- Approximate link mass; uniform primitive inertia in link axes. -->
+        <inertial>
+          <mass>150</mass>
+          <inertia>
+            <ixx>19.14500000</ixx><ixy>0</ixy><ixz>0</ixz>
+            <iyy>19.14500000</iyy><iyz>0</iyz>
+            <izz>34.68000000</izz>
+          </inertia>
+        </inertial>
+
 
         <pose>1.321 -0.95 0.68 1.5708 0 0</pose>
 
@@ -356,6 +490,15 @@
             </cylinder>
           </geometry>
 
+          <!-- Approximate simulation friction; not experimentally validated. -->
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
         </collision>
 
         <visual name="visual">
@@ -391,6 +534,16 @@
 
       <!-- Rear left wheel -->
       <link name="rear_left_wheel">
+        <!-- Approximate link mass; uniform primitive inertia in link axes. -->
+        <inertial>
+          <mass>250</mass>
+          <inertia>
+            <ixx>51.71458333</ixx><ixy>0</ixy><ixz>0</ixz>
+            <iyy>51.71458333</iyy><iyz>0</iyz>
+            <izz>94.61250000</izz>
+          </inertia>
+        </inertial>
+
 
         <pose>-1.321 1.00 0.87 1.5708 0 0</pose>
 
@@ -403,6 +556,15 @@
             </cylinder>
           </geometry>
 
+          <!-- Approximate simulation friction; not experimentally validated. -->
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
         </collision>
 
         <visual name="visual">
@@ -438,6 +600,16 @@
 </link>
       <!-- Rear right wheel -->
       <link name="rear_right_wheel">
+        <!-- Approximate link mass; uniform primitive inertia in link axes. -->
+        <inertial>
+          <mass>250</mass>
+          <inertia>
+            <ixx>51.71458333</ixx><ixy>0</ixy><ixz>0</ixz>
+            <iyy>51.71458333</iyy><iyz>0</iyz>
+            <izz>94.61250000</izz>
+          </inertia>
+        </inertial>
+
 
         <pose>-1.321 -1.00 0.87 1.5708 0 0</pose>
 
@@ -450,6 +622,15 @@
             </cylinder>
           </geometry>
 
+          <!-- Approximate simulation friction; not experimentally validated. -->
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
         </collision>
 
         <visual name="visual">
@@ -485,30 +666,32 @@
       <link name="front_left_steering_hub">
         <pose relative_to="__model__">1.321 0.95 0.68 0 0 0</pose>
 
+        <!-- Approximate link mass; uniform primitive inertia in link axes. -->
         <inertial>
-          <mass>1.0</mass>
+          <mass>10</mass>
           <inertia>
-            <ixx>0.01</ixx>
-            <iyy>0.01</iyy>
-            <izz>0.01</izz>
+            <ixx>0.01666667</ixx><ixy>0</ixy><ixz>0</ixz>
+            <iyy>0.01666667</iyy><iyz>0</iyz>
+            <izz>0.01666667</izz>
           </inertia>
-        </inertial> 
-      </link>
+        </inertial>
+</link>
 
 
       <!-- Front right steering hub -->
       <link name="front_right_steering_hub">
         <pose relative_to="__model__">1.321 -0.95 0.68 0 0 0</pose>
 
+        <!-- Approximate link mass; uniform primitive inertia in link axes. -->
         <inertial>
-          <mass>1.0</mass>
+          <mass>10</mass>
           <inertia>
-            <ixx>0.01</ixx>
-            <iyy>0.01</iyy>
-            <izz>0.01</izz>
+            <ixx>0.01666667</ixx><ixy>0</ixy><ixz>0</ixz>
+            <iyy>0.01666667</iyy><iyz>0</iyz>
+            <izz>0.01666667</izz>
           </inertia>
         </inertial>
-      </link>
+</link>
 
 
 

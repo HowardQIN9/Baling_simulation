@@ -22,11 +22,40 @@ In another terminal, drive the tractor:
 python3 worlds/teleop_wasd.py
 ```
 
-The scene includes three static square-bale visual targets. Their placeholder
+The scene includes three dynamic square-bale collision targets. Their placeholder
 dimensions are 2.4 × 1.2 × 0.9 m; their centers are at (7, 0, 0.45),
 (10, 3, 0.45), and (11, -3, 0.45) m. The latter two are rotated ±30°.
-They have no collision geometry or calibrated material physics yet: the tractor
-can pass through them. Their purpose at this stage is sensor development.
+Each bale has a box collision matching its visual dimensions. The tractor body
+and wheels also have collision geometry, so contact is resolved by the physics
+engine. Bales use `static=false` with explicit mass and inertia, so they can slide
+and tip under contact forces. Drive slowly toward `bale_1` to try pushing it.
+The rigid-box approximation does not model straw compression or fork penetration.
+Restart the world after editing its SDF so the new collisions are loaded.
+
+### Contact Friction
+
+See [the rigid-body physics baseline](docs/physics_parameters.md) for reference
+masses, link mass distribution, inertia calculations, limitations, and contact
+test instructions.
+
+The relevant collision elements explicitly set both friction directions equally:
+
+| Surface | `mu` | `mu2` |
+| --- | --- | --- |
+| Ground | 0.55 | 0.55 |
+| All four tractor wheels | 1.0 | 1.0 |
+| All three bales | 0.4 | 0.4 |
+
+These are approximate simulation parameters, not experimentally validated
+material properties. They are per-surface settings; the physics engine determines
+the friction for each contacting pair. Bales are dynamic rigid bodies; loader
+and fork pickup are not implemented yet.
+
+Support was checked against installed Gazebo Sim 8.15.0, gz-physics DART plugin
+7.8.0, DART 6.13.2, and SDFormat 14.9.0. Despite the `ode` tag name, the DART
+backend reads both `mu` and `mu2` and forwards them to DART's primary and secondary
+friction coefficients for DART >= 6.10. See the
+[matching gz-physics 7.8.0 implementation](https://github.com/gazebosim/gz-physics/blob/gz-physics7_7.8.0/dartsim/src/SDFFeatures.cc#L826-L835).
 
 ### RGB and Depth Cameras
 
