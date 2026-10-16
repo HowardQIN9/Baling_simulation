@@ -2,24 +2,32 @@
 
 ## Running the Current Scene
 
-Requirements: Gazebo Harmonic (`gz sim` 8), including the Ogre2 rendering engine.
+Requirements: Gazebo Harmonic (`gz sim` 8), including the Ogre2 rendering engine,
+Gazebo development libraries, CMake, and a C++17 compiler.
+
+Build the loader actuator plugin once (and rebuild after changing its C++ code):
+
+```bash
+cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cmake --build build -j 2
+```
 
 From the project directory, launch the simulation:
 
 ```bash
-gz sim -r worlds/simple_tractor.sdf
+bash scripts/run_sim.sh
 ```
 
 For a server without a display:
 
 ```bash
-gz sim -s -r --headless-rendering worlds/simple_tractor.sdf
+bash scripts/run_sim.sh -s --headless-rendering
 ```
 
-In another terminal, drive the tractor:
+In another terminal, drive the tractor and operate the loader:
 
 ```bash
-python3 worlds/teleop_wasd.py
+python3 scripts/teleop_loader.py
 ```
 
 The scene includes three dynamic square-bale collision targets. Their placeholder
@@ -31,6 +39,37 @@ engine. Bales use `static=false` with explicit mass and inertia, so they can sli
 and tip under contact forces. Drive slowly toward `bale_1` to try pushing it.
 The rigid-box approximation does not model straw compression or fork penetration.
 Restart the world after editing its SDF so the new collisions are loaded.
+
+### Loader and Hydraulic Controls
+
+The world includes an L115-inspired raised twin-arm loader with a broad-pad
+side-clamping bale grip. It is a sliding-jaw prototype inspired by the Case IH
+heavy-duty bale grip description, not a measured replica. There are no fork tines
+in the default world.
+The configurable actuator model uses provisional 86 L/min shared pump flow,
+200 bar equivalent lift/tilt pressure limits, and 100 bar limits for each grip jaw. It is a
+force-limited equivalent actuator, not a detailed fluid-circuit simulation or
+a calibrated reproduction of the L115. See
+[loader geometry, assumptions, controls, and tests](docs/loader_hydraulics.md).
+
+Use **U/J** to increase/decrease the lift valve, **I/K** for tilt, and **N** to
+neutralize all valves and hold. **P** closes the grip; **O** opens it. **W/S/A/D** drive; **Space** stops driving and
+neutralizes the loader. Commands latch until changed. Do not run a second
+driving teleop simultaneously. Restart using `bash scripts/run_sim.sh` so Gazebo
+can locate the built actuator plugin.
+
+The grip opens to a 1.9 m internal gap and closes to 0.5 m, using two 0.7 m
+jaw strokes. Align the tractor with the long axis of the center bale so the
+jaws straddle its 1.2 m width, close with **P**, neutralize with **N**, then raise
+with **U**. Press **N** to hold, and **O** to release after lowering. Commands
+latch until changed. The grip is tested using contact and friction, with no
+invisible attachment joint. Perception, automatic approach, and alignment are
+not implemented. The former fork remains only as a separate test fixture.
+
+To try gripping without positioning the tractor first, close the normal world
+and run `python3 scripts/run_grip_demo.py`. This launches a temporary copy with
+the center bale on the ground between the open jaws; it does not attach the bale
+or change the saved main world. Use the same `scripts/teleop_loader.py` controls.
 
 ### Contact Friction
 
@@ -48,8 +87,8 @@ The relevant collision elements explicitly set both friction directions equally:
 
 These are approximate simulation parameters, not experimentally validated
 material properties. They are per-surface settings; the physics engine determines
-the friction for each contacting pair. Bales are dynamic rigid bodies; loader
-and fork pickup are not implemented yet.
+the friction for each contacting pair. Bales are dynamic rigid bodies; automatic
+approach, alignment, and task execution remain future work.
 
 Support was checked against installed Gazebo Sim 8.15.0, gz-physics DART plugin
 7.8.0, DART 6.13.2, and SDFormat 14.9.0. Despite the `ode` tag name, the DART

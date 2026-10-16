@@ -24,8 +24,10 @@ The tractor totals 5,500 kg, using a provisional Maxxum-family baseline from a
 [CNH-published Maxxum T3 brochure](https://www.stevensonandtaylor.co.nz/wp-content/uploads/Case-IH-Maxxum-T3-WEB-MAY23-1.pdf).
 That brochure covers the 110/125/140 family; this value is a proxy, not a verified
 weight for the project's specific Maxxum 150. Replace it with the real tractor's
-weight and axle loads when available. No loader, fork, or additional ballast mass
-is included. The following link mass distribution is an engineering assumption,
+weight and axle loads when available. This 5,500 kg baseline excludes loader,
+fork, and additional ballast. The default loader/grip assembly is 700 kg, giving
+6,200 kg before payload (6,090 kg in the optional fork-only test); see [loader physics](loader_hydraulics.md).
+The following base tractor link mass distribution is an engineering assumption,
 not a manufacturer-provided component breakdown:
 
 | Link | Mass (kg) |
@@ -72,13 +74,13 @@ collision geometry to those hubs.
 Restart Gazebo after edits:
 
 ```bash
-gz sim -r worlds/simple_tractor.sdf
+bash scripts/run_sim.sh
 ```
 
 In another terminal:
 
 ```bash
-python3 worlds/teleop_wasd.py
+python3 scripts/teleop_loader.py
 ```
 
 Approach the center bale slowly, initially at 0.3–0.5 m/s, and press Space to stop.
