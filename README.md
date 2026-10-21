@@ -1,5 +1,35 @@
 # Autonomous Bale Handling with a Tractor
 
+## Current development status — 2026-10-20
+
+The latest work is a separate [four-spear handling prototype](spear_handling/README.md)
+that reuses the tractor and L115-inspired loader. It creates two independent
+200 kg square bales with internal collision channels and a configurable four-spear
+attachment. The existing jaw-grip simulation and autonomy runner remain available.
+
+**The first spear trial ran but failed acceptance.** The bale rose about 0.508 m,
+but insertion-depth feedback mixed coordinate frames and the custom contact
+counters stayed at zero. Pickup at 60% penetration, pair-specific friction,
+stacking, and lifting two bales are not yet validated. The current runner uses
+simulator poses for physics experiments, not camera-based autonomy.
+
+See [HANDOFF.md](HANDOFF.md) for architecture, exact test evidence, known issues,
+and the ordered resumption plan. Development is paused pending resumption;
+no successful spear demonstration is claimed.
+
+Build and run the experimental first test from this directory:
+
+```bash
+cmake -S spear_handling -B spear_handling/build -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cmake --build spear_handling/build -j 2
+python3 spear_handling/validate.py --case A
+```
+
+Use system Python with the Gazebo transport/message bindings. The test creates
+an isolated Gazebo partition and writes artifacts under `runs/spear_*`.
+This command currently reproduces an unfinished experiment; it is not an
+accepted demonstration. Parameters are in `spear_handling/config.json`.
+
 ## Running the Current Scene
 
 Requirements: Gazebo Harmonic (`gz sim` 8), including the Ogre2 rendering engine,
@@ -63,13 +93,61 @@ jaw strokes. Align the tractor with the long axis of the center bale so the
 jaws straddle its 1.2 m width, close with **P**, neutralize with **N**, then raise
 with **U**. Press **N** to hold, and **O** to release after lowering. Commands
 latch until changed. The grip is tested using contact and friction, with no
-invisible attachment joint. Perception, automatic approach, and alignment are
-not implemented. The former fork remains only as a separate test fixture.
+invisible attachment joint. Perception and automatic pre-grasp approach are
+available in the separate experimental autonomy runner, including contact-based
+pickup and ground placement in bounded test cases. The former fork remains only
+as a separate test fixture.
 
 To try gripping without positioning the tractor first, close the normal world
 and run `python3 scripts/run_grip_demo.py`. This launches a temporary copy with
 the center bale on the ground between the open jaws; it does not attach the bale
 or change the saved main world. Use the same `scripts/teleop_loader.py` controls.
+
+### RGB-D Recording and Autonomous Approach
+
+The experimental autonomy runner launches an isolated simulation with front and
+side-mast RGB-D views plus an ideal IMU. It records synchronized observations,
+estimates the bale pose, plans an Ackermann-compatible approach, and stops before
+gripping. Ground truth is recorded separately for evaluation.
+
+```bash
+python3 -m venv --system-site-packages .venv
+.venv/bin/python -m pip install -r requirements-autonomy.txt
+.venv/bin/python scripts/bale_autonomy.py approach --name demo_01 --target 12 0 0
+```
+
+No second simulation or teleop terminal is needed for that command. The generated
+world leaves the manual scene unchanged. Use a new `--name` for each trial.
+
+To watch it drive with the path drawn in Gazebo:
+
+```bash
+.venv/bin/python scripts/bale_autonomy.py demo
+```
+
+Press Enter in the terminal after the Gazebo window opens. Blue shows the planned
+path, green the driven estimate, and yellow the stopping pose. The window stays
+open afterward; close it or press Ctrl-C to finish.
+
+For contact-based pickup and ground placement to the tractor's right:
+
+```bash
+.venv/bin/python scripts/bale_autonomy.py pick-place --gui --show-path --keep-open --wait-for-start
+```
+
+The cyan drop zone is at `(0, -6)` m relative to the original tractor starting
+frame. See [pickup, load verification and ground placement](docs/pick_place.md).
+
+To collect the center and both side bales and stack them at that same drop zone:
+
+```bash
+.venv/bin/python scripts/bale_autonomy.py stack --gui --show-path --keep-open --wait-for-start
+```
+
+See [three-bale stacking](docs/stacking.md) for the layer sequence and run details.
+
+See [recording, fusion, planning, evaluation and limitations](docs/autonomous_approach.md)
+and [the first delivery's measured results](docs/autonomy_results.md).
 
 ### Contact Friction
 
@@ -656,19 +734,19 @@ Completed:
 
 To do:
 
-- [ ] Front RGB camera
-- [ ] Additional cameras
-- [ ] RGB-D camera
-- [ ] Point cloud
+- [x] Front RGB camera
+- [x] Complementary side camera in autonomy trials
+- [x] RGB-D camera
+- [x] Depth-to-point-cloud processing inside pose estimation
 - [ ] RTK-GNSS simulation
-- [ ] Coordinate frame validation
+- [x] Camera/model/rear-axle frame checks for the flat-ground baseline
 
 ### Milestone 3: Build Bale Environment
 
 To do:
 
-- [ ] Square bale model
-- [ ] Multiple bale poses
+- [x] Square bale model
+- [x] Multiple bale poses
 - [ ] Field scenario
 - [ ] Storage or drop-off location
 
@@ -676,65 +754,68 @@ To do:
 
 To do:
 
-- [ ] Loader arm
-- [ ] Fork attachment
-- [ ] Loader joints
-- [ ] Joint control
-- [ ] Bale collision and contact
+- [x] Loader arm
+- [x] Bale grip attachment (fork retained as a test fixture)
+- [x] Loader joints
+- [x] Joint control
+- [x] Bale collision and contact
 
 ### Milestone 5: Build Data Pipeline
 
 To do:
 
-- [ ] Record simulation data
-- [ ] Define common dataset structure
+- [x] Record simulation data
+- [x] Define versioned observation/label dataset structure
 - [ ] Record CAN data
 - [ ] Record real sensor data
 - [ ] Align simulation and real-world data
 
 ### Milestone 6: Autonomous Bale Approach
 
-To do:
+Implemented for the bounded simulated baseline; see the measured results and
+remaining visibility, localization and maneuvering limitations in the autonomy docs.
 
-- [ ] Bale detection
-- [ ] Bale localization
-- [ ] Approach trajectory
-- [ ] Fine alignment
-- [ ] Automatic stopping
+- [x] Geometric RGB-D bale detection
+- [x] Bale pose estimation and multi-view/temporal tracking
+- [x] Curvature-constrained approach trajectory
+- [x] Sensor-guided terminal pre-grasp alignment
+- [x] Automatic stopping and measurement-loss abort
 
 ### Milestone 7: Autonomous Pickup
 
-To do:
+Implemented in the rigid-bale simulation baseline:
 
-- [ ] Fork alignment
-- [ ] Fork insertion
-- [ ] Loader lift
-- [ ] Pickup validation
+- [x] Grip alignment and positioning around the bale
+- [x] Contact-only jaw closure
+- [x] Loader lift with attachment leveling
+- [x] Pickup verification from jaw feedback and RGB-D motion
 
 ### Milestone 8: Full Task
 
 To do:
 
-- [ ] Pickup
-- [ ] Transport
-- [ ] Drop-off
+- [x] Pickup in bounded simulated cases
+- [x] Loaded transport to a ground drop zone
+- [x] Ground placement, release and withdrawal
+- [x] Three-bale stacking in one simulated run; see measured alignment limits in [stacking results](docs/stacking.md)
 - [ ] Sim-to-real testing
 
 ## 22. Immediate Next Steps
 
-The current priority is:
+The current priority is the separate spear-handling physics project:
 
-1. Add cameras to Gazebo.
-2. Add RGB-D and point-cloud sensing.
-3. Add a square bale model.
-4. Test whether the sensors can detect and localize the bale.
-5. Measure the real tractor geometry.
-6. Refine the tractor model.
-7. Add the loader and bale fork.
+1. Correct parent/link world transforms and measure penetration in bale-local coordinates.
+2. Diagnose zero contact callbacks and validate each friction interaction experimentally.
+3. Strengthen phase gates and acceptance checks, then rerun normal insertion and lifting.
+4. Test shallow/misaligned insertion before stacking, withdrawal, two-bale lifting, and dynamic stability.
+5. Integrate perception and planning after the physical handling model is validated.
 
-The first useful autonomous demonstration should therefore be:
+The older jaw autonomy baseline still needs better stack alignment, visibility,
+and broader scenario coverage; see [its recorded results](docs/stacking.md).
 
-> A simulated tractor observes a bale using onboard sensors, estimates the relative bale position, and autonomously approaches and aligns with the bale.
+The current experimental autonomous demonstration is:
+
+> A simulated tractor uses onboard RGB-D, wheel/IMU odometry, jaw feedback and hydraulic encoders to pick three rigid bales and stack them. One recorded run completed all three placements; its adjacent layer centers were 0.330 m and 0.345 m apart, slightly above the current 0.30 m nominal alignment limit.
 
 Imitation learning and full bale manipulation should come after this basic perception and control pipeline is working.
 

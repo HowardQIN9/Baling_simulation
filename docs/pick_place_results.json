@@ -1,0 +1,76 @@
+{
+  "task": "Ground placement to the right of the original tractor start",
+  "drop_pose": [
+    0,
+    -6,
+    0
+  ],
+  "cases": [
+    {
+      "trial": "pick_place_delivery_01",
+      "result": {
+        "success": true,
+        "pickup_verified": true,
+        "drop_pose": [
+          0,
+          -6,
+          0
+        ],
+        "simulated_duration_s": 143.48,
+        "path_visuals": {
+          "plan_revisions": 7,
+          "trail_segments": 121
+        },
+        "shutdown_status": -9,
+        "frames": 813,
+        "partition": "bale_autonomy_708ed4b1d90a439981553323c1679c9f",
+        "terminal_refinements": 4,
+        "min_separating_axis_gap_m": 0.9865601306138565,
+        "acceptance_pass": true,
+        "target_bale": 1,
+        "task": "pick_place",
+        "final_bale_position": [
+          0.18787507189742692,
+          -5.849502107337739,
+          0.4499998751061195
+        ],
+        "drop_error_m": 0.24072112150005615,
+        "drop_yaw_error_deg": 0.882219342308627
+      },
+      "final_estimated_drop_error_m": 0.028011872902333753
+    },
+    {
+      "trial": "pick_place_left_01",
+      "result": {
+        "success": true,
+        "pickup_verified": true,
+        "drop_pose": [
+          0,
+          -6,
+          0
+        ],
+        "simulated_duration_s": 144.38,
+        "path_visuals": {
+          "plan_revisions": 9,
+          "trail_segments": 145
+        },
+        "shutdown_status": -9,
+        "frames": 867,
+        "partition": "bale_autonomy_42a79ae555864e1dae495a523c435c0c",
+        "terminal_refinements": 6,
+        "min_separating_axis_gap_m": 1.2811007031790005,
+        "acceptance_pass": true,
+        "target_bale": 2,
+        "task": "pick_place",
+        "final_bale_position": [
+          0.013060982889574727,
+          -5.89469218992433,
+          0.449999217208789
+        ],
+        "drop_error_m": 0.10611467446576474,
+        "drop_yaw_error_deg": 0.4823837361404532
+      },
+      "final_estimated_drop_error_m": 0.15102037307726052
+    }
+  ]
+}

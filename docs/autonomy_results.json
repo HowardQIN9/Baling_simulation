@@ -1,0 +1,1953 @@
+{
+  "schema_version": 1,
+  "collection_trials": [
+    {
+      "trial": "delivery_v1_test_dry_lift",
+      "metadata": {
+        "schema_version": 1,
+        "source_sha256": {
+          "bale_autonomy/__init__.py": "4e555c2efc43452d5ab158e6f49c747976434298163a99bbad1001967608268d",
+          "bale_autonomy/approach.py": "93478f4801388f42f8935b92d93e60b25ed0b46c31daa519e65cd9d344968937",
+          "bale_autonomy/batch.py": "3a709d99dc5785a0c4c2728bbdbc25a05a5f705546a433807b87629b5fba1ffe",
+          "bale_autonomy/evaluation.py": "ce544f586c929da6eedf3b87c6e7fca12e555b6c28d5939d43f57dc4e87286e7",
+          "bale_autonomy/localization.py": "5fbf98020e1d0db300f0954df8a3b0aad449fe45b0955ccc2fbf33dc4a4ddd59",
+          "bale_autonomy/perception.py": "d7217a93e9830bd228dc20eced111c056a0f6beed694bd04fa42e244cb28d04b",
+          "bale_autonomy/planning.py": "cd328612d7fb2ade640ad3404a74a6233c34872acbaf3f00519a5562d3bd1a84",
+          "bale_autonomy/recording.py": "a957b59b7ca19c3b16362743a5b0059dacd521a8ecdcd697752b535d8de5aa61",
+          "bale_autonomy/scene.py": "aaa5f39ced9ae49b1b987e444ddbc712a9257d43faa2106ff9b0faea96369fd3",
+          "bale_autonomy/transport.py": "30e2a7f46ffc91b65f60728f3218c45dfddd18f035f40abe1149ca365cd72f8a",
+          "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b"
+        },
+        "scenario": {
+          "seed": 303,
+          "split": "test",
+          "target": [
+            10.643297257421958,
+            -0.24953453740605291,
+            0.21538666792533867
+          ],
+          "ground_color": [
+            0.28,
+            0.34,
+            0.13
+          ],
+          "bale_color": [
+            0.68,
+            0.53,
+            0.25
+          ],
+          "light": 0.6595693103292699,
+          "clutter": true,
+          "loader_lift": 0.65,
+          "cameras": [
+            "front",
+            "right"
+          ]
+        },
+        "cameras": {
+          "front": {
+            "pose": [
+              2.05,
+              0,
+              2.25,
+              0,
+              0.2,
+              0
+            ],
+            "hfov": 1.0471975511965976,
+            "width": 320,
+            "height": 240,
+            "fx": 277.1281292110204,
+            "fy": 277.1281292110204,
+            "cx": 160.0,
+            "cy": 120.0,
+            "near": 0.1,
+            "far": 30,
+            "rate_hz": 10,
+            "frame": "front_camera",
+            "depth_convention": "axial_forward_m",
+            "topic": "/tractor/camera/front"
+          },
+          "right": {
+            "pose": [
+              1.8,
+              -1.65,
+              3.25,
+              0,
+              0.32,
+              0
+            ],
+            "hfov": 1.5707963267948966,
+            "width": 320,
+            "height": 240,
+            "fx": 160.00000000000003,
+            "fy": 160.00000000000003,
+            "cx": 160.0,
+            "cy": 120.0,
+            "near": 0.1,
+            "far": 30,
+            "rate_hz": 10,
+            "frame": "right_camera",
+            "depth_convention": "axial_forward_m",
+            "topic": "/tractor/camera/right"
+          }
+        },
+        "frames": {
+          "model": "tractor reference used by Gazebo Ackermann odometry",
+          "camera": "+X forward, +Y left, +Z up; poses relative to model",
+          "world": "initial tractor model pose; meters, radians"
+        },
+        "bale_size_m": [
+          2.4,
+          1.2,
+          0.9
+        ],
+        "source_world": "worlds/simple_tractor.sdf",
+        "localization": "wheel-speed integration with ideal simulated IMU heading; initial model pose zero",
+        "imu": {
+          "topic": "/tractor/imu",
+          "rate_hz": 100,
+          "ideal": true,
+          "frame": "chassis"
+        }
+      },
+      "evaluations": {
+        "clean": {
+          "trial": "delivery_v1_test_dry_lift",
+          "split": "test",
+          "frames": 41,
+          "detected_frames": 24,
+          "detection_rate": 0.5853658536585366,
+          "single_position_m": {
+            "mean": 0.28984188011832535,
+            "p95": 0.1368007513527106,
+            "max": 5.7280967068057365
+          },
+          "single_yaw_deg": {
+            "mean": 2.4523192147634316,
+            "p95": 4.351655884732429,
+            "max": 40.97413237063459
+          },
+          "fused_position_m": {
+            "mean": 0.04313593326905884,
+            "p95": 0.05469376941740089,
+            "max": 0.05477176169630626
+          },
+          "fused_yaw_deg": {
+            "mean": 0.6759538909292967,
+            "p95": 1.197767314037513,
+            "max": 1.3645532968672287
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.02291255473166084,
+              "p95": 0.02291255481017747,
+              "max": 0.022912554818968544
+            },
+            "right": {
+              "mean": 0.3432277451956583,
+              "p95": 0.4300827610776782,
+              "max": 5.7280967068057365
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 1,
+          "pose_within_tolerance_rate": 0.5609756097560976,
+          "camera_detection_rate": {
+            "front": 0.19047619047619047,
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 0.9523809523809523
+        },
+        "noisy": {
+          "trial": "delivery_v1_test_dry_lift",
+          "split": "test",
+          "frames": 41,
+          "detected_frames": 24,
+          "detection_rate": 0.5853658536585366,
+          "single_position_m": {
+            "mean": 0.3007015743451525,
+            "p95": 0.13553004455025688,
+            "max": 5.71110282212041
+          },
+          "single_yaw_deg": {
+            "mean": 2.4329423005009616,
+            "p95": 4.429154219750046,
+            "max": 40.737425653249105
+          },
+          "fused_position_m": {
+            "mean": 0.05751804976569055,
+            "p95": 0.06906238314050704,
+            "max": 0.06933708417507212
+          },
+          "fused_yaw_deg": {
+            "mean": 0.6748355165867516,
+            "p95": 1.2454919110019087,
+            "max": 1.431615746384443
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.03229074032380598,
+              "p95": 0.03457320176370736,
+              "max": 0.034816728367997214
+            },
+            "right": {
+              "mean": 0.35438374114942184,
+              "p95": 0.4233128358636024,
+              "max": 5.71110282212041
+            }
+          },
+          "noise_std_m": 0.02,
+          "missing_depth_fraction": 0.15,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 1,
+          "pose_within_tolerance_rate": 0.5609756097560976,
+          "camera_detection_rate": {
+            "front": 0.19047619047619047,
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 0.9523809523809523
+        },
+        "front_only": {
+          "trial": "delivery_v1_test_dry_lift",
+          "split": "test",
+          "frames": 21,
+          "detected_frames": 4,
+          "detection_rate": 0.19047619047619047,
+          "single_position_m": {
+            "mean": 0.02291255473166084,
+            "p95": 0.02291255481017747,
+            "max": 0.022912554818968544
+          },
+          "single_yaw_deg": {
+            "mean": 0.008649596620864886,
+            "p95": 0.008649596997589503,
+            "max": 0.008649597039769382
+          },
+          "fused_position_m": {
+            "mean": 0.022912554786923254,
+            "p95": 0.022912554816770774,
+            "max": 0.022912554818968544
+          },
+          "fused_yaw_deg": {
+            "mean": 0.008649596886011827,
+            "p95": 0.008649597029223934,
+            "max": 0.008649597039769382
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.02291255473166084,
+              "p95": 0.02291255481017747,
+              "max": 0.022912554818968544
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 0.19047619047619047,
+          "camera_detection_rate": {
+            "front": 0.19047619047619047
+          },
+          "time_with_valid_pose_rate": 0.19047619047619047
+        },
+        "right_only": {
+          "trial": "delivery_v1_test_dry_lift",
+          "split": "test",
+          "frames": 20,
+          "detected_frames": 20,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.3432277451956583,
+            "p95": 0.4300827610776782,
+            "max": 5.7280967068057365
+          },
+          "single_yaw_deg": {
+            "mean": 2.9410531383919447,
+            "p95": 6.78760027032869,
+            "max": 40.97413237063459
+          },
+          "fused_position_m": {
+            "mean": 0.05784761431164598,
+            "p95": 0.0667118479588453,
+            "max": 0.07103684200580963
+          },
+          "fused_yaw_deg": {
+            "mean": 0.9372839019736257,
+            "p95": 1.4889110019197562,
+            "max": 1.7051887567010449
+          },
+          "camera_position_m": {
+            "right": {
+              "mean": 0.3432277451956583,
+              "p95": 0.4300827610776782,
+              "max": 5.7280967068057365
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 1,
+          "pose_within_tolerance_rate": 0.95,
+          "camera_detection_rate": {
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 0.95
+        }
+      }
+    },
+    {
+      "trial": "delivery_v1_test_green",
+      "metadata": {
+        "schema_version": 1,
+        "source_sha256": {
+          "bale_autonomy/__init__.py": "4e555c2efc43452d5ab158e6f49c747976434298163a99bbad1001967608268d",
+          "bale_autonomy/approach.py": "93478f4801388f42f8935b92d93e60b25ed0b46c31daa519e65cd9d344968937",
+          "bale_autonomy/batch.py": "3a709d99dc5785a0c4c2728bbdbc25a05a5f705546a433807b87629b5fba1ffe",
+          "bale_autonomy/evaluation.py": "ce544f586c929da6eedf3b87c6e7fca12e555b6c28d5939d43f57dc4e87286e7",
+          "bale_autonomy/localization.py": "5fbf98020e1d0db300f0954df8a3b0aad449fe45b0955ccc2fbf33dc4a4ddd59",
+          "bale_autonomy/perception.py": "d7217a93e9830bd228dc20eced111c056a0f6beed694bd04fa42e244cb28d04b",
+          "bale_autonomy/planning.py": "cd328612d7fb2ade640ad3404a74a6233c34872acbaf3f00519a5562d3bd1a84",
+          "bale_autonomy/recording.py": "a957b59b7ca19c3b16362743a5b0059dacd521a8ecdcd697752b535d8de5aa61",
+          "bale_autonomy/scene.py": "aaa5f39ced9ae49b1b987e444ddbc712a9257d43faa2106ff9b0faea96369fd3",
+          "bale_autonomy/transport.py": "30e2a7f46ffc91b65f60728f3218c45dfddd18f035f40abe1149ca365cd72f8a",
+          "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b"
+        },
+        "scenario": {
+          "seed": 302,
+          "split": "test",
+          "target": [
+            12.27923888047293,
+            0.6178636633780306,
+            0.34878885879747845
+          ],
+          "ground_color": [
+            0.39,
+            0.38,
+            0.23
+          ],
+          "bale_color": [
+            0.52,
+            0.46,
+            0.28
+          ],
+          "light": 0.7725622573512887,
+          "clutter": true,
+          "loader_lift": 0.0,
+          "cameras": [
+            "front",
+            "right"
+          ]
+        },
+        "cameras": {
+          "front": {
+            "pose": [
+              2.05,
+              0,
+              2.25,
+              0,
+              0.2,
+              0
+            ],
+            "hfov": 1.0471975511965976,
+            "width": 320,
+            "height": 240,
+            "fx": 277.1281292110204,
+            "fy": 277.1281292110204,
+            "cx": 160.0,
+            "cy": 120.0,
+            "near": 0.1,
+            "far": 30,
+            "rate_hz": 10,
+            "frame": "front_camera",
+            "depth_convention": "axial_forward_m",
+            "topic": "/tractor/camera/front"
+          },
+          "right": {
+            "pose": [
+              1.8,
+              -1.65,
+              3.25,
+              0,
+              0.32,
+              0
+            ],
+            "hfov": 1.5707963267948966,
+            "width": 320,
+            "height": 240,
+            "fx": 160.00000000000003,
+            "fy": 160.00000000000003,
+            "cx": 160.0,
+            "cy": 120.0,
+            "near": 0.1,
+            "far": 30,
+            "rate_hz": 10,
+            "frame": "right_camera",
+            "depth_convention": "axial_forward_m",
+            "topic": "/tractor/camera/right"
+          }
+        },
+        "frames": {
+          "model": "tractor reference used by Gazebo Ackermann odometry",
+          "camera": "+X forward, +Y left, +Z up; poses relative to model",
+          "world": "initial tractor model pose; meters, radians"
+        },
+        "bale_size_m": [
+          2.4,
+          1.2,
+          0.9
+        ],
+        "source_world": "worlds/simple_tractor.sdf",
+        "localization": "wheel-speed integration with ideal simulated IMU heading; initial model pose zero",
+        "imu": {
+          "topic": "/tractor/imu",
+          "rate_hz": 100,
+          "ideal": true,
+          "frame": "chassis"
+        }
+      },
+      "evaluations": {
+        "clean": {
+          "trial": "delivery_v1_test_green",
+          "split": "test",
+          "frames": 21,
+          "detected_frames": 21,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.0782560243990973,
+            "p95": 0.07932533888823715,
+            "max": 0.07932533888826358
+          },
+          "single_yaw_deg": {
+            "mean": 0.10465048376231911,
+            "p95": 0.12884357050461423,
+            "max": 0.12884357050512313
+          },
+          "fused_position_m": {
+            "mean": 0.07808817007072563,
+            "p95": 0.0783964696711426,
+            "max": 0.07839938617998306
+          },
+          "fused_yaw_deg": {
+            "mean": 0.10183168781313665,
+            "p95": 0.10890043377867276,
+            "max": 0.10896553072938635
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.07728392031818652,
+              "p95": 0.07728392031829634,
+              "max": 0.07728392031830486
+            },
+            "right": {
+              "mean": 0.07932533888809916,
+              "p95": 0.07932533888825169,
+              "max": 0.07932533888826358
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "front": 1.0,
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        },
+        "noisy": {
+          "trial": "delivery_v1_test_green",
+          "split": "test",
+          "frames": 21,
+          "detected_frames": 21,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.09716825961357221,
+            "p95": 0.11225187848187922,
+            "max": 0.11758989943827754
+          },
+          "single_yaw_deg": {
+            "mean": 0.616165371826379,
+            "p95": 2.3790401061317255,
+            "max": 2.416789480613137
+          },
+          "fused_position_m": {
+            "mean": 0.09607346515650372,
+            "p95": 0.10085475532861854,
+            "max": 0.10161043710517106
+          },
+          "fused_yaw_deg": {
+            "mean": 0.47215630065024994,
+            "p95": 1.1256981487272844,
+            "max": 1.2488164462970093
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.0950343817103946,
+              "p95": 0.10775035301433422,
+              "max": 0.10918283980796588
+            },
+            "right": {
+              "mean": 0.09951552530706757,
+              "p95": 0.11518779000789829,
+              "max": 0.11758989943827754
+            }
+          },
+          "noise_std_m": 0.02,
+          "missing_depth_fraction": 0.15,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "front": 1.0,
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        },
+        "front_only": {
+          "trial": "delivery_v1_test_green",
+          "split": "test",
+          "frames": 11,
+          "detected_frames": 11,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.07728392031818652,
+            "p95": 0.07728392031829634,
+            "max": 0.07728392031830486
+          },
+          "single_yaw_deg": {
+            "mean": 0.08265676854439402,
+            "p95": 0.0826567685473768,
+            "max": 0.08265676854759309
+          },
+          "fused_position_m": {
+            "mean": 0.07728392031812205,
+            "p95": 0.07728392031822973,
+            "max": 0.07728392031824072
+          },
+          "fused_yaw_deg": {
+            "mean": 0.08265676854267769,
+            "p95": 0.0826567685455957,
+            "max": 0.08265676854588831
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.07728392031818652,
+              "p95": 0.07728392031829634,
+              "max": 0.07728392031830486
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "front": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        },
+        "right_only": {
+          "trial": "delivery_v1_test_green",
+          "split": "test",
+          "frames": 10,
+          "detected_frames": 10,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.07932533888809916,
+            "p95": 0.07932533888825169,
+            "max": 0.07932533888826358
+          },
+          "single_yaw_deg": {
+            "mean": 0.1288435705020367,
+            "p95": 0.12884357050489412,
+            "max": 0.12884357050512313
+          },
+          "fused_position_m": {
+            "mean": 0.07932533888800712,
+            "p95": 0.0793253388881505,
+            "max": 0.07932533888816456
+          },
+          "fused_yaw_deg": {
+            "mean": 0.1288435705003192,
+            "p95": 0.1288435705029909,
+            "max": 0.12884357050326567
+          },
+          "camera_position_m": {
+            "right": {
+              "mean": 0.07932533888809916,
+              "p95": 0.07932533888825169,
+              "max": 0.07932533888826358
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        }
+      }
+    },
+    {
+      "trial": "delivery_v1_test_lowcontrast",
+      "metadata": {
+        "schema_version": 1,
+        "source_sha256": {
+          "bale_autonomy/__init__.py": "4e555c2efc43452d5ab158e6f49c747976434298163a99bbad1001967608268d",
+          "bale_autonomy/approach.py": "93478f4801388f42f8935b92d93e60b25ed0b46c31daa519e65cd9d344968937",
+          "bale_autonomy/batch.py": "3a709d99dc5785a0c4c2728bbdbc25a05a5f705546a433807b87629b5fba1ffe",
+          "bale_autonomy/evaluation.py": "ce544f586c929da6eedf3b87c6e7fca12e555b6c28d5939d43f57dc4e87286e7",
+          "bale_autonomy/localization.py": "5fbf98020e1d0db300f0954df8a3b0aad449fe45b0955ccc2fbf33dc4a4ddd59",
+          "bale_autonomy/perception.py": "d7217a93e9830bd228dc20eced111c056a0f6beed694bd04fa42e244cb28d04b",
+          "bale_autonomy/planning.py": "cd328612d7fb2ade640ad3404a74a6233c34872acbaf3f00519a5562d3bd1a84",
+          "bale_autonomy/recording.py": "a957b59b7ca19c3b16362743a5b0059dacd521a8ecdcd697752b535d8de5aa61",
+          "bale_autonomy/scene.py": "aaa5f39ced9ae49b1b987e444ddbc712a9257d43faa2106ff9b0faea96369fd3",
+          "bale_autonomy/transport.py": "30e2a7f46ffc91b65f60728f3218c45dfddd18f035f40abe1149ca365cd72f8a",
+          "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b"
+        },
+        "scenario": {
+          "seed": 304,
+          "split": "test",
+          "target": [
+            11.68596873509211,
+            1.1965736564105978,
+            -0.08177512519518898
+          ],
+          "ground_color": [
+            0.43,
+            0.35,
+            0.19
+          ],
+          "bale_color": [
+            0.57,
+            0.46,
+            0.24
+          ],
+          "light": 0.8005938700530866,
+          "clutter": true,
+          "loader_lift": 0.25,
+          "cameras": [
+            "front",
+            "right"
+          ]
+        },
+        "cameras": {
+          "front": {
+            "pose": [
+              2.05,
+              0,
+              2.25,
+              0,
+              0.2,
+              0
+            ],
+            "hfov": 1.0471975511965976,
+            "width": 320,
+            "height": 240,
+            "fx": 277.1281292110204,
+            "fy": 277.1281292110204,
+            "cx": 160.0,
+            "cy": 120.0,
+            "near": 0.1,
+            "far": 30,
+            "rate_hz": 10,
+            "frame": "front_camera",
+            "depth_convention": "axial_forward_m",
+            "topic": "/tractor/camera/front"
+          },
+          "right": {
+            "pose": [
+              1.8,
+              -1.65,
+              3.25,
+              0,
+              0.32,
+              0
+            ],
+            "hfov": 1.5707963267948966,
+            "width": 320,
+            "height": 240,
+            "fx": 160.00000000000003,
+            "fy": 160.00000000000003,
+            "cx": 160.0,
+            "cy": 120.0,
+            "near": 0.1,
+            "far": 30,
+            "rate_hz": 10,
+            "frame": "right_camera",
+            "depth_convention": "axial_forward_m",
+            "topic": "/tractor/camera/right"
+          }
+        },
+        "frames": {
+          "model": "tractor reference used by Gazebo Ackermann odometry",
+          "camera": "+X forward, +Y left, +Z up; poses relative to model",
+          "world": "initial tractor model pose; meters, radians"
+        },
+        "bale_size_m": [
+          2.4,
+          1.2,
+          0.9
+        ],
+        "source_world": "worlds/simple_tractor.sdf",
+        "localization": "wheel-speed integration with ideal simulated IMU heading; initial model pose zero",
+        "imu": {
+          "topic": "/tractor/imu",
+          "rate_hz": 100,
+          "ideal": true,
+          "frame": "chassis"
+        }
+      },
+      "evaluations": {
+        "clean": {
+          "trial": "delivery_v1_test_lowcontrast",
+          "split": "test",
+          "frames": 25,
+          "detected_frames": 25,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.05681216642015177,
+            "p95": 0.07179407786267751,
+            "max": 0.07179407788180121
+          },
+          "single_yaw_deg": {
+            "mean": 0.0022172816907945706,
+            "p95": 0.0035032837914558074,
+            "max": 0.0035032838357113173
+          },
+          "fused_position_m": {
+            "mean": 0.05682368484832269,
+            "p95": 0.06457670197429266,
+            "max": 0.07179407788180121
+          },
+          "fused_yaw_deg": {
+            "mean": 0.002090222248697326,
+            "p95": 0.00244047898499759,
+            "max": 0.0024419739932272705
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.071794077860477,
+              "p95": 0.07179407787084542,
+              "max": 0.07179407788180121
+            },
+            "right": {
+              "mean": 0.040581762359799406,
+              "p95": 0.040581762388275426,
+              "max": 0.04058176241399192
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "front": 1.0,
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        },
+        "noisy": {
+          "trial": "delivery_v1_test_lowcontrast",
+          "split": "test",
+          "frames": 25,
+          "detected_frames": 25,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.07056445456654173,
+            "p95": 0.09931159548909808,
+            "max": 0.10641012860899589
+          },
+          "single_yaw_deg": {
+            "mean": 0.24279743349492622,
+            "p95": 0.6078763111409813,
+            "max": 0.7206289985340819
+          },
+          "fused_position_m": {
+            "mean": 0.07026750145991968,
+            "p95": 0.07590945551276322,
+            "max": 0.08150077751125284
+          },
+          "fused_yaw_deg": {
+            "mean": 0.08145839418994175,
+            "p95": 0.196861918022299,
+            "max": 0.2732089875978344
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.0902060239165921,
+              "p95": 0.10218026944453897,
+              "max": 0.10641012860899589
+            },
+            "right": {
+              "mean": 0.049286087770653825,
+              "p95": 0.0587920277908298,
+              "max": 0.05922802368336215
+            }
+          },
+          "noise_std_m": 0.02,
+          "missing_depth_fraction": 0.15,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "front": 1.0,
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        },
+        "front_only": {
+          "trial": "delivery_v1_test_lowcontrast",
+          "split": "test",
+          "frames": 13,
+          "detected_frames": 13,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.071794077860477,
+            "p95": 0.07179407787084542,
+            "max": 0.07179407788180121
+          },
+          "single_yaw_deg": {
+            "mean": 0.0010302028621353135,
+            "p95": 0.0010302029140392256,
+            "max": 0.0010302029401910184
+          },
+          "fused_position_m": {
+            "mean": 0.0717940778656754,
+            "p95": 0.071794077879062,
+            "max": 0.07179407788180121
+          },
+          "fused_yaw_deg": {
+            "mean": 0.0010302027820655833,
+            "p95": 0.0010302028784780798,
+            "max": 0.001030202880714646
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.071794077860477,
+              "p95": 0.07179407787084542,
+              "max": 0.07179407788180121
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "front": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        },
+        "right_only": {
+          "trial": "delivery_v1_test_lowcontrast",
+          "split": "test",
+          "frames": 12,
+          "detected_frames": 12,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.040581762359799406,
+            "p95": 0.040581762388275426,
+            "max": 0.04058176241399192
+          },
+          "single_yaw_deg": {
+            "mean": 0.003503283755175432,
+            "p95": 0.0035032838117388405,
+            "max": 0.0035032838357113173
+          },
+          "fused_position_m": {
+            "mean": 0.040581762374068284,
+            "p95": 0.04058176240756245,
+            "max": 0.04058176241399192
+          },
+          "fused_yaw_deg": {
+            "mean": 0.003503283669361946,
+            "p95": 0.0035032837697491575,
+            "max": 0.003503283772520057
+          },
+          "camera_position_m": {
+            "right": {
+              "mean": 0.040581762359799406,
+              "p95": 0.040581762388275426,
+              "max": 0.04058176241399192
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        }
+      }
+    },
+    {
+      "trial": "delivery_v1_train_green",
+      "metadata": {
+        "schema_version": 1,
+        "source_sha256": {
+          "bale_autonomy/__init__.py": "4e555c2efc43452d5ab158e6f49c747976434298163a99bbad1001967608268d",
+          "bale_autonomy/approach.py": "93478f4801388f42f8935b92d93e60b25ed0b46c31daa519e65cd9d344968937",
+          "bale_autonomy/batch.py": "3a709d99dc5785a0c4c2728bbdbc25a05a5f705546a433807b87629b5fba1ffe",
+          "bale_autonomy/evaluation.py": "ce544f586c929da6eedf3b87c6e7fca12e555b6c28d5939d43f57dc4e87286e7",
+          "bale_autonomy/localization.py": "5fbf98020e1d0db300f0954df8a3b0aad449fe45b0955ccc2fbf33dc4a4ddd59",
+          "bale_autonomy/perception.py": "d7217a93e9830bd228dc20eced111c056a0f6beed694bd04fa42e244cb28d04b",
+          "bale_autonomy/planning.py": "cd328612d7fb2ade640ad3404a74a6233c34872acbaf3f00519a5562d3bd1a84",
+          "bale_autonomy/recording.py": "a957b59b7ca19c3b16362743a5b0059dacd521a8ecdcd697752b535d8de5aa61",
+          "bale_autonomy/scene.py": "aaa5f39ced9ae49b1b987e444ddbc712a9257d43faa2106ff9b0faea96369fd3",
+          "bale_autonomy/transport.py": "30e2a7f46ffc91b65f60728f3218c45dfddd18f035f40abe1149ca365cd72f8a",
+          "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b"
+        },
+        "scenario": {
+          "seed": 2,
+          "split": "train",
+          "target": [
+            10.784836402747949,
+            -0.6045265697576301,
+            0.21995801841599616
+          ],
+          "ground_color": [
+            0.39,
+            0.38,
+            0.23
+          ],
+          "bale_color": [
+            0.52,
+            0.46,
+            0.28
+          ],
+          "light": 0.5867663768540388,
+          "clutter": true,
+          "loader_lift": 0.0,
+          "cameras": [
+            "front",
+            "right"
+          ]
+        },
+        "cameras": {
+          "front": {
+            "pose": [
+              2.05,
+              0,
+              2.25,
+              0,
+              0.2,
+              0
+            ],
+            "hfov": 1.0471975511965976,
+            "width": 320,
+            "height": 240,
+            "fx": 277.1281292110204,
+            "fy": 277.1281292110204,
+            "cx": 160.0,
+            "cy": 120.0,
+            "near": 0.1,
+            "far": 30,
+            "rate_hz": 10,
+            "frame": "front_camera",
+            "depth_convention": "axial_forward_m",
+            "topic": "/tractor/camera/front"
+          },
+          "right": {
+            "pose": [
+              1.8,
+              -1.65,
+              3.25,
+              0,
+              0.32,
+              0
+            ],
+            "hfov": 1.5707963267948966,
+            "width": 320,
+            "height": 240,
+            "fx": 160.00000000000003,
+            "fy": 160.00000000000003,
+            "cx": 160.0,
+            "cy": 120.0,
+            "near": 0.1,
+            "far": 30,
+            "rate_hz": 10,
+            "frame": "right_camera",
+            "depth_convention": "axial_forward_m",
+            "topic": "/tractor/camera/right"
+          }
+        },
+        "frames": {
+          "model": "tractor reference used by Gazebo Ackermann odometry",
+          "camera": "+X forward, +Y left, +Z up; poses relative to model",
+          "world": "initial tractor model pose; meters, radians"
+        },
+        "bale_size_m": [
+          2.4,
+          1.2,
+          0.9
+        ],
+        "source_world": "worlds/simple_tractor.sdf",
+        "localization": "wheel-speed integration with ideal simulated IMU heading; initial model pose zero",
+        "imu": {
+          "topic": "/tractor/imu",
+          "rate_hz": 100,
+          "ideal": true,
+          "frame": "chassis"
+        }
+      },
+      "evaluations": {
+        "clean": {
+          "trial": "delivery_v1_train_green",
+          "split": "train",
+          "frames": 21,
+          "detected_frames": 21,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.0948403098364075,
+            "p95": 0.1399028114599872,
+            "max": 0.13990281146001463
+          },
+          "single_yaw_deg": {
+            "mean": 0.11971969745175162,
+            "p95": 0.15045314803099244,
+            "max": 0.1504531480314759
+          },
+          "fused_position_m": {
+            "mean": 0.08853134306961181,
+            "p95": 0.10172387479354132,
+            "max": 0.10184717540847527
+          },
+          "fused_yaw_deg": {
+            "mean": 0.11613886765043939,
+            "p95": 0.12511857979261362,
+            "max": 0.12520127506565165
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.05387439926955768,
+              "p95": 0.053874399269721214,
+              "max": 0.053874399269734086
+            },
+            "right": {
+              "mean": 0.1399028114599423,
+              "p95": 0.13990281146000227,
+              "max": 0.13990281146001463
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "front": 1.0,
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        },
+        "noisy": {
+          "trial": "delivery_v1_train_green",
+          "split": "train",
+          "frames": 21,
+          "detected_frames": 21,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.11214741942054793,
+            "p95": 0.1659044568817545,
+            "max": 0.1665281389380939
+          },
+          "single_yaw_deg": {
+            "mean": 0.19369030036972001,
+            "p95": 0.6340529179900537,
+            "max": 0.8785748647919083
+          },
+          "fused_position_m": {
+            "mean": 0.10716103631306947,
+            "p95": 0.1207737625447571,
+            "max": 0.12387580031961941
+          },
+          "fused_yaw_deg": {
+            "mean": 0.16003230658996015,
+            "p95": 0.2661835438806566,
+            "max": 0.3136491983895228
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.07436826515909382,
+              "p95": 0.08734993645381983,
+              "max": 0.09362826423445667
+            },
+            "right": {
+              "mean": 0.15370448910814746,
+              "p95": 0.16624748201274117,
+              "max": 0.1665281389380939
+            }
+          },
+          "noise_std_m": 0.02,
+          "missing_depth_fraction": 0.15,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "front": 1.0,
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        },
+        "front_only": {
+          "trial": "delivery_v1_train_green",
+          "split": "train",
+          "frames": 11,
+          "detected_frames": 11,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.05387439926955768,
+            "p95": 0.053874399269721214,
+            "max": 0.053874399269734086
+          },
+          "single_yaw_deg": {
+            "mean": 0.09178019692752266,
+            "p95": 0.09178019693050313,
+            "max": 0.09178019693073212
+          },
+          "fused_position_m": {
+            "mean": 0.05387439926946305,
+            "p95": 0.053874399269622744,
+            "max": 0.05387439926963864
+          },
+          "fused_yaw_deg": {
+            "mean": 0.0917801969258098,
+            "p95": 0.09178019692872838,
+            "max": 0.09178019692901464
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.05387439926955768,
+              "p95": 0.053874399269721214,
+              "max": 0.053874399269734086
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "front": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        },
+        "right_only": {
+          "trial": "delivery_v1_train_green",
+          "split": "train",
+          "frames": 10,
+          "detected_frames": 10,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.1399028114599423,
+            "p95": 0.13990281146000227,
+            "max": 0.13990281146001463
+          },
+          "single_yaw_deg": {
+            "mean": 0.15045314802840346,
+            "p95": 0.15045314803125834,
+            "max": 0.1504531480314759
+          },
+          "fused_position_m": {
+            "mean": 0.13990281145997038,
+            "p95": 0.13990281146001193,
+            "max": 0.13990281146001463
+          },
+          "fused_yaw_deg": {
+            "mean": 0.15045314802669102,
+            "p95": 0.15045314802936907,
+            "max": 0.15045314802964388
+          },
+          "camera_position_m": {
+            "right": {
+              "mean": 0.1399028114599423,
+              "p95": 0.13990281146000227,
+              "max": 0.13990281146001463
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        }
+      }
+    },
+    {
+      "trial": "delivery_v1_train_lift",
+      "metadata": {
+        "schema_version": 1,
+        "source_sha256": {
+          "bale_autonomy/__init__.py": "4e555c2efc43452d5ab158e6f49c747976434298163a99bbad1001967608268d",
+          "bale_autonomy/approach.py": "93478f4801388f42f8935b92d93e60b25ed0b46c31daa519e65cd9d344968937",
+          "bale_autonomy/batch.py": "3a709d99dc5785a0c4c2728bbdbc25a05a5f705546a433807b87629b5fba1ffe",
+          "bale_autonomy/evaluation.py": "ce544f586c929da6eedf3b87c6e7fca12e555b6c28d5939d43f57dc4e87286e7",
+          "bale_autonomy/localization.py": "5fbf98020e1d0db300f0954df8a3b0aad449fe45b0955ccc2fbf33dc4a4ddd59",
+          "bale_autonomy/perception.py": "d7217a93e9830bd228dc20eced111c056a0f6beed694bd04fa42e244cb28d04b",
+          "bale_autonomy/planning.py": "cd328612d7fb2ade640ad3404a74a6233c34872acbaf3f00519a5562d3bd1a84",
+          "bale_autonomy/recording.py": "a957b59b7ca19c3b16362743a5b0059dacd521a8ecdcd697752b535d8de5aa61",
+          "bale_autonomy/scene.py": "aaa5f39ced9ae49b1b987e444ddbc712a9257d43faa2106ff9b0faea96369fd3",
+          "bale_autonomy/transport.py": "30e2a7f46ffc91b65f60728f3218c45dfddd18f035f40abe1149ca365cd72f8a",
+          "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b"
+        },
+        "scenario": {
+          "seed": 3,
+          "split": "train",
+          "target": [
+            10.256947501430872,
+            -0.7895684802117009,
+            0.2108921256444778
+          ],
+          "ground_color": [
+            0.28,
+            0.34,
+            0.13
+          ],
+          "bale_color": [
+            0.68,
+            0.53,
+            0.25
+          ],
+          "light": 0.7828648144257471,
+          "clutter": true,
+          "loader_lift": 0.45,
+          "cameras": [
+            "front",
+            "right"
+          ]
+        },
+        "cameras": {
+          "front": {
+            "pose": [
+              2.05,
+              0,
+              2.25,
+              0,
+              0.2,
+              0
+            ],
+            "hfov": 1.0471975511965976,
+            "width": 320,
+            "height": 240,
+            "fx": 277.1281292110204,
+            "fy": 277.1281292110204,
+            "cx": 160.0,
+            "cy": 120.0,
+            "near": 0.1,
+            "far": 30,
+            "rate_hz": 10,
+            "frame": "front_camera",
+            "depth_convention": "axial_forward_m",
+            "topic": "/tractor/camera/front"
+          },
+          "right": {
+            "pose": [
+              1.8,
+              -1.65,
+              3.25,
+              0,
+              0.32,
+              0
+            ],
+            "hfov": 1.5707963267948966,
+            "width": 320,
+            "height": 240,
+            "fx": 160.00000000000003,
+            "fy": 160.00000000000003,
+            "cx": 160.0,
+            "cy": 120.0,
+            "near": 0.1,
+            "far": 30,
+            "rate_hz": 10,
+            "frame": "right_camera",
+            "depth_convention": "axial_forward_m",
+            "topic": "/tractor/camera/right"
+          }
+        },
+        "frames": {
+          "model": "tractor reference used by Gazebo Ackermann odometry",
+          "camera": "+X forward, +Y left, +Z up; poses relative to model",
+          "world": "initial tractor model pose; meters, radians"
+        },
+        "bale_size_m": [
+          2.4,
+          1.2,
+          0.9
+        ],
+        "source_world": "worlds/simple_tractor.sdf",
+        "localization": "wheel-speed integration with ideal simulated IMU heading; initial model pose zero",
+        "imu": {
+          "topic": "/tractor/imu",
+          "rate_hz": 100,
+          "ideal": true,
+          "frame": "chassis"
+        }
+      },
+      "evaluations": {
+        "clean": {
+          "trial": "delivery_v1_train_lift",
+          "split": "train",
+          "frames": 33,
+          "detected_frames": 20,
+          "detection_rate": 0.6060606060606061,
+          "single_position_m": {
+            "mean": 0.026865801770357668,
+            "p95": 0.04665098955456978,
+            "max": 0.04665098955471567
+          },
+          "single_yaw_deg": {
+            "mean": 0.13313614714711897,
+            "p95": 0.14957230552890755,
+            "max": 0.14957230578851716
+          },
+          "fused_position_m": {
+            "mean": 0.022579061947003008,
+            "p95": 0.028112805747535184,
+            "max": 0.029332589836876057
+          },
+          "fused_yaw_deg": {
+            "mean": 0.12100076991078108,
+            "p95": 0.1479060404268698,
+            "max": 0.1483055991378592
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.015277850781489891,
+              "p95": 0.015277850856998433,
+              "max": 0.015277850865344613
+            },
+            "right": {
+              "mean": 0.029762789517574606,
+              "p95": 0.046650989554600494,
+              "max": 0.04665098955471567
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 0.6060606060606061,
+          "camera_detection_rate": {
+            "front": 0.23529411764705882,
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 0.9411764705882353
+        },
+        "noisy": {
+          "trial": "delivery_v1_train_lift",
+          "split": "train",
+          "frames": 33,
+          "detected_frames": 20,
+          "detection_rate": 0.6060606060606061,
+          "single_position_m": {
+            "mean": 0.033639747823205474,
+            "p95": 0.05850304472500244,
+            "max": 0.060544105477198476
+          },
+          "single_yaw_deg": {
+            "mean": 0.32314004233556737,
+            "p95": 0.8412075480963019,
+            "max": 0.9855098031098195
+          },
+          "fused_position_m": {
+            "mean": 0.030172490450562535,
+            "p95": 0.03749432960799107,
+            "max": 0.03997880378443834
+          },
+          "fused_yaw_deg": {
+            "mean": 0.27083395149998346,
+            "p95": 0.3930125839055733,
+            "max": 0.39658997585178146
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.02113301714993469,
+              "p95": 0.024432857211211318,
+              "max": 0.024909710804608763
+            },
+            "right": {
+              "mean": 0.03676643049152316,
+              "p95": 0.05893274172546476,
+              "max": 0.060544105477198476
+            }
+          },
+          "noise_std_m": 0.02,
+          "missing_depth_fraction": 0.15,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 0.6060606060606061,
+          "camera_detection_rate": {
+            "front": 0.23529411764705882,
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 0.9411764705882353
+        },
+        "front_only": {
+          "trial": "delivery_v1_train_lift",
+          "split": "train",
+          "frames": 17,
+          "detected_frames": 4,
+          "detection_rate": 0.23529411764705882,
+          "single_position_m": {
+            "mean": 0.015277850781489891,
+            "p95": 0.015277850856998433,
+            "max": 0.015277850865344613
+          },
+          "single_yaw_deg": {
+            "mean": 0.06740308381486464,
+            "p95": 0.06740308418771915,
+            "max": 0.0674030842289315
+          },
+          "fused_position_m": {
+            "mean": 0.015277850834620387,
+            "p95": 0.015277850863258075,
+            "max": 0.015277850865344613
+          },
+          "fused_yaw_deg": {
+            "mean": 0.06740308407721586,
+            "p95": 0.06740308421862841,
+            "max": 0.0674030842289315
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.015277850781489891,
+              "p95": 0.015277850856998433,
+              "max": 0.015277850865344613
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 0.23529411764705882,
+          "camera_detection_rate": {
+            "front": 0.23529411764705882
+          },
+          "time_with_valid_pose_rate": 0.23529411764705882
+        },
+        "right_only": {
+          "trial": "delivery_v1_train_lift",
+          "split": "train",
+          "frames": 16,
+          "detected_frames": 16,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.029762789517574606,
+            "p95": 0.046650989554600494,
+            "max": 0.04665098955471567
+          },
+          "single_yaw_deg": {
+            "mean": 0.14956941298018256,
+            "p95": 0.14957230558356222,
+            "max": 0.14957230578851716
+          },
+          "fused_position_m": {
+            "mean": 0.026771524563613716,
+            "p95": 0.028964327926327103,
+            "max": 0.031050487818365207
+          },
+          "fused_yaw_deg": {
+            "mean": 0.14956794523348194,
+            "p95": 0.1495705741486788,
+            "max": 0.14957067849857814
+          },
+          "camera_position_m": {
+            "right": {
+              "mean": 0.029762789517574606,
+              "p95": 0.046650989554600494,
+              "max": 0.04665098955471567
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        }
+      }
+    },
+    {
+      "trial": "delivery_v1_validation_dry",
+      "metadata": {
+        "schema_version": 1,
+        "source_sha256": {
+          "bale_autonomy/__init__.py": "4e555c2efc43452d5ab158e6f49c747976434298163a99bbad1001967608268d",
+          "bale_autonomy/approach.py": "93478f4801388f42f8935b92d93e60b25ed0b46c31daa519e65cd9d344968937",
+          "bale_autonomy/batch.py": "3a709d99dc5785a0c4c2728bbdbc25a05a5f705546a433807b87629b5fba1ffe",
+          "bale_autonomy/evaluation.py": "ce544f586c929da6eedf3b87c6e7fca12e555b6c28d5939d43f57dc4e87286e7",
+          "bale_autonomy/localization.py": "5fbf98020e1d0db300f0954df8a3b0aad449fe45b0955ccc2fbf33dc4a4ddd59",
+          "bale_autonomy/perception.py": "d7217a93e9830bd228dc20eced111c056a0f6beed694bd04fa42e244cb28d04b",
+          "bale_autonomy/planning.py": "cd328612d7fb2ade640ad3404a74a6233c34872acbaf3f00519a5562d3bd1a84",
+          "bale_autonomy/recording.py": "a957b59b7ca19c3b16362743a5b0059dacd521a8ecdcd697752b535d8de5aa61",
+          "bale_autonomy/scene.py": "aaa5f39ced9ae49b1b987e444ddbc712a9257d43faa2106ff9b0faea96369fd3",
+          "bale_autonomy/transport.py": "30e2a7f46ffc91b65f60728f3218c45dfddd18f035f40abe1149ca365cd72f8a",
+          "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b"
+        },
+        "scenario": {
+          "seed": 22,
+          "split": "validation",
+          "target": [
+            11.099040746296229,
+            -0.9021138618747513,
+            -0.28800913871710476
+          ],
+          "ground_color": [
+            0.43,
+            0.35,
+            0.19
+          ],
+          "bale_color": [
+            0.57,
+            0.46,
+            0.24
+          ],
+          "light": 0.8112766750403679,
+          "clutter": true,
+          "loader_lift": 0.0,
+          "cameras": [
+            "front",
+            "right"
+          ]
+        },
+        "cameras": {
+          "front": {
+            "pose": [
+              2.05,
+              0,
+              2.25,
+              0,
+              0.2,
+              0
+            ],
+            "hfov": 1.0471975511965976,
+            "width": 320,
+            "height": 240,
+            "fx": 277.1281292110204,
+            "fy": 277.1281292110204,
+            "cx": 160.0,
+            "cy": 120.0,
+            "near": 0.1,
+            "far": 30,
+            "rate_hz": 10,
+            "frame": "front_camera",
+            "depth_convention": "axial_forward_m",
+            "topic": "/tractor/camera/front"
+          },
+          "right": {
+            "pose": [
+              1.8,
+              -1.65,
+              3.25,
+              0,
+              0.32,
+              0
+            ],
+            "hfov": 1.5707963267948966,
+            "width": 320,
+            "height": 240,
+            "fx": 160.00000000000003,
+            "fy": 160.00000000000003,
+            "cx": 160.0,
+            "cy": 120.0,
+            "near": 0.1,
+            "far": 30,
+            "rate_hz": 10,
+            "frame": "right_camera",
+            "depth_convention": "axial_forward_m",
+            "topic": "/tractor/camera/right"
+          }
+        },
+        "frames": {
+          "model": "tractor reference used by Gazebo Ackermann odometry",
+          "camera": "+X forward, +Y left, +Z up; poses relative to model",
+          "world": "initial tractor model pose; meters, radians"
+        },
+        "bale_size_m": [
+          2.4,
+          1.2,
+          0.9
+        ],
+        "source_world": "worlds/simple_tractor.sdf",
+        "localization": "wheel-speed integration with ideal simulated IMU heading; initial model pose zero",
+        "imu": {
+          "topic": "/tractor/imu",
+          "rate_hz": 100,
+          "ideal": true,
+          "frame": "chassis"
+        }
+      },
+      "evaluations": {
+        "clean": {
+          "trial": "delivery_v1_validation_dry",
+          "split": "validation",
+          "frames": 21,
+          "detected_frames": 21,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.03629225675859155,
+            "p95": 0.04392363462065882,
+            "max": 0.04392363462069163
+          },
+          "single_yaw_deg": {
+            "mean": 0.13228998371405082,
+            "p95": 0.16889813871745832,
+            "max": 0.16889813871794176
+          },
+          "fused_position_m": {
+            "mean": 0.03257498290835375,
+            "p95": 0.03814776970563873,
+            "max": 0.04392363462011867
+          },
+          "fused_yaw_deg": {
+            "mean": 0.12802467767349426,
+            "p95": 0.138720863353267,
+            "max": 0.13881936584200796
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.0439236346204613,
+              "p95": 0.04392363462067522,
+              "max": 0.04392363462069163
+            },
+            "right": {
+              "mean": 0.027897741110534835,
+              "p95": 0.027897741111151796,
+              "max": 0.027897741111200476
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "front": 1.0,
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        },
+        "noisy": {
+          "trial": "delivery_v1_validation_dry",
+          "split": "validation",
+          "frames": 21,
+          "detected_frames": 21,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.04780313189578772,
+            "p95": 0.07492070478534697,
+            "max": 0.07529058750149868
+          },
+          "single_yaw_deg": {
+            "mean": 0.20321770572671957,
+            "p95": 0.5147797992137598,
+            "max": 0.797565929667448
+          },
+          "fused_position_m": {
+            "mean": 0.04553946589616781,
+            "p95": 0.050805178236767085,
+            "max": 0.0542862875931196
+          },
+          "fused_yaw_deg": {
+            "mean": 0.13788441276861058,
+            "p95": 0.2827171866422139,
+            "max": 0.3607995789568084
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.06233680520200819,
+              "p95": 0.07510564614342283,
+              "max": 0.07529058750149868
+            },
+            "right": {
+              "mean": 0.03181609125894522,
+              "p95": 0.03485276063343638,
+              "max": 0.03528883645806179
+            }
+          },
+          "noise_std_m": 0.02,
+          "missing_depth_fraction": 0.15,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "front": 1.0,
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        },
+        "front_only": {
+          "trial": "delivery_v1_validation_dry",
+          "split": "validation",
+          "frames": 11,
+          "detected_frames": 11,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.0439236346204613,
+            "p95": 0.04392363462067522,
+            "max": 0.04392363462069163
+          },
+          "single_yaw_deg": {
+            "mean": 0.09900984280421228,
+            "p95": 0.0990098428071893,
+            "max": 0.0990098428074183
+          },
+          "fused_position_m": {
+            "mean": 0.04392363462033913,
+            "p95": 0.04392363462054831,
+            "max": 0.04392363462056879
+          },
+          "fused_yaw_deg": {
+            "mean": 0.0990098428025029,
+            "p95": 0.09900984280542091,
+            "max": 0.09900984280571351
+          },
+          "camera_position_m": {
+            "front": {
+              "mean": 0.0439236346204613,
+              "p95": 0.04392363462067522,
+              "max": 0.04392363462069163
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "front": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        },
+        "right_only": {
+          "trial": "delivery_v1_validation_dry",
+          "split": "validation",
+          "frames": 10,
+          "detected_frames": 10,
+          "detection_rate": 1.0,
+          "single_position_m": {
+            "mean": 0.027897741110534835,
+            "p95": 0.027897741111151796,
+            "max": 0.027897741111200476
+          },
+          "single_yaw_deg": {
+            "mean": 0.1688981387148732,
+            "p95": 0.16889813871772422,
+            "max": 0.16889813871794176
+          },
+          "fused_position_m": {
+            "mean": 0.027897741110164364,
+            "p95": 0.027897741110744292,
+            "max": 0.027897741110803814
+          },
+          "fused_yaw_deg": {
+            "mean": 0.16889813871316328,
+            "p95": 0.16889813871583498,
+            "max": 0.16889813871610976
+          },
+          "camera_position_m": {
+            "right": {
+              "mean": 0.027897741110534835,
+              "p95": 0.027897741111151796,
+              "max": 0.027897741111200476
+            }
+          },
+          "noise_std_m": 0,
+          "missing_depth_fraction": 0,
+          "max_rgb_depth_skew_s": 0.0,
+          "association_rejects": 0,
+          "pose_within_tolerance_rate": 1.0,
+          "camera_detection_rate": {
+            "right": 1.0
+          },
+          "time_with_valid_pose_rate": 1.0
+        }
+      }
+    }
+  ],
+  "approach_trials": [
+    {
+      "trial": "delivery_v1_approach_left",
+      "result": {
+        "success": true,
+        "final_odometry": [
+          4.836262839678136,
+          -0.07269569934939094,
+          0.07761460842491393
+        ],
+        "goal": [
+          4.904566330203699,
+          -0.014979839239460446,
+          0.11504264924164032
+        ],
+        "odometry_goal_error_m": 0.08942308050053234,
+        "odometry_heading_error_deg": 2.1444687742417923,
+        "simulated_duration_s": 17.080000000000002,
+        "shutdown_status": -9,
+        "frames": 68,
+        "partition": "bale_autonomy_94ab66f704d94af7aaa6c17e010ecb45",
+        "terminal_refinements": 1,
+        "final_ground_truth": [
+          4.815582334672472,
+          -0.07186106849655732,
+          0.07761457604640613
+        ],
+        "true_goal": [
+          4.901418253644856,
+          -0.05594228211577368,
+          0.12000000000000004
+        ],
+        "true_goal_error_m": 0.08729955753422046,
+        "true_heading_error_deg": 2.428505905413634,
+        "min_separating_axis_gap_m": 0.8060443000399449,
+        "acceptance_pass": true
+      }
+    },
+    {
+      "trial": "delivery_v1_approach_maneuver",
+      "result": {
+        "success": false,
+        "failure": "RuntimeError: Target lost for more than 4 simulation seconds",
+        "shutdown_status": -9,
+        "frames": 154,
+        "partition": "bale_autonomy_12f54437ea924ee48a336eee3bf31d8b",
+        "terminal_refinements": 0,
+        "final_ground_truth": [
+          1.3337143109434246,
+          2.403622227487498,
+          0.571515434868818
+        ],
+        "true_goal": [
+          5.12682330178993,
+          1.5674580209547104,
+          -0.32131853324466386
+        ],
+        "true_goal_error_m": 3.884178986185781,
+        "true_heading_error_deg": 51.155618178820454,
+        "min_separating_axis_gap_m": 4.58727913471856,
+        "acceptance_pass": false
+      }
+    },
+    {
+      "trial": "delivery_v1_approach_nominal",
+      "result": {
+        "success": true,
+        "final_odometry": [
+          4.7322029540634,
+          -0.001958384951242737,
+          -0.007162108988020754
+        ],
+        "goal": [
+          4.803974055187603,
+          0.0074822694584218905,
+          0.0010554906922033425
+        ],
+        "odometry_goal_error_m": 0.07238934253233228,
+        "odometry_heading_error_deg": 0.47083377940490645,
+        "simulated_duration_s": 16.86,
+        "shutdown_status": -9,
+        "frames": 68,
+        "partition": "bale_autonomy_adac5d3e8f7942028b17196b894d30f2",
+        "terminal_refinements": 8,
+        "final_ground_truth": [
+          4.739142223490572,
+          -0.0019726961021314165,
+          -0.00716209999640057
+        ],
+        "true_goal": [
+          4.85,
+          5.891202499979617e-22,
+          -5.995407795349107e-23
+        ],
+        "true_goal_error_m": 0.11087532702330834,
+        "true_heading_error_deg": 0.4103581022444168,
+        "min_separating_axis_gap_m": 0.8563909774890188,
+        "acceptance_pass": true
+      }
+    },
+    {
+      "trial": "delivery_v1_approach_right",
+      "result": {
+        "success": true,
+        "final_odometry": [
+          4.663735664397353,
+          0.029449015748054336,
+          -0.09625770349570775
+        ],
+        "goal": [
+          4.734393485627653,
+          0.016675443093126296,
+          -0.0968733306271139
+        ],
+        "odometry_goal_error_m": 0.07180314658414134,
+        "odometry_heading_error_deg": 0.03527283638331934,
+        "simulated_duration_s": 16.740000000000002,
+        "shutdown_status": -9,
+        "frames": 68,
+        "partition": "bale_autonomy_af22caf64dec4283960e11c4b93c2ffd",
+        "terminal_refinements": 9,
+        "final_ground_truth": [
+          4.59799309506331,
+          0.025129839753312393,
+          -0.09625764779660521
+        ],
+        "true_goal": [
+          4.685720218262116,
+          0.013808929024821004,
+          -0.09999999999999995
+        ],
+        "true_goal_error_m": 0.08845457119030618,
+        "true_heading_error_deg": 0.21442098670600657,
+        "min_separating_axis_gap_m": 0.8361219882568474,
+        "acceptance_pass": true
+      }
+    },
+    {
+      "trial": "delivery_v1_sensor_loss",
+      "result": {
+        "success": false,
+        "failure": "RuntimeError: Target lost for more than 4 simulation seconds",
+        "shutdown_status": -9,
+        "frames": 40,
+        "partition": "bale_autonomy_98acd27329ab4a078c525e709c0c924e",
+        "terminal_refinements": 0,
+        "final_ground_truth": [
+          2.009431908963652,
+          0.009512713372333515,
+          0.0034461649383924478
+        ],
+        "true_goal": [
+          4.85,
+          5.891202499979617e-22,
+          -5.995407795349107e-23
+        ],
+        "true_goal_error_m": 2.840584019445576,
+        "true_heading_error_deg": 0.19745070647585503,
+        "min_separating_axis_gap_m": 3.5884154152779297,
+        "acceptance_pass": false,
+        "safety_stop_pass": true
+      }
+    }
+  ],
+  "recorded_frames": 560,
+  "raw_bytes": 23263985
+}
