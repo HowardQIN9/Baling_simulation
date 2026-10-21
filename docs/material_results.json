@@ -1,0 +1,5161 @@
+{
+  "date": "2026-10-21",
+  "model": "Solid rigid bale plus bounded yielding distributed spear material forces; no pre-cut channels",
+  "limits": [
+    "Material parameters provisional and not measured from the videos",
+    "No visible straw deformation, persistent damage, or density/twine model",
+    "No calibrated maximum angle or universal insertion success percentage",
+    "Finite-cell/explicit-time integration convergence and complete energy accounting remain open",
+    "Control uses simulator truth and material force telemetry",
+    "Allocator/teardown failures remain separately recorded",
+    "Run controlled trials serially; concurrent development runs showed missing actuator response"
+  ],
+  "tests": {
+    "spear_geometry_python": 13,
+    "autonomy_python": 25,
+    "material_ctest": "1/1 passed",
+    "hydraulic_ctest": "1/1 passed",
+    "native_friction_pairs": "9/9 passed"
+  },
+  "trials": [
+    {
+      "schema_version": 2,
+      "case": "A",
+      "passed": false,
+      "interaction_mode": "material",
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "insert",
+      "settled_height_m": 0.45719921642080563,
+      "error": "RuntimeError: Insertion pushed the bale >0.15 m; lift blocked",
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_013829_A_498de8",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.03,
+          "bale_y": 0.0,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 50000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 2400.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.2021773911164958,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage": {
+          "time": 6.1,
+          "depth": 0.15531422742232215,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.03594356201458316,
+          "spear_force_z_range_N": [
+            -1.5633182933931904,
+            21.248591886122895
+          ],
+          "final_spear_force_z_N": 22.718010875475077
+        },
+        "insertion_preload": {
+          "time": 6.35,
+          "depth": 0.1619084225651216,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.15538237856366244,
+          "spear_force_z_range_N": [
+            -141.2345517563175,
+            22.718010875475077
+          ],
+          "final_spear_force_z_N": -233.7184458601841
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "5528ef484bb425371833497d707a51429bf11c696b640d20ca1ba0cac9f7cfff",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "bb0d075bbea8d8f98fbe1f6ba3937d3ad4a13427e0f182878c8a05086cb827e0",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "b54f81f89ff66450a25dca0e02d13559371ed0561d3a456e45a2ea033474abe8",
+        "spear_handling/src/SpearContact.cc": "1125fc6c0c13a5f2fa60bab552a83a1eee6a0ec66837f525a1c69b5722b65c70",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "ea0b82760ff816fb899222271a18ebf6a19048a19d7da4230dabc3b192a91c00",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          4.960584163983864,
+          2.873763545320589e-14,
+          0.45719999303388953,
+          1.0,
+          -3.4297908741278e-16,
+          4.077047349931126e-09,
+          -1.2849909491514909e-14
+        ],
+        "bale_2": [
+          8.5,
+          5.081452999509805e-20,
+          0.45719921642080563,
+          1.0,
+          -4.2538105116995973e-20,
+          1.3395887273013127e-19,
+          1.017053146486335e-20
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 0.0,
+        "bale_2": 0.0
+      },
+      "initial_insertion_bale_displacement_m": 0.15098416398386316,
+      "insertion_spear_force_z_range_N": [
+        -429.8942775271064,
+        956.7173058031028
+      ]
+    },
+    {
+      "schema_version": 2,
+      "case": "A",
+      "passed": true,
+      "interaction_mode": "material",
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "hold",
+      "settled_height_m": 0.45719921642080563,
+      "insertion_reached": true,
+      "insertion_geometry_clear": true,
+      "bale_raised": true,
+      "spear_contact_during_lift": true,
+      "retained": true,
+      "lift_height_m": 0.49027606874698293,
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_013958_A_b0bf65",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.03,
+          "bale_y": 0.0,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 50000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 2400.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.20226519556703104,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage": {
+          "time": 6.1,
+          "depth": 0.1524652081314125,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.03310342413630284,
+          "spear_force_z_range_N": [
+            -1.3583501961599622,
+            21.638979102230994
+          ],
+          "final_spear_force_z_N": 23.2545395208224
+        },
+        "insertion_preload": {
+          "time": 6.65,
+          "depth": 0.15353088354574196,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.15253327570174507,
+          "spear_force_z_range_N": [
+            -555.5940715781467,
+            23.2545395208224
+          ],
+          "final_spear_force_z_N": -631.668324821891
+        },
+        "insert": {
+          "time": 12.75,
+          "depth": 0.7197491074689927,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7047014595826451,
+          "spear_force_z_range_N": [
+            -775.7628910069284,
+            -428.90704824311865
+          ],
+          "final_spear_force_z_N": -427.1862352527387
+        },
+        "stop": {
+          "time": 13.75,
+          "depth": 0.7192331223865699,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7194835862495983,
+          "spear_force_z_range_N": [
+            -427.1862352527387,
+            -330.64675738429634
+          ],
+          "final_spear_force_z_N": -329.0314342024395
+        },
+        "lift": {
+          "time": 25.75,
+          "depth": 0.7174188282857441,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.00027919127401199173,
+          "tail_min_bottom_height_m": 0.48062602025664053,
+          "tail_max_tilt_deg": 0.982201308982314,
+          "tail_min_overlap_m": 0.7178103104244009,
+          "spear_force_z_range_N": [
+            -329.0314342024395,
+            2345.541187559586
+          ],
+          "final_spear_force_z_N": 1959.9964853157644
+        },
+        "hold": {
+          "time": 29.75,
+          "depth": 0.717409166183149,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.00012268750976418552,
+          "tail_min_bottom_height_m": 0.47982085488300813,
+          "tail_max_tilt_deg": 0.989654357921834,
+          "tail_min_overlap_m": 0.7178008449092069,
+          "spear_force_z_range_N": [
+            1959.8707468718399,
+            1960.1472598768885
+          ],
+          "final_spear_force_z_N": 1960.0285182917828
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "66bab4cccc72450f6609eb0e98570b14b5b634385c54a506d27bf0b5accf15c5",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "bb0d075bbea8d8f98fbe1f6ba3937d3ad4a13427e0f182878c8a05086cb827e0",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "b54f81f89ff66450a25dca0e02d13559371ed0561d3a456e45a2ea033474abe8",
+        "spear_handling/src/SpearContact.cc": "1125fc6c0c13a5f2fa60bab552a83a1eee6a0ec66837f525a1c69b5722b65c70",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "ea0b82760ff816fb899222271a18ebf6a19048a19d7da4230dabc3b192a91c00",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          5.003643220072577,
+          2.405940091035438e-09,
+          0.9474752851677886,
+          0.9999627020094589,
+          4.323628406631933e-11,
+          0.008636815960876296,
+          -1.030810621819229e-09
+        ],
+        "bale_2": [
+          8.5,
+          5.081452999509805e-20,
+          0.45719921642080563,
+          1.0,
+          -4.2538105116995973e-20,
+          1.3395887273013127e-19,
+          1.017053146486335e-20
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 0.98971851084653,
+        "bale_2": 0.0
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        -775.7628910069284,
+        23.2545395208224
+      ]
+    },
+    {
+      "schema_version": 2,
+      "case": "sequence",
+      "passed": false,
+      "interaction_mode": "material",
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "lift_both",
+      "settled_height_m": 0.45719921642080563,
+      "insertion_reached": true,
+      "insertion_geometry_clear": true,
+      "bale_raised": true,
+      "spear_contact_during_lift": true,
+      "retained": true,
+      "lift_height_m": 0.487265239292481,
+      "withdrawal_start_force_z_N": -403.9874674587356,
+      "withdrawal_bale_displacement_m": 0.0,
+      "stacked": true,
+      "both_raised": false,
+      "error": "RuntimeError: Two-bale lift failed",
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_014046_sequence_6915dd",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.03,
+          "bale_y": 0.0,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 50000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 2400.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.20253480258301282,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage": {
+          "time": 6.1,
+          "depth": 0.15509621425169107,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.03564563004407074,
+          "spear_force_z_range_N": [
+            -1.8944330501114461,
+            18.67390234119927
+          ],
+          "final_spear_force_z_N": 20.026480532890016
+        },
+        "insertion_preload": {
+          "time": 6.65,
+          "depth": 0.15690987774482557,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.15515786004420004,
+          "spear_force_z_range_N": [
+            -558.285596109496,
+            20.026480532890016
+          ],
+          "final_spear_force_z_N": -685.950149202826
+        },
+        "insert": {
+          "time": 12.75,
+          "depth": 0.7195496444874957,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7060355953078439,
+          "spear_force_z_range_N": [
+            -764.7994802428921,
+            -366.3824905447994
+          ],
+          "final_spear_force_z_N": -364.44815165085134
+        },
+        "stop": {
+          "time": 13.75,
+          "depth": 0.7201685143712245,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7199328828468563,
+          "spear_force_z_range_N": [
+            -364.44815165085134,
+            -323.0430956945747
+          ],
+          "final_spear_force_z_N": -321.2910785898489
+        },
+        "lift": {
+          "time": 25.75,
+          "depth": 0.7173392012863355,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0001275757311336445,
+          "tail_min_bottom_height_m": 0.4756941587156933,
+          "tail_max_tilt_deg": 1.1273890855390132,
+          "tail_min_overlap_m": 0.7177795899934112,
+          "spear_force_z_range_N": [
+            -321.2910785898489,
+            2342.901428246959
+          ],
+          "final_spear_force_z_N": 1960.021212998731
+        },
+        "hold": {
+          "time": 29.75,
+          "depth": 0.7173518886042576,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 4.4003278753534936e-05,
+          "tail_min_bottom_height_m": 0.4754041132918748,
+          "tail_max_tilt_deg": 1.1239736614552056,
+          "tail_min_overlap_m": 0.717782457593006,
+          "spear_force_z_range_N": [
+            1955.4817025457482,
+            1962.9776523558562
+          ],
+          "final_spear_force_z_N": 1955.4171553219023
+        },
+        "raise_for_stack": {
+          "time": 44.75,
+          "depth": 0.7163546807675716,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.00020256533118812037,
+          "tail_min_bottom_height_m": 1.4448341672608946,
+          "tail_max_tilt_deg": 2.0956735067764787,
+          "tail_min_overlap_m": 0.7168133292439798,
+          "spear_force_z_range_N": [
+            1759.7566053415633,
+            2435.1319252726435
+          ],
+          "final_spear_force_z_N": 1960.0868400290865
+        },
+        "align_stack": {
+          "time": 64.3,
+          "depth": 0.7163039124233148,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 8.609474641585457e-05,
+          "tail_min_bottom_height_m": 1.443877992245767,
+          "tail_max_tilt_deg": 2.102917419891819,
+          "tail_min_overlap_m": 0.7166619037905786,
+          "spear_force_z_range_N": [
+            1893.1881932257268,
+            2000.1909017246157
+          ],
+          "final_spear_force_z_N": 1960.324328432204
+        },
+        "place": {
+          "time": 76.3,
+          "depth": 0.7176863188970379,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.004390782066097998,
+          "tail_min_bottom_height_m": 0.9143991063953341,
+          "tail_max_tilt_deg": 1.7646171499501706,
+          "tail_min_overlap_m": 0.7159760371164741,
+          "spear_force_z_range_N": [
+            1230.0699764033131,
+            2253.3558865484833
+          ],
+          "final_spear_force_z_N": 1857.2962322299802
+        },
+        "release_preload": {
+          "time": 77.15,
+          "depth": 0.7164265958000133,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.014725775900765292,
+          "tail_min_bottom_height_m": 0.9142406412449178,
+          "tail_max_tilt_deg": 1.387537742331344,
+          "tail_min_overlap_m": 0.7167746285127385,
+          "spear_force_z_range_N": [
+            -245.07152858281148,
+            1857.2962322299802
+          ],
+          "final_spear_force_z_N": -403.9874674587356
+        },
+        "withdraw": {
+          "time": 84.2,
+          "depth": -0.12011746473012563,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": 0.9143986767979257,
+          "tail_max_tilt_deg": 4.775793352665827e-05,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            -914.4134836830983,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "stack_settle": {
+          "time": 88.2,
+          "depth": -0.12803874520891867,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": 0.9143986767979257,
+          "tail_max_tilt_deg": 4.775793352665827e-05,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "lower_for_second": {
+          "time": 103.2,
+          "depth": -0.4331284729473964,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": 0.9143986767979257,
+          "tail_max_tilt_deg": 4.775793352665827e-05,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "insert_lower": {
+          "time": 115.25,
+          "depth": 0.7195497140339199,
+          "target_bale": "bale_2",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -2.9946676172176723e-07,
+          "tail_max_tilt_deg": 1.2692257719825012e-05,
+          "tail_min_overlap_m": 0.704450914094842,
+          "spear_force_z_range_N": [
+            -1.091088290400607,
+            1687.5027723162639
+          ],
+          "final_spear_force_z_N": 1689.6577475532836
+        },
+        "lift_both": {
+          "time": 130.25,
+          "depth": 0.6090396382247779,
+          "target_bale": "bale_2",
+          "condition_reached": false,
+          "tail_height_range_m": 1.888047126363812e-05,
+          "tail_min_bottom_height_m": 0.014655282387797453,
+          "tail_max_tilt_deg": 36.31825189268088,
+          "tail_min_overlap_m": 0.7654954119808091,
+          "spear_force_z_range_N": [
+            1663.795486752268,
+            3906.7769005357636
+          ],
+          "final_spear_force_z_N": 1962.5411493859142
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "b517eb7158589db0883d83c052f12706d7a27dbdee4df3e59bb0bdc6cd6c1271",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "bb0d075bbea8d8f98fbe1f6ba3937d3ad4a13427e0f182878c8a05086cb827e0",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "b54f81f89ff66450a25dca0e02d13559371ed0561d3a456e45a2ea033474abe8",
+        "spear_handling/src/SpearContact.cc": "1125fc6c0c13a5f2fa60bab552a83a1eee6a0ec66837f525a1c69b5722b65c70",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "ea0b82760ff816fb899222271a18ebf6a19048a19d7da4230dabc3b192a91c00",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          10.872206127461238,
+          2.0769275047041517e-08,
+          0.6095999174361163,
+          0.7071067265248343,
+          2.226246055504307e-09,
+          0.7071068358482565,
+          -2.226236856134901e-09
+        ],
+        "bale_2": [
+          8.716394357647339,
+          3.755739304695876e-09,
+          0.7440867065210902,
+          0.9501989153643667,
+          4.5195178811085916e-10,
+          0.3116440617762208,
+          -1.2767628331790193e-09
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 90.00000885830947,
+        "bale_2": 36.31667450104803
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        -764.7994802428921,
+        20.026480532890016
+      ]
+    },
+    {
+      "schema_version": 2,
+      "case": "C",
+      "passed": true,
+      "interaction_mode": "material",
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "hold",
+      "settled_height_m": 0.45719921642080563,
+      "insertion_reached": true,
+      "insertion_geometry_clear": true,
+      "bale_raised": true,
+      "spear_contact_during_lift": true,
+      "retained": true,
+      "lift_height_m": 0.48578580379025693,
+      "interpretation": "Same measured pickup checks at perturbed insertion/alignment; no required physical failure assumed.",
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_014101_C_234e7b",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.03,
+          "bale_y": 0.12,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 50000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 2400.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.19950479008934996,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage": {
+          "time": 6.05,
+          "depth": 0.15154942420245698,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.03227127788613061,
+          "spear_force_z_range_N": [
+            -1.9523149413308527,
+            18.185586556821914
+          ],
+          "final_spear_force_z_N": 19.631307874809202
+        },
+        "insertion_preload": {
+          "time": 6.6,
+          "depth": 0.15034991915542106,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.15156045670120302,
+          "spear_force_z_range_N": [
+            -574.8665761384358,
+            19.631307874809202
+          ],
+          "final_spear_force_z_N": -624.8700380629247
+        },
+        "insert": {
+          "time": 12.7,
+          "depth": 0.7195694486797001,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7042016013608838,
+          "spear_force_z_range_N": [
+            -864.4370298532723,
+            -479.21766473210107
+          ],
+          "final_spear_force_z_N": -477.38621217890153
+        },
+        "stop": {
+          "time": 13.7,
+          "depth": 0.7200813869377273,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7199823667409292,
+          "spear_force_z_range_N": [
+            -477.38621217890153,
+            -432.1858670451609
+          ],
+          "final_spear_force_z_N": -430.197704183769
+        },
+        "lift": {
+          "time": 25.7,
+          "depth": 0.7169267760910094,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0001122412625750302,
+          "tail_min_bottom_height_m": 0.4707764972346521,
+          "tail_max_tilt_deg": 0.923832241837138,
+          "tail_min_overlap_m": 0.7172537619108659,
+          "spear_force_z_range_N": [
+            -430.197704183769,
+            2334.182431785114
+          ],
+          "final_spear_force_z_N": 1960.035043516234
+        },
+        "hold": {
+          "time": 29.7,
+          "depth": 0.7169451738694098,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 3.301727640514507e-05,
+          "tail_min_bottom_height_m": 0.4705406848011347,
+          "tail_max_tilt_deg": 0.919482090008918,
+          "tail_min_overlap_m": 0.717257350733699,
+          "spear_force_z_range_N": [
+            1952.9935103219873,
+            1963.4907529308234
+          ],
+          "final_spear_force_z_N": 1960.143446644922
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "b517eb7158589db0883d83c052f12706d7a27dbdee4df3e59bb0bdc6cd6c1271",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "bb0d075bbea8d8f98fbe1f6ba3937d3ad4a13427e0f182878c8a05086cb827e0",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "b54f81f89ff66450a25dca0e02d13559371ed0561d3a456e45a2ea033474abe8",
+        "spear_handling/src/SpearContact.cc": "1125fc6c0c13a5f2fa60bab552a83a1eee6a0ec66837f525a1c69b5722b65c70",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "ea0b82760ff816fb899222271a18ebf6a19048a19d7da4230dabc3b192a91c00",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          5.001913885651098,
+          0.12048378724234166,
+          0.9429850202110626,
+          0.9999679283938668,
+          -0.0024626037681238543,
+          0.007618960994138659,
+          0.00017087928301834715
+        ],
+        "bale_2": [
+          8.5,
+          5.081452999509805e-20,
+          0.45719921642080563,
+          1.0,
+          -4.2538105116995973e-20,
+          1.3395887273013127e-19,
+          1.017053146486335e-20
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 0.917551107991028,
+        "bale_2": 0.0
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        -864.4370298532723,
+        19.631307874809202
+      ]
+    },
+    {
+      "schema_version": 2,
+      "case": "A",
+      "passed": false,
+      "interaction_mode": "material",
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "insert",
+      "settled_height_m": 0.45719921642080563,
+      "error": "RuntimeError: Insertion pushed the bale >0.15 m; lift blocked",
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_014141_A_c16d49",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.03,
+          "bale_y": 0.0,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 50000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 2400.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.20238492835202082,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "24eb5b9dbfa488b0f64040c4309b936c0a67ee284e530cda2f88a7242cc65c12",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "bb0d075bbea8d8f98fbe1f6ba3937d3ad4a13427e0f182878c8a05086cb827e0",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "b54f81f89ff66450a25dca0e02d13559371ed0561d3a456e45a2ea033474abe8",
+        "spear_handling/src/SpearContact.cc": "1125fc6c0c13a5f2fa60bab552a83a1eee6a0ec66837f525a1c69b5722b65c70",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "ea0b82760ff816fb899222271a18ebf6a19048a19d7da4230dabc3b192a91c00",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          4.960995183202188,
+          1.7125714031317515e-09,
+          0.46106257871553435,
+          0.9999949574039573,
+          4.482185477227018e-12,
+          0.0031757151411329165,
+          -1.4114039776202351e-09
+        ],
+        "bale_2": [
+          8.5,
+          5.081452999509805e-20,
+          0.45719921642080563,
+          1.0,
+          -4.2538105116995973e-20,
+          1.3395887273013127e-19,
+          1.017053146486335e-20
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 0.36391076073068784,
+        "bale_2": 0.0
+      },
+      "initial_insertion_bale_displacement_m": 0.1513951832021876,
+      "insertion_spear_force_z_range_N": [
+        -0.5412175962875831,
+        1113.9514520936189
+      ]
+    },
+    {
+      "schema_version": 2,
+      "case": "A",
+      "passed": true,
+      "interaction_mode": "material",
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "hold",
+      "settled_height_m": 0.45719921642080563,
+      "insertion_reached": true,
+      "insertion_geometry_clear": true,
+      "bale_raised": true,
+      "spear_contact_during_lift": true,
+      "retained": true,
+      "lift_height_m": 0.5774590851746206,
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_014143_A_983502",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.06,
+          "bale_y": 0.0,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0,
+          "carry_angle": 0.06
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 50000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 2400.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.1994301032449689,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage": {
+          "time": 6.05,
+          "depth": 0.1515811907803718,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.030699815535961666,
+          "spear_force_z_range_N": [
+            -0.755707448511281,
+            123.89117988020173
+          ],
+          "final_spear_force_z_N": 127.18769247160947
+        },
+        "insertion_preload": {
+          "time": 6.7,
+          "depth": 0.14814627569114835,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.14979312547959106,
+          "spear_force_z_range_N": [
+            -561.0823615641565,
+            127.18769247160947
+          ],
+          "final_spear_force_z_N": -626.9892341905143
+        },
+        "insert": {
+          "time": 13.05,
+          "depth": 0.7198487138695088,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7077796162383354,
+          "spear_force_z_range_N": [
+            -702.1124939643913,
+            -28.023157771405874
+          ],
+          "final_spear_force_z_N": -280.85990406844894
+        },
+        "stop": {
+          "time": 14.05,
+          "depth": 0.7203138100622498,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7212021214110631,
+          "spear_force_z_range_N": [
+            -280.85990406844894,
+            -270.40197842872897
+          ],
+          "final_spear_force_z_N": -276.0161999728181
+        },
+        "lift": {
+          "time": 26.05,
+          "depth": 0.7197527370393387,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0002363327468812848,
+          "tail_min_bottom_height_m": 0.55146343589335,
+          "tail_max_tilt_deg": 2.544950857456232,
+          "tail_min_overlap_m": 0.7198207199230043,
+          "spear_force_z_range_N": [
+            -276.0161999728181,
+            2385.68304555906
+          ],
+          "final_spear_force_z_N": 1960.0730394376476
+        },
+        "hold": {
+          "time": 30.05,
+          "depth": 0.7197551214323343,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0001052151589830963,
+          "tail_min_bottom_height_m": 0.5508153800452469,
+          "tail_max_tilt_deg": 2.5479584803384396,
+          "tail_min_overlap_m": 0.7198244425594288,
+          "spear_force_z_range_N": [
+            1959.896338476178,
+            1960.1165339514448
+          ],
+          "final_spear_force_z_N": 1959.9686998141688
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "24eb5b9dbfa488b0f64040c4309b936c0a67ee284e530cda2f88a7242cc65c12",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "bb0d075bbea8d8f98fbe1f6ba3937d3ad4a13427e0f182878c8a05086cb827e0",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "b54f81f89ff66450a25dca0e02d13559371ed0561d3a456e45a2ea033474abe8",
+        "spear_handling/src/SpearContact.cc": "1125fc6c0c13a5f2fa60bab552a83a1eee6a0ec66837f525a1c69b5722b65c70",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "ea0b82760ff816fb899222271a18ebf6a19048a19d7da4230dabc3b192a91c00",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          4.995724921066206,
+          2.5405926864072353e-09,
+          1.0346583015954263,
+          0.9997528053388955,
+          1.0015311617988862e-10,
+          -0.02223349313554973,
+          -9.941313436432183e-10
+        ],
+        "bale_2": [
+          8.5,
+          5.081452999509805e-20,
+          0.45719921642080563,
+          1.0,
+          -4.2538105116995973e-20,
+          1.3395887273013127e-19,
+          1.017053146486335e-20
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 2.547980593526634,
+        "bale_2": 0.0
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        -702.1124939643913,
+        127.18769247160947
+      ]
+    },
+    {
+      "schema_version": 2,
+      "case": "release",
+      "passed": false,
+      "interaction_mode": "material",
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "withdraw",
+      "settled_height_m": 0.45719921642080563,
+      "insertion_reached": true,
+      "insertion_geometry_clear": true,
+      "bale_raised": true,
+      "spear_contact_during_lift": true,
+      "retained": true,
+      "lift_height_m": 0.4901831729780619,
+      "withdrawal_start_force_z_N": 1912.3127496452635,
+      "error": "RuntimeError: withdraw: required condition not reached; subsequent motion blocked",
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_014223_release_d4397a",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.03,
+          "bale_y": 0.0,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 50000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 2400.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.20244213705293557,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage": {
+          "time": 6.1,
+          "depth": 0.1538372840757859,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.033638157345968984,
+          "spear_force_z_range_N": [
+            -1.3693668036125548,
+            61.86126864480712
+          ],
+          "final_spear_force_z_N": 113.04913705221065
+        },
+        "insertion_preload": {
+          "time": 6.75,
+          "depth": 0.15410036659647786,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.15390600905500593,
+          "spear_force_z_range_N": [
+            -547.3968511493164,
+            132.67019543061895
+          ],
+          "final_spear_force_z_N": -622.2647036833723
+        },
+        "insert": {
+          "time": 12.9,
+          "depth": 0.7195917985092107,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7066472944707127,
+          "spear_force_z_range_N": [
+            -734.7924315397202,
+            -317.27478375510276
+          ],
+          "final_spear_force_z_N": -328.5988147170684
+        },
+        "stop": {
+          "time": 13.9,
+          "depth": 0.7203248312373264,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7199710152649998,
+          "spear_force_z_range_N": [
+            -328.5988147170684,
+            -284.7086922656169
+          ],
+          "final_spear_force_z_N": -282.99027307423364
+        },
+        "lift": {
+          "time": 25.95,
+          "depth": 0.717292428234222,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.00015179237926243871,
+          "tail_min_bottom_height_m": 0.4784959684132473,
+          "tail_max_tilt_deg": 1.144600543673575,
+          "tail_min_overlap_m": 0.7177714736879981,
+          "spear_force_z_range_N": [
+            -282.99027307423364,
+            2341.276324402297
+          ],
+          "final_spear_force_z_N": 1960.0468189695864
+        },
+        "hold": {
+          "time": 29.95,
+          "depth": 0.7172918781336458,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 6.602948155387534e-05,
+          "tail_min_bottom_height_m": 0.47810317258190127,
+          "tail_max_tilt_deg": 1.1442511866061706,
+          "tail_min_overlap_m": 0.7177709669419761,
+          "spear_force_z_range_N": [
+            1958.5635304326756,
+            1961.0792841312518
+          ],
+          "final_spear_force_z_N": 1960.684472238241
+        },
+        "raise_for_stack": {
+          "time": 44.95,
+          "depth": 0.7162063782802733,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.00019754151203454917,
+          "tail_min_bottom_height_m": 1.4433821263188473,
+          "tail_max_tilt_deg": 2.1907529040070783,
+          "tail_min_overlap_m": 0.7167053197876668,
+          "spear_force_z_range_N": [
+            1766.8186087889253,
+            2434.905037089748
+          ],
+          "final_spear_force_z_N": 1959.8960375795511
+        },
+        "align_stack": {
+          "time": 64.5,
+          "depth": 0.7161423733029071,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 6.76805695238869e-05,
+          "tail_min_bottom_height_m": 1.4424591481908644,
+          "tail_max_tilt_deg": 2.1983162633732904,
+          "tail_min_overlap_m": 0.7165633265695917,
+          "spear_force_z_range_N": [
+            1894.1139883611067,
+            1999.904640777675
+          ],
+          "final_spear_force_z_N": 1960.253066152966
+        },
+        "place": {
+          "time": 76.5,
+          "depth": 0.7155845848414931,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0005272941277738585,
+          "tail_min_bottom_height_m": 0.9143999845250643,
+          "tail_max_tilt_deg": 1.7303816177980793,
+          "tail_min_overlap_m": 0.7157332366373077,
+          "spear_force_z_range_N": [
+            1227.7945587461031,
+            2227.1811673034604
+          ],
+          "final_spear_force_z_N": 1912.3127496452635
+        },
+        "withdraw": {
+          "time": 94.5,
+          "depth": 0.7165450852137925,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.00017827730330810532,
+          "tail_min_bottom_height_m": 0.9167766690180588,
+          "tail_max_tilt_deg": 2.0203308909293636,
+          "tail_min_overlap_m": 0.7170327997634696,
+          "spear_force_z_range_N": [
+            1896.0115687304026,
+            1962.6798177848402
+          ],
+          "final_spear_force_z_N": 1959.9928681824406
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "24eb5b9dbfa488b0f64040c4309b936c0a67ee284e530cda2f88a7242cc65c12",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "bb0d075bbea8d8f98fbe1f6ba3937d3ad4a13427e0f182878c8a05086cb827e0",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "b54f81f89ff66450a25dca0e02d13559371ed0561d3a456e45a2ea033474abe8",
+        "spear_handling/src/SpearContact.cc": "1125fc6c0c13a5f2fa60bab552a83a1eee6a0ec66837f525a1c69b5722b65c70",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "ea0b82760ff816fb899222271a18ebf6a19048a19d7da4230dabc3b192a91c00",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          6.305339058641441,
+          1.097117606005313e-08,
+          1.395370075834725,
+          0.9998454670324911,
+          4.86799091428026e-10,
+          0.017579591991273257,
+          -4.338730196314919e-10
+        ],
+        "bale_2": [
+          8.500560518556965,
+          -2.613135149458074e-13,
+          0.45719922462435847,
+          0.9999999999998075,
+          -5.833157442149367e-17,
+          -6.2053710729671e-07,
+          2.1435111601258077e-13
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 2.01457662722789,
+        "bale_2": 7.110965840571669e-05
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        -734.7924315397202,
+        132.67019543061895
+      ]
+    },
+    {
+      "schema_version": 2,
+      "case": "B",
+      "passed": false,
+      "interaction_mode": "material",
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.24384000000000003,
+      "last_phase": "hold",
+      "settled_height_m": 0.45719921642080563,
+      "insertion_reached": true,
+      "insertion_geometry_clear": true,
+      "bale_raised": false,
+      "spear_contact_during_lift": true,
+      "retained": false,
+      "lift_height_m": 0.20665347805582712,
+      "error": "RuntimeError: Pickup/retention checks failed",
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_014304_B_31a783",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.2,
+          "forward_tilt": -0.03,
+          "bale_y": 0.0,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 50000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 2400.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.2025052278184839,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "insert": {
+          "time": 8.2,
+          "depth": 0.23186257936113963,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.21662840351355536,
+          "spear_force_z_range_N": [
+            -0.5498434855697079,
+            53.027081413061765
+          ],
+          "final_spear_force_z_N": 53.48705074328035
+        },
+        "stop": {
+          "time": 9.2,
+          "depth": 0.2322763738949979,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.231972458683043,
+          "spear_force_z_range_N": [
+            53.48705074328035,
+            69.61151367318135
+          ],
+          "final_spear_force_z_N": 70.05190242554815
+        },
+        "lift": {
+          "time": 21.2,
+          "depth": 0.1176642937768374,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 5.0184856482116125e-05,
+          "tail_min_bottom_height_m": -9.546111678915281e-09,
+          "tail_max_tilt_deg": 23.75737644153107,
+          "tail_min_overlap_m": 0.12949465211527475,
+          "spear_force_z_range_N": [
+            70.05190242554815,
+            1366.31990075848
+          ],
+          "final_spear_force_z_N": 1074.9271625626866
+        },
+        "hold": {
+          "time": 25.2,
+          "depth": 0.11793597884976881,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 2.4793988146920576e-05,
+          "tail_min_bottom_height_m": -9.560097602445694e-09,
+          "tail_max_tilt_deg": 23.73220361470631,
+          "tail_min_overlap_m": 0.12981581508296466,
+          "spear_force_z_range_N": [
+            1073.9214582534503,
+            1074.9271625626866
+          ],
+          "final_spear_force_z_N": 1073.919530633336
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "24eb5b9dbfa488b0f64040c4309b936c0a67ee284e530cda2f88a7242cc65c12",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "bb0d075bbea8d8f98fbe1f6ba3937d3ad4a13427e0f182878c8a05086cb827e0",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "b54f81f89ff66450a25dca0e02d13559371ed0561d3a456e45a2ea033474abe8",
+        "spear_handling/src/SpearContact.cc": "1125fc6c0c13a5f2fa60bab552a83a1eee6a0ec66837f525a1c69b5722b65c70",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "ea0b82760ff816fb899222271a18ebf6a19048a19d7da4230dabc3b192a91c00",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          5.044965890121239,
+          1.0352781895949043e-12,
+          0.6638526944766328,
+          0.9786379399955525,
+          1.0789535358647479e-13,
+          0.2055912994298675,
+          -5.126216286925805e-13
+        ],
+        "bale_2": [
+          8.5,
+          5.081452999509805e-20,
+          0.45719921642080563,
+          1.0,
+          -4.2538105116995973e-20,
+          1.3395887273013127e-19,
+          1.017053146486335e-20
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 23.728230675745213,
+        "bale_2": 0.0
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        -0.5498434855697079,
+        69.61151367318135
+      ]
+    },
+    {
+      "schema_version": 2,
+      "case": "sequence",
+      "passed": false,
+      "interaction_mode": "material",
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "lift_both",
+      "settled_height_m": 0.45719921642080563,
+      "insertion_reached": true,
+      "insertion_geometry_clear": true,
+      "bale_raised": true,
+      "spear_contact_during_lift": true,
+      "retained": true,
+      "lift_height_m": 0.5065154206605881,
+      "withdrawal_start_force_z_N": -405.52418237799566,
+      "withdrawal_bale_displacement_m": 0.0,
+      "stacked": true,
+      "error": "RuntimeError: lift_both: continuous load/support check failed",
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_014422_sequence_db73a5",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.03,
+          "bale_y": 0.0,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0,
+          "insertion_preload_N": 600.0
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 100000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 5000.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.20239151373503794,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage": {
+          "time": 6.1,
+          "depth": 0.15387466957375173,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.03320653806378161,
+          "spear_force_z_range_N": [
+            -0.8063390721797647,
+            131.67761260975993
+          ],
+          "final_spear_force_z_N": 166.71703290884585
+        },
+        "insertion_preload": {
+          "time": 6.65,
+          "depth": 0.15782450975803164,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.15394608329989198,
+          "spear_force_z_range_N": [
+            -521.1506997492686,
+            166.71703290884585
+          ],
+          "final_spear_force_z_N": -608.1450124748893
+        },
+        "insert": {
+          "time": 12.75,
+          "depth": 0.7195730059660962,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7043292769955732,
+          "spear_force_z_range_N": [
+            -962.3780409603119,
+            -608.1450124748893
+          ],
+          "final_spear_force_z_N": -727.364187083897
+        },
+        "stop": {
+          "time": 13.75,
+          "depth": 0.7200219213673021,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7199754618903267,
+          "spear_force_z_range_N": [
+            -727.364187083897,
+            -686.9088570709173
+          ],
+          "final_spear_force_z_N": -684.1736831767913
+        },
+        "lift": {
+          "time": 25.75,
+          "depth": 0.717470820589801,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.00016390406678934433,
+          "tail_min_bottom_height_m": 0.493703881928315,
+          "tail_max_tilt_deg": 1.2553095557203198,
+          "tail_min_overlap_m": 0.7174991415550207,
+          "spear_force_z_range_N": [
+            -684.1736831767913,
+            2452.3571050924343
+          ],
+          "final_spear_force_z_N": 1959.8891005604469
+        },
+        "hold": {
+          "time": 29.75,
+          "depth": 0.7174729189383735,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 7.282362234217743e-05,
+          "tail_min_bottom_height_m": 0.4932413083824435,
+          "tail_max_tilt_deg": 1.2584004404498632,
+          "tail_min_overlap_m": 0.717502133646386,
+          "spear_force_z_range_N": [
+            1959.6661982230407,
+            1960.2377712637476
+          ],
+          "final_spear_force_z_N": 1959.747854723551
+        },
+        "raise_for_stack": {
+          "time": 44.75,
+          "depth": 0.717767855399112,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.04361482597369215,
+          "tail_min_bottom_height_m": 1.446868245118889,
+          "tail_max_tilt_deg": 1.2737815565174424,
+          "tail_min_overlap_m": 0.7134234029785278,
+          "spear_force_z_range_N": [
+            1636.4061151340363,
+            2543.78963446204
+          ],
+          "final_spear_force_z_N": 1902.1502136415866
+        },
+        "align_stack": {
+          "time": 64.25,
+          "depth": 0.7160258285634236,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.04273838478668868,
+          "tail_min_bottom_height_m": 1.4487932845447107,
+          "tail_max_tilt_deg": 1.3156298541545506,
+          "tail_min_overlap_m": 0.713150862749253,
+          "spear_force_z_range_N": [
+            1614.3840069265236,
+            2190.0158698757755
+          ],
+          "final_spear_force_z_N": 2066.0864811127494
+        },
+        "place": {
+          "time": 76.25,
+          "depth": 0.7169093568597529,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0004066778956701711,
+          "tail_min_bottom_height_m": 0.9388231339113356,
+          "tail_max_tilt_deg": 0.5179552390256487,
+          "tail_min_overlap_m": 0.7169367073004645,
+          "spear_force_z_range_N": [
+            1321.9439694769383,
+            2315.024159727056
+          ],
+          "final_spear_force_z_N": 1959.7586645683525
+        },
+        "release_preload": {
+          "time": 77.1,
+          "depth": 0.7135537818748388,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.03041605290779037,
+          "tail_min_bottom_height_m": 0.9140890992321838,
+          "tail_max_tilt_deg": 0.8138331678771529,
+          "tail_min_overlap_m": 0.7138704599338237,
+          "spear_force_z_range_N": [
+            -217.71230191878323,
+            1959.7586645683525
+          ],
+          "final_spear_force_z_N": -405.52418237799566
+        },
+        "withdraw": {
+          "time": 84.15,
+          "depth": -0.12305949816785433,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": 0.9143988212381449,
+          "tail_max_tilt_deg": 2.345936330062013e-05,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            -1028.5837200216831,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "stack_settle": {
+          "time": 88.15,
+          "depth": -0.13230729021770493,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": 0.9143988212381449,
+          "tail_max_tilt_deg": 2.345936330062013e-05,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "lower_for_second": {
+          "time": 103.15,
+          "depth": -0.39846757052350157,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": 0.9143988212381449,
+          "tail_max_tilt_deg": 2.345936330062013e-05,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage_lower": {
+          "time": 109.2,
+          "depth": 0.1520266497971559,
+          "target_bale": "bale_2",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.212692737512683e-07,
+          "tail_max_tilt_deg": 1.392462677356116e-05,
+          "tail_min_overlap_m": 0.05249681520841922,
+          "spear_force_z_range_N": [
+            -1.1446724981033882,
+            30.406984481188537
+          ],
+          "final_spear_force_z_N": 32.12844605657977
+        },
+        "lower_preload": {
+          "time": 109.65,
+          "depth": 0.1525434130779348,
+          "target_bale": "bale_2",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.212692737512683e-07,
+          "tail_max_tilt_deg": 1.392462677356116e-05,
+          "tail_min_overlap_m": 0.1521051723455887,
+          "spear_force_z_range_N": [
+            -552.2977026821382,
+            32.12844605657977
+          ],
+          "final_spear_force_z_N": -605.6202522110322
+        },
+        "insert_lower": {
+          "time": 116.55,
+          "depth": 0.7197888681148412,
+          "target_bale": "bale_2",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.212692737512683e-07,
+          "tail_max_tilt_deg": 1.392462677356116e-05,
+          "tail_min_overlap_m": 0.7072720467512702,
+          "spear_force_z_range_N": [
+            -868.0332655300184,
+            -388.328400610782
+          ],
+          "final_spear_force_z_N": -408.7639478675124
+        },
+        "lower_stop": {
+          "time": 117.55,
+          "depth": 0.7204226812132515,
+          "target_bale": "bale_2",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.212692737512683e-07,
+          "tail_max_tilt_deg": 1.392462677356116e-05,
+          "tail_min_overlap_m": 0.7201717918785588,
+          "spear_force_z_range_N": [
+            -408.7639478675124,
+            -356.7734956963166
+          ],
+          "final_spear_force_z_N": -357.15888331101615
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "c98ac269f9c2750075cd3770ff71efdd00ed6f02c562d82efc98a76e41efe0ff",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "bb0d075bbea8d8f98fbe1f6ba3937d3ad4a13427e0f182878c8a05086cb827e0",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "a5d363235edb34d0733ec68c157774846f41377aa085ebce002b2efeb27b7fc6",
+        "spear_handling/src/SpearContact.cc": "5540569ed4ae5e9f3c67a89dfd3e1fd34f5738044c1675ed680b618fb6eb6735",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "e0316619bb5b1bf6259390b68d27a4b8e975e32e0558ff9d0909d230a71c8352",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          8.785857532220982,
+          3.579049446374408e-08,
+          1.7696532335178585,
+          0.9974346044700206,
+          -2.9814898601681964e-11,
+          0.07158358614747828,
+          -1.994809215181685e-09
+        ],
+        "bale_2": [
+          8.702307961040109,
+          3.17244599908037e-09,
+          0.857842037384269,
+          0.997434577570305,
+          -3.914153026920336e-11,
+          0.07158396096296445,
+          -2.124771024262159e-09
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 8.209896482668169,
+        "bale_2": 8.20993954382855
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        -962.3780409603119,
+        166.71703290884585
+      ]
+    },
+    {
+      "schema_version": 2,
+      "case": "release",
+      "passed": false,
+      "interaction_mode": "material",
+      "insertion_preload": true,
+      "release_preload": false,
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "hold",
+      "settled_height_m": 0.45719921642080563,
+      "insertion_reached": true,
+      "insertion_geometry_clear": true,
+      "bale_raised": true,
+      "spear_contact_during_lift": true,
+      "retained": false,
+      "lift_height_m": 0.49271832148418093,
+      "error": "RuntimeError: Pickup/retention checks failed",
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_014604_release_23a1a6",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.03,
+          "bale_y": 0.0,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0,
+          "insertion_preload_N": 600.0
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 100000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 5000.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.20240034527344564,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage": {
+          "time": 6.1,
+          "depth": 0.15508691658591778,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.03483238456138948,
+          "spear_force_z_range_N": [
+            -0.948249088712124,
+            84.77715413745037
+          ],
+          "final_spear_force_z_N": 148.03943080011373
+        },
+        "insertion_preload": {
+          "time": 6.65,
+          "depth": 0.1575475898107893,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.1551555602541392,
+          "spear_force_z_range_N": [
+            -591.7958820747646,
+            160.84110058213437
+          ],
+          "final_spear_force_z_N": -639.6771168297931
+        },
+        "insert": {
+          "time": 12.7,
+          "depth": 0.7195782352640757,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7046123194300384,
+          "spear_force_z_range_N": [
+            -939.5627374934978,
+            -516.6659369846396
+          ],
+          "final_spear_force_z_N": -469.4845176125514
+        },
+        "stop": {
+          "time": 13.7,
+          "depth": 0.7192451691126843,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7194803294838005,
+          "spear_force_z_range_N": [
+            -469.4845176125514,
+            -422.1664493952634
+          ],
+          "final_spear_force_z_N": -420.34929706068596
+        },
+        "lift": {
+          "time": 25.7,
+          "depth": 0.7163202063232774,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.03390278372393407,
+          "tail_min_bottom_height_m": 0.4740425856558262,
+          "tail_max_tilt_deg": 1.913881245804687,
+          "tail_min_overlap_m": 0.7152761360054201,
+          "spear_force_z_range_N": [
+            -420.34929706068596,
+            2448.9079163775186
+          ],
+          "final_spear_force_z_N": 2155.6328972884626
+        },
+        "hold": {
+          "time": 29.7,
+          "depth": 0.717479271224603,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.03701526433450153,
+          "tail_min_bottom_height_m": 0.4747193910690564,
+          "tail_max_tilt_deg": 1.9175336148029287,
+          "tail_min_overlap_m": 0.7153672813894215,
+          "spear_force_z_range_N": [
+            1643.9075450680311,
+            2182.474509846618
+          ],
+          "final_spear_force_z_N": 2015.9823871538194
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "84dcb41071e65d6ec8829f557e54bc38d28de1d3100f85546f638d0361278063",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "8092101c72fc9426b022b1a147cbe5a14a822b830a5a87cb75d01c0fd52ed1b2",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "2b26a1e39dc785b8b57686008ce771eafea81f67c5a2d981982cdd5e91b00762",
+        "spear_handling/src/SpearContact.cc": "0d2df3e723830710416c21025de7412b41a5e00fad5ba138ea656100447df0a0",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "851b2ae4d2611c24eeeb559a022bbc2f0982c0098af6482f70ad7568e12721c6",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          4.995549379086477,
+          2.1567278083282992e-09,
+          0.9499175379049866,
+          0.9999624561348158,
+          5.916553244570064e-12,
+          -0.008665236339917882,
+          -1.5515616741567128e-09
+        ],
+        "bale_2": [
+          8.5,
+          5.081452999509805e-20,
+          0.45719921642080563,
+          1.0,
+          -4.2538105116995973e-20,
+          1.3395887273013127e-19,
+          1.017053146486335e-20
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 0.992975368263666,
+        "bale_2": 0.0
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        -939.5627374934978,
+        160.84110058213437
+      ]
+    },
+    {
+      "schema_version": 2,
+      "case": "C",
+      "passed": false,
+      "interaction_mode": "material",
+      "insertion_preload": true,
+      "release_preload": true,
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "insertion_preload",
+      "settled_height_m": 0.45719921642080563,
+      "error": "RuntimeError: insertion_preload: required condition not reached; subsequent motion blocked",
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_014605_C_588ab5",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.03,
+          "bale_y": 0.12,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0,
+          "insertion_preload_N": 600.0
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 100000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 5000.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 4.0,
+          "depth": -0.2422287926069474,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage": {
+          "time": 7.4,
+          "depth": 0.15573939119895075,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.03575400388413342,
+          "spear_force_z_range_N": [
+            0.0,
+            20.507802844676906
+          ],
+          "final_spear_force_z_N": 21.325747318013484
+        },
+        "insertion_preload": {
+          "time": 12.4,
+          "depth": 0.165338293925681,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.16533908032510472,
+          "spear_force_z_range_N": [
+            0.4915937236779364,
+            49.54485711056789
+          ],
+          "final_spear_force_z_N": 49.8091176526069
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "84dcb41071e65d6ec8829f557e54bc38d28de1d3100f85546f638d0361278063",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "8092101c72fc9426b022b1a147cbe5a14a822b830a5a87cb75d01c0fd52ed1b2",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "2b26a1e39dc785b8b57686008ce771eafea81f67c5a2d981982cdd5e91b00762",
+        "spear_handling/src/SpearContact.cc": "0d2df3e723830710416c21025de7412b41a5e00fad5ba138ea656100447df0a0",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "851b2ae4d2611c24eeeb559a022bbc2f0982c0098af6482f70ad7568e12721c6",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          4.8096000000000005,
+          0.12,
+          0.45719921642080563,
+          1.0,
+          -1.5807409153866667e-19,
+          3.2171392754616754e-20,
+          1.4408150077550452e-20
+        ],
+        "bale_2": [
+          8.5,
+          5.081452999509805e-20,
+          0.45719921642080563,
+          1.0,
+          -4.2538105116995973e-20,
+          1.3395887273013127e-19,
+          1.017053146486335e-20
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 0.0,
+        "bale_2": 0.0
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        0.0,
+        49.54485711056789
+      ],
+      "review_note": "Concurrent development run: lift encoder stayed at lower stop despite commanded setup. Subsequent serial test succeeded. Missing-response cause unresolved; not a calibration measurement."
+    },
+    {
+      "schema_version": 2,
+      "case": "A",
+      "passed": false,
+      "interaction_mode": "material",
+      "insertion_preload": true,
+      "release_preload": true,
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "insertion_preload",
+      "settled_height_m": 0.45719921642080563,
+      "error": "RuntimeError: insertion_preload: required condition not reached; subsequent motion blocked",
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_014606_A_559fa8",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.06,
+          "bale_y": 0.0,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0,
+          "insertion_preload_N": 600.0,
+          "carry_angle": 0.06
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 100000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 5000.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.2360382485588287,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage": {
+          "time": 6.35,
+          "depth": 0.1505452168609459,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.030283535712315336,
+          "spear_force_z_range_N": [
+            -0.10774060505712296,
+            148.25149978947957
+          ],
+          "final_spear_force_z_N": 157.83391435134976
+        },
+        "insertion_preload": {
+          "time": 11.35,
+          "depth": 0.15957929734963605,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.15988817315716342,
+          "spear_force_z_range_N": [
+            140.11850547563427,
+            215.33384210836783
+          ],
+          "final_spear_force_z_N": 215.88393089484947
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "84dcb41071e65d6ec8829f557e54bc38d28de1d3100f85546f638d0361278063",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "8092101c72fc9426b022b1a147cbe5a14a822b830a5a87cb75d01c0fd52ed1b2",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "2b26a1e39dc785b8b57686008ce771eafea81f67c5a2d981982cdd5e91b00762",
+        "spear_handling/src/SpearContact.cc": "0d2df3e723830710416c21025de7412b41a5e00fad5ba138ea656100447df0a0",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "851b2ae4d2611c24eeeb559a022bbc2f0982c0098af6482f70ad7568e12721c6",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          4.8096000000000005,
+          5.081452999509805e-20,
+          0.45719921642080563,
+          1.0,
+          -4.2538105116995973e-20,
+          1.3395887273013127e-19,
+          1.017053146486335e-20
+        ],
+        "bale_2": [
+          8.5,
+          5.081452999509805e-20,
+          0.45719921642080563,
+          1.0,
+          -4.2538105116995973e-20,
+          1.3395887273013127e-19,
+          1.017053146486335e-20
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 0.0,
+        "bale_2": 0.0
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        -0.10774060505712296,
+        215.33384210836783
+      ],
+      "review_note": "Concurrent development run: lift encoder stayed at lower stop despite commanded setup. Subsequent serial test succeeded. Missing-response cause unresolved; not a calibration measurement."
+    },
+    {
+      "schema_version": 2,
+      "case": "C",
+      "passed": true,
+      "interaction_mode": "material",
+      "insertion_preload": true,
+      "release_preload": true,
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "hold",
+      "settled_height_m": 0.45719921642080563,
+      "insertion_reached": true,
+      "insertion_geometry_clear": true,
+      "bale_raised": true,
+      "spear_contact_during_lift": true,
+      "retained": true,
+      "lift_height_m": 0.5053867152129066,
+      "interpretation": "Same measured pickup checks at perturbed insertion/alignment; no required physical failure assumed.",
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_014751_C_dab633",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.03,
+          "bale_y": 0.12,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0,
+          "insertion_preload_N": 600.0
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 100000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 5000.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.2023377063541817,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage": {
+          "time": 6.1,
+          "depth": 0.15314250035023902,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.033141141696661144,
+          "spear_force_z_range_N": [
+            -0.7707677082109883,
+            68.18695521217035
+          ],
+          "final_spear_force_z_N": 130.8138757232607
+        },
+        "insertion_preload": {
+          "time": 6.65,
+          "depth": 0.15813837801243358,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.15321234817933083,
+          "spear_force_z_range_N": [
+            -532.7817542324311,
+            161.30189734303426
+          ],
+          "final_spear_force_z_N": -676.3037905621406
+        },
+        "insert": {
+          "time": 12.75,
+          "depth": 0.7198780120731559,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7051178932513511,
+          "spear_force_z_range_N": [
+            -1041.1438766876856,
+            -676.3037905621406
+          ],
+          "final_spear_force_z_N": -702.9783279545063
+        },
+        "stop": {
+          "time": 13.75,
+          "depth": 0.7204440797893131,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7202883158783946,
+          "spear_force_z_range_N": [
+            -702.9783279545063,
+            -658.1623278649423
+          ],
+          "final_spear_force_z_N": -656.6662034830694
+        },
+        "lift": {
+          "time": 25.75,
+          "depth": 0.7170192570376545,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.00018990572196875277,
+          "tail_min_bottom_height_m": 0.48864661326873365,
+          "tail_max_tilt_deg": 1.4039477218686716,
+          "tail_min_overlap_m": 0.717048653874496,
+          "spear_force_z_range_N": [
+            -656.6662034830694,
+            2434.6276198137152
+          ],
+          "final_spear_force_z_N": 1959.9898393172446
+        },
+        "hold": {
+          "time": 29.75,
+          "depth": 0.717022442346116,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 8.474347932452275e-05,
+          "tail_min_bottom_height_m": 0.48810255216700243,
+          "tail_max_tilt_deg": 1.4084760101756226,
+          "tail_min_overlap_m": 0.7170531470664445,
+          "spear_force_z_range_N": [
+            1959.760373629218,
+            1960.2794281105878
+          ],
+          "final_spear_force_z_N": 1959.9411750757938
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "84dcb41071e65d6ec8829f557e54bc38d28de1d3100f85546f638d0361278063",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "8092101c72fc9426b022b1a147cbe5a14a822b830a5a87cb75d01c0fd52ed1b2",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "2b26a1e39dc785b8b57686008ce771eafea81f67c5a2d981982cdd5e91b00762",
+        "spear_handling/src/SpearContact.cc": "0d2df3e723830710416c21025de7412b41a5e00fad5ba138ea656100447df0a0",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "851b2ae4d2611c24eeeb559a022bbc2f0982c0098af6482f70ad7568e12721c6",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          4.9993672323625535,
+          0.1202362739088213,
+          0.9625859316337122,
+          0.999924452552223,
+          -0.0010213080532692307,
+          -0.012248771189599389,
+          0.00011714240196324814
+        ],
+        "bale_2": [
+          8.5,
+          5.081452999509805e-20,
+          0.45719921642080563,
+          1.0,
+          -4.2538105116995973e-20,
+          1.3395887273013127e-19,
+          1.017053146486335e-20
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 1.4085119464494973,
+        "bale_2": 0.0
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        -1041.1438766876856,
+        161.30189734303426
+      ]
+    },
+    {
+      "schema_version": 2,
+      "case": "sequence",
+      "passed": true,
+      "interaction_mode": "material",
+      "insertion_preload": true,
+      "release_preload": true,
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "final_hold",
+      "settled_height_m": 0.45719921642080563,
+      "insertion_reached": true,
+      "insertion_geometry_clear": true,
+      "bale_raised": true,
+      "spear_contact_during_lift": true,
+      "retained": true,
+      "lift_height_m": 0.5501809732565577,
+      "withdrawal_start_force_z_N": -349.92314033632084,
+      "withdrawal_bale_displacement_m": 0.0,
+      "stacked": true,
+      "both_raised": true,
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_014929_sequence_64a585",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.03,
+          "bale_y": 0.0,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0,
+          "insertion_preload_N": 600.0,
+          "carry_angle": 0.06
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 100000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 5000.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.20211842097989707,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage": {
+          "time": 6.1,
+          "depth": 0.15422536404707154,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.033396864696723746,
+          "spear_force_z_range_N": [
+            -0.3778049055194711,
+            217.1256504196854
+          ],
+          "final_spear_force_z_N": 207.31529924874107
+        },
+        "insertion_preload": {
+          "time": 6.9,
+          "depth": 0.150868634691253,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.1505070166919079,
+          "spear_force_z_range_N": [
+            -561.5958636028414,
+            207.31529924874107
+          ],
+          "final_spear_force_z_N": -604.1453573995469
+        },
+        "insert": {
+          "time": 13.05,
+          "depth": 0.719934944022692,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7054354344257837,
+          "spear_force_z_range_N": [
+            -1030.0213990490356,
+            -604.1453573995469
+          ],
+          "final_spear_force_z_N": -871.6730088358363
+        },
+        "stop": {
+          "time": 14.05,
+          "depth": 0.7204222435607323,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7203292418941246,
+          "spear_force_z_range_N": [
+            -871.6730088358363,
+            -837.1943506593745
+          ],
+          "final_spear_force_z_N": -837.6524049744991
+        },
+        "lift": {
+          "time": 26.05,
+          "depth": 0.7200960072545122,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 3.852434842643859e-05,
+          "tail_min_bottom_height_m": 0.508760591272095,
+          "tail_max_tilt_deg": 4.010301340621418,
+          "tail_min_overlap_m": 0.7201383014616219,
+          "spear_force_z_range_N": [
+            -837.6524049744991,
+            2429.3016140277664
+          ],
+          "final_spear_force_z_N": 1960.2476537312016
+        },
+        "hold": {
+          "time": 30.05,
+          "depth": 0.7201614828885393,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 1.3184550326617028e-05,
+          "tail_min_bottom_height_m": 0.5085639131509587,
+          "tail_max_tilt_deg": 4.020563643687073,
+          "tail_min_overlap_m": 0.7201813183521556,
+          "spear_force_z_range_N": [
+            1953.584893120851,
+            1964.0724690813906
+          ],
+          "final_spear_force_z_N": 1962.1147692916545
+        },
+        "raise_for_stack": {
+          "time": 45.1,
+          "depth": 0.7161083332317635,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 6.243943093497961e-05,
+          "tail_min_bottom_height_m": 1.4820749864445133,
+          "tail_max_tilt_deg": 0.42369172878226014,
+          "tail_min_overlap_m": 0.7161387336671122,
+          "spear_force_z_range_N": [
+            1799.5412543986745,
+            2330.8460701353583
+          ],
+          "final_spear_force_z_N": 1959.5510623553319
+        },
+        "align_stack": {
+          "time": 64.65,
+          "depth": 0.7162250924450164,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 9.51862146791882e-05,
+          "tail_min_bottom_height_m": 1.4828536937154622,
+          "tail_max_tilt_deg": 0.5836914338899308,
+          "tail_min_overlap_m": 0.7161856747987434,
+          "spear_force_z_range_N": [
+            1888.2811834185663,
+            2036.0721853300292
+          ],
+          "final_spear_force_z_N": 1960.2492049585587
+        },
+        "place": {
+          "time": 76.65,
+          "depth": 0.717122618580133,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.033574080996638944,
+          "tail_min_bottom_height_m": 0.9142669585086608,
+          "tail_max_tilt_deg": 0.9975929931100852,
+          "tail_min_overlap_m": 0.7147074257944013,
+          "spear_force_z_range_N": [
+            1303.5468030918942,
+            2292.3137646031782
+          ],
+          "final_spear_force_z_N": 2049.904655743193
+        },
+        "release_preload": {
+          "time": 77.6,
+          "depth": 0.7096901435037967,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.01729985123636668,
+          "tail_min_bottom_height_m": 0.9140333442405428,
+          "tail_max_tilt_deg": 0.7448893753506444,
+          "tail_min_overlap_m": 0.7098467788469431,
+          "spear_force_z_range_N": [
+            -190.48735540891047,
+            2049.904655743193
+          ],
+          "final_spear_force_z_N": -349.92314033632084
+        },
+        "withdraw": {
+          "time": 84.6,
+          "depth": -0.12040668192514314,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": 0.9143989282606806,
+          "tail_max_tilt_deg": 2.453763877478597e-05,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            -1142.8045137051274,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "stack_settle": {
+          "time": 88.6,
+          "depth": -0.12925530650568717,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": 0.9143989282606806,
+          "tail_max_tilt_deg": 2.453763877478597e-05,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "lower_for_second": {
+          "time": 103.6,
+          "depth": -0.3957477972769038,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": 0.9143989282606806,
+          "tail_max_tilt_deg": 2.453763877478597e-05,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage_lower": {
+          "time": 109.6,
+          "depth": 0.15186434394950016,
+          "target_bale": "bale_2",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -9.62965583550801e-07,
+          "tail_max_tilt_deg": 2.645320890690588e-05,
+          "tail_min_overlap_m": 0.052363364447391085,
+          "spear_force_z_range_N": [
+            -1.3538674217064417,
+            29.454994080030485
+          ],
+          "final_spear_force_z_N": 31.138383358074087
+        },
+        "lower_preload": {
+          "time": 110.15,
+          "depth": 0.1485986647618996,
+          "target_bale": "bale_2",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -9.62965583550801e-07,
+          "tail_max_tilt_deg": 2.645320890690588e-05,
+          "tail_min_overlap_m": 0.14979583869385762,
+          "spear_force_z_range_N": [
+            -542.8966163920797,
+            31.138383358074087
+          ],
+          "final_spear_force_z_N": -600.49088688852
+        },
+        "insert_lower": {
+          "time": 116.95,
+          "depth": 0.7195670135986001,
+          "target_bale": "bale_2",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -9.62965583550801e-07,
+          "tail_max_tilt_deg": 2.645320890690588e-05,
+          "tail_min_overlap_m": 0.7046469888205498,
+          "spear_force_z_range_N": [
+            -905.6818091148283,
+            -600.49088688852
+          ],
+          "final_spear_force_z_N": -738.188255386042
+        },
+        "lower_stop": {
+          "time": 117.95,
+          "depth": 0.7200690314018712,
+          "target_bale": "bale_2",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -9.62965583550801e-07,
+          "tail_max_tilt_deg": 2.645320890690588e-05,
+          "tail_min_overlap_m": 0.7199834556183561,
+          "spear_force_z_range_N": [
+            -738.188255386042,
+            -704.8193375786332
+          ],
+          "final_spear_force_z_N": -703.8557575748004
+        },
+        "lift_both": {
+          "time": 133.0,
+          "depth": 0.7307527293578617,
+          "target_bale": "bale_2",
+          "condition_reached": false,
+          "tail_height_range_m": 0.019787757878854784,
+          "tail_min_bottom_height_m": 0.5013635976985209,
+          "tail_max_tilt_deg": 3.5377812241202533,
+          "tail_min_overlap_m": 0.7234408708843632,
+          "spear_force_z_range_N": [
+            -703.8557575748004,
+            4262.09885143371
+          ],
+          "final_spear_force_z_N": 3853.5847432091614
+        },
+        "forward": {
+          "time": 138.0,
+          "depth": 0.7336220023795494,
+          "target_bale": "bale_2",
+          "condition_reached": false,
+          "tail_height_range_m": 0.01646044721455464,
+          "tail_min_bottom_height_m": 0.5007654122707434,
+          "tail_max_tilt_deg": 3.3737581676855037,
+          "tail_min_overlap_m": 0.7239851303298432,
+          "spear_force_z_range_N": [
+            3818.1270828051383,
+            4056.2448768948584
+          ],
+          "final_spear_force_z_N": 3842.4284374082144
+        },
+        "brake": {
+          "time": 140.0,
+          "depth": 0.7199099596286489,
+          "target_bale": "bale_2",
+          "condition_reached": false,
+          "tail_height_range_m": 0.07466131163423673,
+          "tail_min_bottom_height_m": 0.4804626699961897,
+          "tail_max_tilt_deg": 4.9650637437749605,
+          "tail_min_overlap_m": 0.7172150531129912,
+          "spear_force_z_range_N": [
+            3332.3678885769996,
+            4316.329559030141
+          ],
+          "final_spear_force_z_N": 3824.8974580008107
+        },
+        "reverse": {
+          "time": 145.0,
+          "depth": 0.7235438032533442,
+          "target_bale": "bale_2",
+          "condition_reached": false,
+          "tail_height_range_m": 0.05328783820364147,
+          "tail_min_bottom_height_m": 0.4807075847272706,
+          "tail_max_tilt_deg": 3.8600141880006085,
+          "tail_min_overlap_m": 0.7225839212426778,
+          "spear_force_z_range_N": [
+            3423.495470711091,
+            4275.975658339641
+          ],
+          "final_spear_force_z_N": 4130.864281142465
+        },
+        "final_hold": {
+          "time": 149.0,
+          "depth": 0.7305119805296552,
+          "target_bale": "bale_2",
+          "condition_reached": false,
+          "tail_height_range_m": 0.03522646624726922,
+          "tail_min_bottom_height_m": 0.4980846611877404,
+          "tail_max_tilt_deg": 3.3387240377131495,
+          "tail_min_overlap_m": 0.7273068216436943,
+          "spear_force_z_range_N": [
+            3647.650909620616,
+            4203.4445969331555
+          ],
+          "final_spear_force_z_N": 3798.4044119949504
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "09a1176c81d9bb607cb9c182b2b8c24f81fb62311de73caa66fb0a0b44b3076c",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "8092101c72fc9426b022b1a147cbe5a14a822b830a5a87cb75d01c0fd52ed1b2",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "2b26a1e39dc785b8b57686008ce771eafea81f67c5a2d981982cdd5e91b00762",
+        "spear_handling/src/SpearContact.cc": "0d2df3e723830710416c21025de7412b41a5e00fad5ba138ea656100447df0a0",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "851b2ae4d2611c24eeeb559a022bbc2f0982c0098af6482f70ad7568e12721c6",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          8.579654370417726,
+          3.489073398863488e-08,
+          1.902847794873601,
+          0.9997956624278607,
+          5.003390541617143e-10,
+          -0.02021468254599303,
+          -1.8521214991432298e-09
+        ],
+        "bale_2": [
+          8.661477203593723,
+          3.105200067275461e-09,
+          0.9910152592880086,
+          0.9997956711353652,
+          5.03048231736728e-10,
+          -0.020214251877939744,
+          -1.986100058749414e-09
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 2.31658977909099,
+        "bale_2": 2.3165404180811944
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        -1030.0213990490356,
+        217.1256504196854
+      ],
+      "motion_observations": {
+        "max_neighbor_xy_gap_m": 0.12385781186758252,
+        "max_layer_height_error_m": 0.0073202405960376415,
+        "max_bale_tilt_deg": 4.965178630805287,
+        "max_upper_material_force_N": 0.0,
+        "min_lower_bottom_height_m": 0.4744483917432998
+      }
+    },
+    {
+      "schema_version": 2,
+      "case": "release",
+      "passed": false,
+      "interaction_mode": "material",
+      "insertion_preload": true,
+      "release_preload": false,
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "withdraw",
+      "settled_height_m": 0.45719921642080563,
+      "insertion_reached": true,
+      "insertion_geometry_clear": true,
+      "bale_raised": true,
+      "spear_contact_during_lift": true,
+      "retained": true,
+      "lift_height_m": 0.5469844878607515,
+      "withdrawal_start_force_z_N": 1629.7060205490552,
+      "withdrawal_bale_displacement_m": 0.15336854039653505,
+      "error": "RuntimeError: Bale followed the withdrawing spears >0.15 m; withdrawal stopped",
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_015235_release_d1e180",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.03,
+          "bale_y": 0.0,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0,
+          "insertion_preload_N": 600.0,
+          "carry_angle": 0.06
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 100000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 5000.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.20205251033860783,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage": {
+          "time": 6.1,
+          "depth": 0.15398661802956204,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.033264308437474396,
+          "spear_force_z_range_N": [
+            -0.8854337656574891,
+            198.32797641909275
+          ],
+          "final_spear_force_z_N": 187.17550728490633
+        },
+        "insertion_preload": {
+          "time": 6.8,
+          "depth": 0.15055104063192692,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.15134777905405716,
+          "spear_force_z_range_N": [
+            -566.6727118780383,
+            187.17550728490633
+          ],
+          "final_spear_force_z_N": -610.6651640451812
+        },
+        "insert": {
+          "time": 12.9,
+          "depth": 0.71962407809488,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7045656062334685,
+          "spear_force_z_range_N": [
+            -1465.0572369979527,
+            -610.6651640451812
+          ],
+          "final_spear_force_z_N": -1464.162504694736
+        },
+        "stop": {
+          "time": 13.9,
+          "depth": 0.7200808794070227,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.719982588145295,
+          "spear_force_z_range_N": [
+            -1464.162504694736,
+            -1452.0328342633975
+          ],
+          "final_spear_force_z_N": -1453.0688062775293
+        },
+        "lift": {
+          "time": 25.95,
+          "depth": 0.722415170594427,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.00032142389301093033,
+          "tail_min_bottom_height_m": 0.507839267066651,
+          "tail_max_tilt_deg": 3.8654762404157683,
+          "tail_min_overlap_m": 0.7224514088688924,
+          "spear_force_z_range_N": [
+            -1453.0688062775293,
+            2430.444687547215
+          ],
+          "final_spear_force_z_N": 1960.2721775357722
+        },
+        "hold": {
+          "time": 29.95,
+          "depth": 0.7223901124925561,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.00013922583540382227,
+          "tail_min_bottom_height_m": 0.5072124900390584,
+          "tail_max_tilt_deg": 3.8412277824266066,
+          "tail_min_overlap_m": 0.7224257463505672,
+          "spear_force_z_range_N": [
+            1958.8212587235867,
+            1960.2939185065172
+          ],
+          "final_spear_force_z_N": 1961.1020998121098
+        },
+        "raise_for_stack": {
+          "time": 44.95,
+          "depth": 0.7149206509456266,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.04289369172428881,
+          "tail_min_bottom_height_m": 1.4317236093300532,
+          "tail_max_tilt_deg": 1.019822176811433,
+          "tail_min_overlap_m": 0.7149815722577325,
+          "spear_force_z_range_N": [
+            1579.550224719328,
+            2329.9240975041052
+          ],
+          "final_spear_force_z_N": 2192.271205880074
+        },
+        "align_stack": {
+          "time": 64.15,
+          "depth": 0.7148727192799702,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.04501673713048748,
+          "tail_min_bottom_height_m": 1.4318882213463109,
+          "tail_max_tilt_deg": 1.0282472619493248,
+          "tail_min_overlap_m": 0.7146949289484956,
+          "spear_force_z_range_N": [
+            1563.4950541904525,
+            2221.861178271159
+          ],
+          "final_spear_force_z_N": 2186.387950922596
+        },
+        "place": {
+          "time": 76.15,
+          "depth": 0.7187054702554208,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.03179908106825646,
+          "tail_min_bottom_height_m": 0.9142849530071853,
+          "tail_max_tilt_deg": 0.8106929591685385,
+          "tail_min_overlap_m": 0.7175668556269039,
+          "spear_force_z_range_N": [
+            1341.469868036038,
+            2319.7879792385843
+          ],
+          "final_spear_force_z_N": 1629.7060205490552
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "09a1176c81d9bb607cb9c182b2b8c24f81fb62311de73caa66fb0a0b44b3076c",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "8092101c72fc9426b022b1a147cbe5a14a822b830a5a87cb75d01c0fd52ed1b2",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "2b26a1e39dc785b8b57686008ce771eafea81f67c5a2d981982cdd5e91b00762",
+        "spear_handling/src/SpearContact.cc": "0d2df3e723830710416c21025de7412b41a5e00fad5ba138ea656100447df0a0",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "851b2ae4d2611c24eeeb559a022bbc2f0982c0098af6482f70ad7568e12721c6",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          8.292923175217627,
+          3.085371815825274e-08,
+          1.4078831896333852,
+          0.9999653001874346,
+          2.4516958396513364e-11,
+          -0.008330571472225932,
+          9.473876833858094e-11
+        ],
+        "bale_2": [
+          8.500218019482565,
+          1.3716433775915592e-16,
+          0.45719923102438814,
+          0.9999999999998086,
+          -1.5144865044667875e-17,
+          -6.187025492332712e-07,
+          -9.334551430613047e-17
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 0.9546242143671873,
+        "bale_2": 7.08992060010359e-05
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        -1465.0572369979527,
+        198.32797641909275
+      ]
+    },
+    {
+      "schema_version": 2,
+      "case": "A",
+      "passed": false,
+      "interaction_mode": "material",
+      "insertion_preload": false,
+      "release_preload": true,
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "insert",
+      "settled_height_m": 0.45719921642080563,
+      "error": "RuntimeError: Insertion pushed the bale >0.15 m; lift blocked",
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_015514_A_2f53e4",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.03,
+          "bale_y": 0.0,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0,
+          "insertion_preload_N": 600.0,
+          "carry_angle": 0.06
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 100000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 5000.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.2010707072208623,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "09a1176c81d9bb607cb9c182b2b8c24f81fb62311de73caa66fb0a0b44b3076c",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "8092101c72fc9426b022b1a147cbe5a14a822b830a5a87cb75d01c0fd52ed1b2",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "2b26a1e39dc785b8b57686008ce771eafea81f67c5a2d981982cdd5e91b00762",
+        "spear_handling/src/SpearContact.cc": "0d2df3e723830710416c21025de7412b41a5e00fad5ba138ea656100447df0a0",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "851b2ae4d2611c24eeeb559a022bbc2f0982c0098af6482f70ad7568e12721c6",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          4.96155353849235,
+          1.4073769615609877e-09,
+          0.46042358414537227,
+          0.9999964905990798,
+          3.070484496077786e-12,
+          0.002649299817780198,
+          -1.158959716531799e-09
+        ],
+        "bale_2": [
+          8.5,
+          5.081452999509805e-20,
+          0.45719921642080563,
+          1.0,
+          -4.2538105116995973e-20,
+          1.3395887273013127e-19,
+          1.017053146486335e-20
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 0.303587751583882,
+        "bale_2": 0.0
+      },
+      "initial_insertion_bale_displacement_m": 0.15195353849234916,
+      "insertion_spear_force_z_range_N": [
+        -0.0876717992939473,
+        1039.008522325572
+      ]
+    },
+    {
+      "schema_version": 2,
+      "case": "C",
+      "passed": true,
+      "interaction_mode": "material",
+      "insertion_preload": true,
+      "release_preload": true,
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "hold",
+      "settled_height_m": 0.45719921642080563,
+      "insertion_reached": true,
+      "insertion_geometry_clear": true,
+      "bale_raised": true,
+      "spear_contact_during_lift": true,
+      "retained": true,
+      "lift_height_m": 0.5930126630971737,
+      "interpretation": "Same measured pickup checks at perturbed insertion/alignment; no required physical failure assumed.",
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_015613_C_74069e",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.06,
+          "bale_y": 0.12,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0,
+          "insertion_preload_N": 600.0,
+          "carry_angle": 0.06
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 100000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 5000.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.19810363674104392,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage": {
+          "time": 6.05,
+          "depth": 0.15115840425707783,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.03217923909833953,
+          "spear_force_z_range_N": [
+            -0.27606267508328663,
+            76.8319725731013
+          ],
+          "final_spear_force_z_N": 123.30880829966863
+        },
+        "insertion_preload": {
+          "time": 6.75,
+          "depth": 0.14706034018046366,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.14729080104608921,
+          "spear_force_z_range_N": [
+            -543.4913336461941,
+            147.6671341548979
+          ],
+          "final_spear_force_z_N": -603.4395721457947
+        },
+        "insert": {
+          "time": 13.0,
+          "depth": 0.7198771828432774,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7064510964501952,
+          "spear_force_z_range_N": [
+            -1457.612341175432,
+            -582.771379626318
+          ],
+          "final_spear_force_z_N": -1420.3938554479207
+        },
+        "stop": {
+          "time": 14.0,
+          "depth": 0.7202325152368007,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7212643416856847,
+          "spear_force_z_range_N": [
+            -1420.3938554479207,
+            -1403.9535097550888
+          ],
+          "final_spear_force_z_N": -1408.9296106491258
+        },
+        "lift": {
+          "time": 26.0,
+          "depth": 0.7207681536553538,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.00013315777461220257,
+          "tail_min_bottom_height_m": 0.5321594390797523,
+          "tail_max_tilt_deg": 5.746368880531257,
+          "tail_min_overlap_m": 0.721396776228968,
+          "spear_force_z_range_N": [
+            -1408.9296106491258,
+            2450.0581775480587
+          ],
+          "final_spear_force_z_N": 1962.5453833741235
+        },
+        "hold": {
+          "time": 30.0,
+          "depth": 0.7207361148678064,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 5.278469886316195e-05,
+          "tail_min_bottom_height_m": 0.5319209081974472,
+          "tail_max_tilt_deg": 5.733817678118806,
+          "tail_min_overlap_m": 0.7213635674806113,
+          "spear_force_z_range_N": [
+            1957.3119907819914,
+            1964.0294155474014
+          ],
+          "final_spear_force_z_N": 1959.8863626932896
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "09a1176c81d9bb607cb9c182b2b8c24f81fb62311de73caa66fb0a0b44b3076c",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "8092101c72fc9426b022b1a147cbe5a14a822b830a5a87cb75d01c0fd52ed1b2",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "2b26a1e39dc785b8b57686008ce771eafea81f67c5a2d981982cdd5e91b00762",
+        "spear_handling/src/SpearContact.cc": "0d2df3e723830710416c21025de7412b41a5e00fad5ba138ea656100447df0a0",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "851b2ae4d2611c24eeeb559a022bbc2f0982c0098af6482f70ad7568e12721c6",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          4.98434906161025,
+          0.12045404505074303,
+          1.0502118795179793,
+          0.9987490396514163,
+          -0.001011682444043692,
+          -0.04999214501381652,
+          0.00034311940151966823
+        ],
+        "bale_2": [
+          8.5,
+          5.081452999509805e-20,
+          0.45719921642080563,
+          1.0,
+          -4.2538105116995973e-20,
+          1.3395887273013127e-19,
+          1.017053146486335e-20
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 5.7322411021194695,
+        "bale_2": 0.0
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        -1457.612341175432,
+        147.6671341548979
+      ]
+    },
+    {
+      "schema_version": 2,
+      "case": "B",
+      "passed": false,
+      "interaction_mode": "material",
+      "insertion_preload": true,
+      "release_preload": true,
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.24384000000000003,
+      "last_phase": "hold",
+      "settled_height_m": 0.45719921642080563,
+      "insertion_reached": true,
+      "insertion_geometry_clear": true,
+      "bale_raised": false,
+      "spear_contact_during_lift": true,
+      "retained": false,
+      "lift_height_m": 0.22611849887655022,
+      "error": "RuntimeError: Pickup/retention checks failed",
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_114355_B_edd1a2",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.2,
+          "forward_tilt": -0.03,
+          "bale_y": 0.0,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0,
+          "insertion_preload_N": 600.0,
+          "carry_angle": 0.06
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 100000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 5000.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.2018535282440007,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "insert": {
+          "time": 8.25,
+          "depth": 0.23221030665347409,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.21734805754295294,
+          "spear_force_z_range_N": [
+            -0.12106759968314966,
+            118.53756981327186
+          ],
+          "final_spear_force_z_N": 119.28888746956798
+        },
+        "stop": {
+          "time": 9.25,
+          "depth": 0.2327334037111829,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.23233943595480167,
+          "spear_force_z_range_N": [
+            119.28888746956798,
+            140.62634107745555
+          ],
+          "final_spear_force_z_N": 141.39081172997567
+        },
+        "lift": {
+          "time": 21.25,
+          "depth": 0.06688127717452663,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 1.246381660857665e-05,
+          "tail_min_bottom_height_m": -9.716654481017883e-09,
+          "tail_max_tilt_deg": 26.870488024184922,
+          "tail_min_overlap_m": 0.07738855115575093,
+          "spear_force_z_range_N": [
+            141.39081172997567,
+            1382.331139831717
+          ],
+          "final_spear_force_z_N": 1028.0786670337186
+        },
+        "hold": {
+          "time": 25.25,
+          "depth": 0.06700894041290939,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 4.935699523422876e-06,
+          "tail_min_bottom_height_m": -9.714977822206095e-09,
+          "tail_max_tilt_deg": 26.86406381208528,
+          "tail_min_overlap_m": 0.07756595064956685,
+          "spear_force_z_range_N": [
+            1028.0786670337186,
+            1028.3026622821567
+          ],
+          "final_spear_force_z_N": 1028.2942485208637
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "09a1176c81d9bb607cb9c182b2b8c24f81fb62311de73caa66fb0a0b44b3076c",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "8092101c72fc9426b022b1a147cbe5a14a822b830a5a87cb75d01c0fd52ed1b2",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "2b26a1e39dc785b8b57686008ce771eafea81f67c5a2d981982cdd5e91b00762",
+        "spear_handling/src/SpearContact.cc": "0d2df3e723830710416c21025de7412b41a5e00fad5ba138ea656100447df0a0",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "851b2ae4d2611c24eeeb559a022bbc2f0982c0098af6482f70ad7568e12721c6",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          5.081836642501337,
+          2.0911756523196336e-12,
+          0.6833177152973559,
+          0.9726478646307002,
+          2.7363417248037696e-13,
+          0.232284591459139,
+          -1.1449203137340918e-12
+        ],
+        "bale_2": [
+          8.5,
+          5.081452999509805e-20,
+          0.45719921642080563,
+          1.0,
+          -4.2538105116995973e-20,
+          1.3395887273013127e-19,
+          1.017053146486335e-20
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 26.863225206625557,
+        "bale_2": 0.0
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        -0.12106759968314966,
+        140.62634107745555
+      ]
+    },
+    {
+      "schema_version": 2,
+      "case": "sequence",
+      "passed": true,
+      "interaction_mode": "material",
+      "insertion_preload": true,
+      "release_preload": true,
+      "pose_frame": "world",
+      "pickup_limits": {
+        "min_lift_m": 0.25,
+        "min_bottom_height_m": 0.1,
+        "max_tilt_deg": 8.0,
+        "max_tail_height_range_m": 0.03,
+        "min_overlap_m": 0.1,
+        "max_insertion_push_m": 0.15
+      },
+      "target_depth_m": 0.7315200000000001,
+      "last_phase": "final_hold",
+      "settled_height_m": 0.45719921642080563,
+      "insertion_reached": true,
+      "insertion_geometry_clear": true,
+      "bale_raised": true,
+      "spear_contact_during_lift": true,
+      "retained": true,
+      "lift_height_m": 0.5491466041987285,
+      "withdrawal_start_force_z_N": -416.3849633340328,
+      "withdrawal_bale_displacement_m": 0.0,
+      "stacked": true,
+      "both_raised": true,
+      "server_exit": -9,
+      "artifacts": "runs/spear_20261021_114531_sequence_fc4cbc",
+      "parameters": {
+        "bale": {
+          "length": 2.4384,
+          "width": 1.2192,
+          "height": 0.9144,
+          "mass": 200.0
+        },
+        "attachment": {
+          "frame_width": 1.9,
+          "side_margin": 0.1,
+          "count": 4,
+          "spear_length": 1.0,
+          "diameter": 0.04,
+          "root_x": 0.1,
+          "root_z": 0.15,
+          "frame_mass": 95.0,
+          "steel_density": 7850.0
+        },
+        "channel": {
+          "height_from_bottom": 0.36,
+          "height": 0.14,
+          "width": 0.1
+        },
+        "friction": {
+          "bale_ground": 0.4,
+          "bale_spear": 0.3,
+          "bale_bale": 0.4
+        },
+        "resistance": {
+          "enabled": false,
+          "force_per_meter_per_spear": 100.0,
+          "viscous_per_spear": 30.0,
+          "max_force_per_spear": 200.0
+        },
+        "physics": {
+          "step": 0.001
+        },
+        "test": {
+          "entry_x": 4.2,
+          "insertion_fraction": 0.6,
+          "forward_tilt": -0.03,
+          "bale_y": 0.0,
+          "bale_yaw": 0.0,
+          "transport_speed": 0.15,
+          "entry_lift": 0.03,
+          "insertion_lift": 0.015,
+          "release_preload_N": 300.0,
+          "insertion_preload_N": 600.0,
+          "carry_angle": 0.06
+        },
+        "interaction": {
+          "mode": "material",
+          "samples": 32,
+          "transverse_stiffness": 100000.0,
+          "transverse_damping": 3000.0,
+          "bearing_limit_per_m": 5000.0,
+          "axial_stiffness": 10000.0,
+          "axial_damping": 200.0,
+          "confinement_per_m": 100.0,
+          "cutting_force": 20.0
+        }
+      },
+      "stages": {
+        "settle": {
+          "time": 3.05,
+          "depth": -0.20202176529249882,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage": {
+          "time": 6.1,
+          "depth": 0.1544523344423988,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.032899683575902346,
+          "spear_force_z_range_N": [
+            -0.8886770981557544,
+            152.30038070078558
+          ],
+          "final_spear_force_z_N": 142.32496297478778
+        },
+        "insertion_preload": {
+          "time": 6.75,
+          "depth": 0.14861418064666465,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.15000126187478907,
+          "spear_force_z_range_N": [
+            -565.8390945251192,
+            142.32496297478778
+          ],
+          "final_spear_force_z_N": -606.8482683132494
+        },
+        "insert": {
+          "time": 12.85,
+          "depth": 0.7196954665063032,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7049307416850814,
+          "spear_force_z_range_N": [
+            -1355.2187594299778,
+            -606.8482683132494
+          ],
+          "final_spear_force_z_N": -1315.2355234772149
+        },
+        "stop": {
+          "time": 13.85,
+          "depth": 0.7202113100195279,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -7.835791943633375e-07,
+          "tail_max_tilt_deg": 0.0,
+          "tail_min_overlap_m": 0.7201223504665404,
+          "spear_force_z_range_N": [
+            -1315.2355234772149,
+            -1286.0054240019265
+          ],
+          "final_spear_force_z_N": -1285.0021029014858
+        },
+        "lift": {
+          "time": 25.85,
+          "depth": 0.7214626859021265,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 2.1489588034606655e-05,
+          "tail_min_bottom_height_m": 0.5057806110731055,
+          "tail_max_tilt_deg": 4.199784246343718,
+          "tail_min_overlap_m": 0.7215308322446388,
+          "spear_force_z_range_N": [
+            -1285.0021029014858,
+            2441.6945498459177
+          ],
+          "final_spear_force_z_N": 1959.8748855264134
+        },
+        "hold": {
+          "time": 29.85,
+          "depth": 0.7215311330825371,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 6.8939612698493136e-06,
+          "tail_min_bottom_height_m": 0.505609189513412,
+          "tail_max_tilt_deg": 4.211870451568373,
+          "tail_min_overlap_m": 0.7215777610032951,
+          "spear_force_z_range_N": [
+            1953.437351626083,
+            1963.5528855798252
+          ],
+          "final_spear_force_z_N": 1961.9792964792518
+        },
+        "raise_for_stack": {
+          "time": 44.85,
+          "depth": 0.717643153003008,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 9.395507504228462e-06,
+          "tail_min_bottom_height_m": 1.4765856989192285,
+          "tail_max_tilt_deg": 0.6476631227116622,
+          "tail_min_overlap_m": 0.7176716730577563,
+          "spear_force_z_range_N": [
+            1797.7120776455188,
+            2326.699248676099
+          ],
+          "final_spear_force_z_N": 1960.6003767677714
+        },
+        "align_stack": {
+          "time": 64.45,
+          "depth": 0.7177608989026484,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.00010500550571057587,
+          "tail_min_bottom_height_m": 1.4775121412741419,
+          "tail_max_tilt_deg": 0.8048722734397155,
+          "tail_min_overlap_m": 0.7177737268073832,
+          "spear_force_z_range_N": [
+            1888.8979658461174,
+            2035.234796347918
+          ],
+          "final_spear_force_z_N": 1960.2918814325042
+        },
+        "place": {
+          "time": 76.45,
+          "depth": 0.7170671772029802,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.029738799613968192,
+          "tail_min_bottom_height_m": 0.9143955911845444,
+          "tail_max_tilt_deg": 0.9480709591527083,
+          "tail_min_overlap_m": 0.7163576265290061,
+          "spear_force_z_range_N": [
+            1295.0391037954757,
+            2300.7100732707545
+          ],
+          "final_spear_force_z_N": 2116.1210051639846
+        },
+        "release_preload": {
+          "time": 77.4,
+          "depth": 0.71032003608136,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.012009332299039555,
+          "tail_min_bottom_height_m": 0.9137382952069542,
+          "tail_max_tilt_deg": 0.9665825053482773,
+          "tail_min_overlap_m": 0.7100894186749855,
+          "spear_force_z_range_N": [
+            -292.2006877865571,
+            2116.1210051639846
+          ],
+          "final_spear_force_z_N": -416.3849633340328
+        },
+        "withdraw": {
+          "time": 84.45,
+          "depth": -0.12574542436518965,
+          "target_bale": "bale_1",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": 0.9143987304735257,
+          "tail_max_tilt_deg": 3.544960300051625e-05,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            -1075.820138848839,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "stack_settle": {
+          "time": 88.45,
+          "depth": -0.1348377758860354,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": 0.9143987304735257,
+          "tail_max_tilt_deg": 3.544960300051625e-05,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "lower_for_second": {
+          "time": 103.45,
+          "depth": -0.40073973086888126,
+          "target_bale": "bale_1",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": 0.9143987304735257,
+          "tail_max_tilt_deg": 3.544960300051625e-05,
+          "tail_min_overlap_m": 0.0,
+          "spear_force_z_range_N": [
+            0.0,
+            0.0
+          ],
+          "final_spear_force_z_N": 0.0
+        },
+        "engage_lower": {
+          "time": 109.5,
+          "depth": 0.15445391513266898,
+          "target_bale": "bale_2",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -3.628726644167024e-07,
+          "tail_max_tilt_deg": 1.1643920115677386e-05,
+          "tail_min_overlap_m": 0.05486162711913874,
+          "spear_force_z_range_N": [
+            -1.7820284630226668,
+            26.665818770525476
+          ],
+          "final_spear_force_z_N": 28.103486942593797
+        },
+        "lower_preload": {
+          "time": 110.0,
+          "depth": 0.15271534521178104,
+          "target_bale": "bale_2",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -3.628726644167024e-07,
+          "tail_max_tilt_deg": 1.1643920115677386e-05,
+          "tail_min_overlap_m": 0.15349254542610843,
+          "spear_force_z_range_N": [
+            -528.7259701776721,
+            28.103486942593797
+          ],
+          "final_spear_force_z_N": -696.1073794219774
+        },
+        "insert_lower": {
+          "time": 116.8,
+          "depth": 0.7198620502064516,
+          "target_bale": "bale_2",
+          "condition_reached": true,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -3.628726644167024e-07,
+          "tail_max_tilt_deg": 1.1643920115677386e-05,
+          "tail_min_overlap_m": 0.7055251809846793,
+          "spear_force_z_range_N": [
+            -1182.735448169228,
+            -696.1073794219774
+          ],
+          "final_spear_force_z_N": -1122.3614851453904
+        },
+        "lower_stop": {
+          "time": 117.8,
+          "depth": 0.7202420563528777,
+          "target_bale": "bale_2",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0,
+          "tail_min_bottom_height_m": -3.628726644167024e-07,
+          "tail_max_tilt_deg": 1.1643920115677386e-05,
+          "tail_min_overlap_m": 0.7202941116427435,
+          "spear_force_z_range_N": [
+            -1122.3614851453904,
+            -1096.474298908721
+          ],
+          "final_spear_force_z_N": -1096.0802117358287
+        },
+        "lift_both": {
+          "time": 132.8,
+          "depth": 0.734510520703475,
+          "target_bale": "bale_2",
+          "condition_reached": false,
+          "tail_height_range_m": 0.026391399995812415,
+          "tail_min_bottom_height_m": 0.4815407709126621,
+          "tail_max_tilt_deg": 2.984086346375475,
+          "tail_min_overlap_m": 0.7270773877682528,
+          "spear_force_z_range_N": [
+            -1096.0802117358287,
+            4226.505698553424
+          ],
+          "final_spear_force_z_N": 4054.679738684256
+        },
+        "forward": {
+          "time": 137.8,
+          "depth": 0.7301726900116318,
+          "target_bale": "bale_2",
+          "condition_reached": false,
+          "tail_height_range_m": 0.03506136456944775,
+          "tail_min_bottom_height_m": 0.48178893456171384,
+          "tail_max_tilt_deg": 3.417862324676005,
+          "tail_min_overlap_m": 0.7220715659909919,
+          "spear_force_z_range_N": [
+            3439.0864489917826,
+            4260.052679227416
+          ],
+          "final_spear_force_z_N": 3966.3038862154394
+        },
+        "brake": {
+          "time": 139.8,
+          "depth": 0.7229821929952938,
+          "target_bale": "bale_2",
+          "condition_reached": false,
+          "tail_height_range_m": 0.032129744341579336,
+          "tail_min_bottom_height_m": 0.4723063142885515,
+          "tail_max_tilt_deg": 3.509528866163043,
+          "tail_min_overlap_m": 0.7232237062460061,
+          "spear_force_z_range_N": [
+            3299.483488138817,
+            4301.997742334664
+          ],
+          "final_spear_force_z_N": 3583.057979804996
+        },
+        "reverse": {
+          "time": 144.8,
+          "depth": 0.7329399382699737,
+          "target_bale": "bale_2",
+          "condition_reached": false,
+          "tail_height_range_m": 0.0378241167537996,
+          "tail_min_bottom_height_m": 0.47952758710096255,
+          "tail_max_tilt_deg": 3.9146964930908004,
+          "tail_min_overlap_m": 0.7209995682554995,
+          "spear_force_z_range_N": [
+            3338.4204004000517,
+            4222.365588817638
+          ],
+          "final_spear_force_z_N": 3889.7733961160907
+        },
+        "final_hold": {
+          "time": 148.8,
+          "depth": 0.730198742396554,
+          "target_bale": "bale_2",
+          "condition_reached": false,
+          "tail_height_range_m": 0.014173193515531035,
+          "tail_min_bottom_height_m": 0.4950299277752784,
+          "tail_max_tilt_deg": 3.4288008115634043,
+          "tail_min_overlap_m": 0.7282567987765651,
+          "spear_force_z_range_N": [
+            3823.9905109274164,
+            3990.9111712245685
+          ],
+          "final_spear_force_z_N": 3901.175435809846
+        }
+      },
+      "source_sha256": {
+        "spear_handling/validate.py": "09a1176c81d9bb607cb9c182b2b8c24f81fb62311de73caa66fb0a0b44b3076c",
+        "spear_handling/geometry.py": "2bd677c3c7aa6c77d69a8096bcd81190201b0a2ba1f5cc1c376ba298575dee7f",
+        "spear_handling/generate.py": "8092101c72fc9426b022b1a147cbe5a14a822b830a5a87cb75d01c0fd52ed1b2",
+        "spear_handling/check_friction.py": "0d2b85172f443e82b19fa093d1d9e7bacffd22432b7639fa431aef1708f00d94",
+        "spear_handling/src/EmbeddedSpear.hh": "2b26a1e39dc785b8b57686008ce771eafea81f67c5a2d981982cdd5e91b00762",
+        "spear_handling/src/SpearContact.cc": "0d2df3e723830710416c21025de7412b41a5e00fad5ba138ea656100447df0a0",
+        "spear_handling/CMakeLists.txt": "151d6614b8afc5c3bcb26ea6b86dbc86cd9afaf3023826f777b56a210c2b73cb",
+        "worlds/simple_tractor.sdf": "d782d06ab32dc92027c9897989ea9bf937bc004ebb2d1badb3e8bf4e1cb6ee2b",
+        "src/LoaderHydraulics.cc": "4a4bae456dd600043143fdf40721cd809244d61decbf348b9a12bccb0dec20d2",
+        "src/HydraulicModel.hh": "8568b43f9bc4e068c59df83ca4216fa8d6b8f4f8a4545a52b82387bc3c694629",
+        "spear_handling/build/libSpearContact.so": "851b2ae4d2611c24eeeb559a022bbc2f0982c0098af6482f70ad7568e12721c6",
+        "spear_handling/build/libBaleLoaderHydraulics.so": "b3b26f750484b6b82ccd78a9112abddb1cee89c18172e616e844715e7dd61477"
+      },
+      "final_bale_poses": {
+        "bale_1": [
+          8.578182461358033,
+          3.537585386599384e-08,
+          1.8955076157969584,
+          0.9997569623445308,
+          5.157926080597661e-10,
+          -0.022045776095122753,
+          -2.1707917874342206e-09
+        ],
+        "bale_2": [
+          8.66058781830891,
+          3.297223429315346e-09,
+          0.9838572627953942,
+          0.9997569756298673,
+          5.183768629876789e-10,
+          -0.02204517360831877,
+          -2.2879349410627704e-09
+        ]
+      },
+      "final_bale_tilt_deg": {
+        "bale_1": 2.526464531337155,
+        "bale_2": 2.526395474652048
+      },
+      "initial_insertion_bale_displacement_m": 0.0,
+      "insertion_spear_force_z_range_N": [
+        -1355.2187594299778,
+        152.30038070078558
+      ],
+      "motion_observations": {
+        "max_neighbor_xy_gap_m": 0.10780202046616637,
+        "max_layer_height_error_m": 0.005400471612670765,
+        "max_bale_tilt_deg": 4.125206370699318,
+        "max_upper_material_force_N": 0.0,
+        "min_lower_bottom_height_m": 0.4675770549369918
+      }
+    }
+  ],
+  "native_friction": {
+    "run": "runs/spear_friction_20261021_014535_42319f",
+    "passed": true,
+    "cases": [
+      {
+        "requested_mu": {
+          "bale_ground": 0.1,
+          "bale_spear": 0.2,
+          "bale_bale": 0.6
+        },
+        "passed": true,
+        "support_surface_mu": 0.9,
+        "pairs": [
+          {
+            "pair": "bale_ground",
+            "requested_mu": 0.1,
+            "acceleration_m_s2": 1.9620036201915052,
+            "expected_acceleration_m_s2": 1.962,
+            "inferred_sliding_mu": 0.09999963096926552,
+            "displacement_m": 0.7069082405780387,
+            "callbacks": 4720.0,
+            "passed": true
+          },
+          {
+            "pair": "bale_bale",
+            "requested_mu": 0.6,
+            "acceleration_m_s2": 3.5201702825337446e-08,
+            "expected_acceleration_m_s2": 0.0,
+            "inferred_sliding_mu": null,
+            "displacement_m": 1.1989291482565959e-08,
+            "callbacks": 4720.0,
+            "passed": true
+          },
+          {
+            "pair": "bale_spear",
+            "requested_mu": 0.2,
+            "acceleration_m_s2": 0.9810072403829916,
+            "expected_acceleration_m_s2": 0.9809999999999999,
+            "inferred_sliding_mu": 0.19999926193853296,
+            "displacement_m": 0.35345358115607317,
+            "callbacks": 4720.0,
+            "passed": true
+          }
+        ],
+        "server_exit": -9
+      },
+      {
+        "requested_mu": {
+          "bale_ground": 0.2,
+          "bale_spear": 0.6,
+          "bale_bale": 0.1
+        },
+        "passed": true,
+        "support_surface_mu": 0.9,
+        "pairs": [
+          {
+            "pair": "bale_ground",
+            "requested_mu": 0.2,
+            "acceleration_m_s2": 0.9810072403829908,
+            "expected_acceleration_m_s2": 0.9809999999999999,
+            "inferred_sliding_mu": 0.19999926193853304,
+            "displacement_m": 0.3534535811560732,
+            "callbacks": 4720.0,
+            "passed": true
+          },
+          {
+            "pair": "bale_bale",
+            "requested_mu": 0.1,
+            "acceleration_m_s2": 1.9620036201915052,
+            "expected_acceleration_m_s2": 1.962,
+            "inferred_sliding_mu": 0.09999963096926552,
+            "displacement_m": 0.7069082405780386,
+            "callbacks": 4720.0,
+            "passed": true
+          },
+          {
+            "pair": "bale_spear",
+            "requested_mu": 0.6,
+            "acceleration_m_s2": 3.5201702827746785e-08,
+            "expected_acceleration_m_s2": 0.0,
+            "inferred_sliding_mu": null,
+            "displacement_m": 1.198929148299964e-08,
+            "callbacks": 4720.0,
+            "passed": true
+          }
+        ],
+        "server_exit": -11
+      },
+      {
+        "requested_mu": {
+          "bale_ground": 0.6,
+          "bale_spear": 0.1,
+          "bale_bale": 0.2
+        },
+        "passed": true,
+        "support_surface_mu": 0.9,
+        "pairs": [
+          {
+            "pair": "bale_ground",
+            "requested_mu": 0.6,
+            "acceleration_m_s2": 3.520170282654211e-08,
+            "expected_acceleration_m_s2": 0.0,
+            "inferred_sliding_mu": null,
+            "displacement_m": 1.198929148289122e-08,
+            "callbacks": 4720.0,
+            "passed": true
+          },
+          {
+            "pair": "bale_bale",
+            "requested_mu": 0.2,
+            "acceleration_m_s2": 0.9810072403829908,
+            "expected_acceleration_m_s2": 0.9809999999999999,
+            "inferred_sliding_mu": 0.19999926193853304,
+            "displacement_m": 0.3534535811560732,
+            "callbacks": 4720.0,
+            "passed": true
+          },
+          {
+            "pair": "bale_spear",
+            "requested_mu": 0.1,
+            "acceleration_m_s2": 1.9620036201915052,
+            "expected_acceleration_m_s2": 1.962,
+            "inferred_sliding_mu": 0.09999963096926552,
+            "displacement_m": 0.7069082405780387,
+            "callbacks": 4720.0,
+            "passed": true
+          }
+        ],
+        "server_exit": -9
+      }
+    ]
+  }
+}

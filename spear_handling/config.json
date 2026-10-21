@@ -1,13 +1,62 @@
 {
-  "bale": {"length": 2.4384, "width": 1.2192, "height": 0.9144, "mass": 200.0},
-  "attachment": {"frame_width": 1.9, "side_margin": 0.1, "count": 4,
-    "spear_length": 1.0, "diameter": 0.04, "root_x": 0.10, "root_z": 0.15,
-    "frame_mass": 95.0, "steel_density": 7850.0},
-  "channel": {"height_from_bottom": 0.36, "height": 0.14, "width": 0.10},
-  "friction": {"bale_ground": 0.4, "bale_spear": 0.3, "bale_bale": 0.4},
-  "resistance": {"enabled": false, "force_per_meter_per_spear": 100.0,
-    "viscous_per_spear": 30.0, "max_force_per_spear": 200.0},
-  "physics": {"step": 0.001},
-  "test": {"entry_x": 4.2, "insertion_fraction": 0.60, "forward_tilt": -0.03,
-    "bale_y": 0.0, "bale_yaw": 0.0, "transport_speed": 0.15}
+  "bale": {
+    "length": 2.4384,
+    "width": 1.2192,
+    "height": 0.9144,
+    "mass": 200.0
+  },
+  "attachment": {
+    "frame_width": 1.9,
+    "side_margin": 0.1,
+    "count": 4,
+    "spear_length": 1.0,
+    "diameter": 0.04,
+    "root_x": 0.1,
+    "root_z": 0.15,
+    "frame_mass": 95.0,
+    "steel_density": 7850.0
+  },
+  "channel": {
+    "height_from_bottom": 0.36,
+    "height": 0.14,
+    "width": 0.1
+  },
+  "friction": {
+    "bale_ground": 0.4,
+    "bale_spear": 0.3,
+    "bale_bale": 0.4
+  },
+  "resistance": {
+    "enabled": false,
+    "force_per_meter_per_spear": 100.0,
+    "viscous_per_spear": 30.0,
+    "max_force_per_spear": 200.0
+  },
+  "physics": {
+    "step": 0.001
+  },
+  "test": {
+    "entry_x": 4.2,
+    "insertion_fraction": 0.6,
+    "forward_tilt": -0.03,
+    "bale_y": 0.0,
+    "bale_yaw": 0.0,
+    "transport_speed": 0.15,
+    "entry_lift": 0.03,
+    "insertion_lift": 0.015,
+    "release_preload_N": 300.0,
+    "insertion_preload_N": 600.0,
+    "carry_angle": 0.06
+  },
+  "interaction": {
+    "mode": "material",
+    "samples": 32,
+    "transverse_stiffness": 100000.0,
+    "transverse_damping": 3000.0,
+    "bearing_limit_per_m": 5000.0,
+    "axial_stiffness": 10000.0,
+    "axial_damping": 200.0,
+    "confinement_per_m": 100.0,
+    "cutting_force": 20.0
+  }
 }

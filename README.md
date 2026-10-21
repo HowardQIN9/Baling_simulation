@@ -1,21 +1,25 @@
 # Autonomous Bale Handling with a Tractor
 
-## Current development status — 2026-10-20
+## Current development status — 2026-10-21
 
 The latest work is a separate [four-spear handling prototype](spear_handling/README.md)
-that reuses the tractor and L115-inspired loader. It creates two independent
-200 kg square bales with internal collision channels and a configurable four-spear
-attachment. The existing jaw-grip simulation and autonomy runner remain available.
+that reuses the tractor and L115-inspired loader. Its default bales have solid
+collision bodies with a local yielding penetration/support model around the
+shafts. There are no pre-cut entry channels.
 
-**The first spear trial ran but failed acceptance.** The bale rose about 0.508 m,
-but insertion-depth feedback mixed coordinate frames and the custom contact
-counters stayed at zero. Pickup at 60% penetration, pair-specific friction,
-stacking, and lifting two bales are not yet validated. The current runner uses
-simulator poses for physics experiments, not camera-based autonomy.
+**A complete pickup, stack, withdrawal, two-bale lift and transport sequence has
+passed twice with the material model.** Matched comparisons reproduce pushing during
+incorrect insertion and bale following during withdrawal without downward
+preload. Laterally offset, modestly angled entry also passes; shallow engagement
+fails the pickup checks. These are provisional physics experiments, not a
+calibrated straw model or camera-guided spear autonomy.
 
-See [HANDOFF.md](HANDOFF.md) for architecture, exact test evidence, known issues,
-and the ordered resumption plan. Development is paused pending resumption;
-no successful spear demonstration is claimed.
+See the [material model and limitations](docs/spear_material_model.md),
+[recorded material results](docs/material_results.json), and
+[validation plot](docs/assets/spear_material_validation.png). Historical channel
+trials remain archived separately. Gazebo's allocator/teardown fault remains
+unresolved; task results and shutdown status are recorded separately. The
+existing jaw-grip simulation and autonomy runner remain available.
 
 Build and run the experimental first test from this directory:
 
@@ -27,8 +31,9 @@ python3 spear_handling/validate.py --case A
 
 Use system Python with the Gazebo transport/message bindings. The test creates
 an isolated Gazebo partition and writes artifacts under `runs/spear_*`.
-This command currently reproduces an unfinished experiment; it is not an
-accepted demonstration. Parameters are in `spear_handling/config.json`.
+Parameters are in `spear_handling/config.json`. Use `--case sequence` for
+the two-bale mission, or `python3 spear_handling/check_friction.py` for the
+independent contact-pair fixtures.
 
 ## Running the Current Scene
 
